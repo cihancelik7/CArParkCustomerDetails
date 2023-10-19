@@ -23,19 +23,27 @@ class SQLiteHelper(context: Context) :
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val createTableCostumer = ("CREATE TABLE " + TABLE_CUSTOMER + "("
-                + ID + "INTEGER PRIMARY KEY, " + NAME + "TEXT,"
-                + LASTNAME + "TEXT," + EMAIL + " TEXT," + PHONE + " TEXT," + ADDRESS + " TEXT,"
-                + CITY + " TEXT," + CARPLATE + " TEXT" + ")")
-        db?.execSQL(createTableCostumer)
+        val createTableCustomer = ("CREATE TABLE " + TABLE_CUSTOMER + "("
+                + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + NAME + " TEXT, "
+                + LASTNAME + " TEXT, "
+                + EMAIL + " TEXT, "
+                + PHONE + " TEXT, "
+                + ADDRESS + " TEXT, "
+                + CITY + " TEXT, "
+                + CARPLATE + " TEXT" + ")")
+
+        db?.execSQL(createTableCustomer)
 
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db!!.execSQL("DROP TABLE IF EXISTS $TABLE_CUSTOMER")
-        onCreate(db)
-
+        if (oldVersion < 2) {
+            // Bu sürüme kadar olan tabloyu güncelle
+            db?.execSQL("ALTER TABLE $TABLE_CUSTOMER ADD COLUMN $LASTNAME TEXT")
+        }
     }
+
 
     fun insertCustomer(customer: CustomerModel): Long {
 

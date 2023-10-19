@@ -1,10 +1,14 @@
 package com.cihancelik.carparkcustomerdetails
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var etName: EditText
@@ -18,6 +22,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnView: Button
 
     private lateinit var sqLiteHelper: SQLiteHelper
+
+    private var adapter: CustomerAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,9 +34,14 @@ class MainActivity : AppCompatActivity() {
 
 
         btnAdd.setOnClickListener { addCustomer() }
-        btnView.setOnClickListener {  }
+        btnView.setOnClickListener {
+            var intent = Intent(this,CustomerViewPage::class.java)
+        startActivity(intent)
+        }
 
     }
+
+
 
     private fun addCustomer() {
         val name = etName.text.toString()
@@ -82,6 +93,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+
     private fun initView() {
 
         etName = findViewById(R.id.cstName)
@@ -93,6 +106,5 @@ class MainActivity : AppCompatActivity() {
         etCarPlate = findViewById(R.id.cstCarNumberPlate)
         btnAdd = findViewById(R.id.btnAdd)
         btnView = findViewById(R.id.btnView)
-
     }
 }
