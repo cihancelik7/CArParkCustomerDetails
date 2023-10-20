@@ -9,16 +9,4 @@ data class CustomerModel(
     var address: String = "",
     var city: String = "",
     var carplate: String = ""
-) {
-    companion object {
-        private var autoId = 1 // Otomatik artan ID'nin başlangıç değeri
-
-        fun getAutoId(): Int {
-            return autoId++
-        }
-    }
-
-    init {
-        id = getAutoId()
-    }
-}
+)

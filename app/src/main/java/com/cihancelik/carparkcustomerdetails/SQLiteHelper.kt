@@ -46,10 +46,8 @@ class SQLiteHelper(context: Context) :
 
 
     fun insertCustomer(customer: CustomerModel): Long {
-
         val db = this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put(ID, customer.id)
         contentValues.put(NAME, customer.name)
         contentValues.put(LASTNAME, customer.lastName)
         contentValues.put(EMAIL, customer.email)
