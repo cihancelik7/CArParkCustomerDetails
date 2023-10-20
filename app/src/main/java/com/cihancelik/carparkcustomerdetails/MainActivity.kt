@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var sqLiteHelper: SQLiteHelper
 
+    private var cst: CustomerModel? = null
+
     private var adapter: CustomerAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,12 +37,23 @@ class MainActivity : AppCompatActivity() {
 
         btnAdd.setOnClickListener { addCustomer() }
         btnView.setOnClickListener {
-            var intent = Intent(this,CustomerViewPage::class.java)
-        startActivity(intent)
+            var intent = Intent(this, CustomerViewPage::class.java)
+            startActivity(intent)
+        }
+        adapter?.setOnClickItem {
+            Toast.makeText(this, it.name, Toast.LENGTH_SHORT).show()
+            etName.setText(it.name)
+            etLastName.setText(it.lastName)
+            etEmail.setText(it.email)
+            etPhone.setText(it.phone)
+            etAddress.setText(it.address)
+            etCity.setText(it.city)
+            etCarPlate.setText(it.carplate)
+            cst = it
         }
 
-    }
 
+    }
 
 
     private fun addCustomer() {
@@ -72,6 +85,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Customer Added", Toast.LENGTH_SHORT).show()
                 clearEditText()
 
+
             } else {
                 Toast.makeText(this, "Record not saved", Toast.LENGTH_SHORT).show()
             }
@@ -92,7 +106,6 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
 
 
     private fun initView() {

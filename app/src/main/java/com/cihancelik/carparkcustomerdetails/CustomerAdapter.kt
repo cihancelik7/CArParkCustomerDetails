@@ -10,10 +10,16 @@ import androidx.recyclerview.widget.RecyclerView
 class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>() {
 
     private var cstList : ArrayList<CustomerModel> = ArrayList()
+    private var onClickItem: ((CustomerModel) -> Unit)? = null
 
     fun addItems(items:ArrayList<CustomerModel>){
         this.cstList = items
         notifyDataSetChanged()
+    }
+
+    fun setOnClickItem(callback: (CustomerModel) -> Unit){
+        this.onClickItem = callback
+
     }
 
 
@@ -32,6 +38,8 @@ class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>
     override fun onBindViewHolder(holder: CustomerViewHolder, position: Int) {
         val cst = cstList[position]
         holder.bindView(cst)
+        holder.itemView.setOnClickListener {onClickItem?.invoke(cst)}
+
     }
 
 

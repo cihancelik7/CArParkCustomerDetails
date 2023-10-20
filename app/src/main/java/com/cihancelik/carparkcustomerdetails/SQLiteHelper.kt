@@ -116,5 +116,23 @@ class SQLiteHelper(context: Context) :
 
 
     }
+    fun updateCustomer(cst : CustomerModel):Int{
+
+        val db = this.writableDatabase
+        val contextValues = ContentValues()
+        contextValues.put(ID,cst.id)
+        contextValues.put(NAME,cst.name)
+        contextValues.put(LASTNAME,cst.lastName)
+        contextValues.put(EMAIL,cst.email)
+        contextValues.put(PHONE,cst.phone)
+        contextValues.put(ADDRESS,cst.address)
+        contextValues.put(CITY,cst.city)
+        contextValues.put(CARPLATE,cst.carplate)
+
+        val success = db.update(TABLE_CUSTOMER,contextValues,"id: "+cst.id,null)
+        db.close()
+        return success
+
+    }
 
 }
