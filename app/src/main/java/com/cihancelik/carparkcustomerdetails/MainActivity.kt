@@ -57,44 +57,38 @@ class MainActivity : AppCompatActivity() {
 
 
 
-private fun updateCustomer() {
+    private fun updateCustomer() {
+        val name = etName.text.toString()
+        val lastName = etLastName.text.toString()
+        val email = etEmail.text.toString()
+        val phone = etPhone.text.toString()
+        val address = etAddress.text.toString()
+        val city = etCity.text.toString()
+        val carPlate = etCarPlate.text.toString()
 
-    val name = etName.text.toString()
-    val lastName = etLastName.text.toString()
-    val email = etEmail.text.toString()
-    val phone = etPhone.text.toString()
-    val address = etAddress.text.toString()
-    val city = etCity.text.toString()
-    val carPlate = etCarPlate.text.toString()
-
-    // check record not change
-    if (name == cst?.name && lastName == cst?.lastName && email == cst?.email
-        && phone == cst?.phone && address == cst?.address && city == cst?.city && carPlate == cst?.carplate
-    ) {
-        Toast.makeText(this, "Record not changed...", Toast.LENGTH_SHORT).show()
-        return
+        // Güncelleme işlemi burada gerçekleştirilir
+        if (cst != null) {
+            val updatedCustomer = CustomerModel(
+                id = cst!!.id,
+                name = name,
+                lastName = lastName,
+                email = email,
+                phone = phone,
+                address = address,
+                city = city,
+                carplate = carPlate
+            )
+            val status = sqLiteHelper.updateCustomer(updatedCustomer)
+            if (status > -1) {
+                Toast.makeText(this, "Update successful", Toast.LENGTH_SHORT).show()
+                cst = updatedCustomer  // Güncellenen verileri "cst" değişkenine atayın
+                val intent = Intent(this,MainActivity::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Update failed...", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
-    if (cst == null) return
-    val cst = CustomerModel(
-        id = cst!!.id,
-        name = cst!!.name,
-        lastName = cst!!.lastName,
-        email = cst!!.email,
-        phone = cst!!.phone,
-        address = cst!!.address,
-        city = cst!!.city,
-        carplate = cst!!.carplate
-    )
-    val status = sqLiteHelper.updateCustomer(cst)
-    if (status > -1) {
-        clearEditText()
-        CustomerViewPage().getCustomers()
-    } else {
-        Toast.makeText(this, "Update failed...", Toast.LENGTH_SHORT).show()
-    }
-
-
-}
 
 
 private fun addCustomer() {

@@ -2,10 +2,8 @@ package com.cihancelik.carparkcustomerdetails
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -36,17 +34,33 @@ class CustomerViewPage : AppCompatActivity() {
         recyclerView.adapter = adapter
         getCustomers()
 
-        adapter?.setOnClickItem {customer ->
-            // İkinci aktiviteye veriyi iletmek için Intent oluştur
+        adapter?.setOnClickItem { customer ->
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("selectedCustomer", customer)
             startActivity(intent)
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        // "MainActivity" sayfasından güncellenmiş veriyi al
+        val updatedCustomer = intent.getSerializableExtra("updatedCustomer") as? CustomerModel
+        if (updatedCustomer != null) {
+            // Eğer güncellenmiş veri varsa, "cst" değişkenini güncelle
+            cst = updatedCustomer
+            // EditText'lere güncellenmiş verileri yerleştir
+            etName.setText(updatedCustomer.name)
+            etLastName.setText(updatedCustomer.lastName)
+            etEmail.setText(updatedCustomer.email)
+            etPhone.setText(updatedCustomer.phone)
+            etAddress.setText(updatedCustomer.address)
+            etCity.setText(updatedCustomer.city)
+            etCarPlate.setText(updatedCustomer.carplate)
+        }
+    }
+
     fun getCustomers() {
         val customerList = sqLiteHelper.getAllCustomers()
-        Log.e("pppp", "${customerList.size}")
         adapter.addItems(customerList)
     }
 }

@@ -129,7 +129,7 @@ class SQLiteHelper(context: Context) :
         contextValues.put(CITY,cst.city)
         contextValues.put(CARPLATE,cst.carplate)
 
-        val success = db.update(TABLE_CUSTOMER,contextValues,"id: "+cst.id,null)
+        val success = db.update(TABLE_CUSTOMER,contextValues,"id= "+cst.id,null)
         db.close()
         return success
 
