@@ -52,6 +52,9 @@ class MainActivity : AppCompatActivity() {
             cst = selectedCustomer
         }
         btnUpdate.setOnClickListener { updateCustomer() }
+
+        //we need to delete record.
+
     }
 
 

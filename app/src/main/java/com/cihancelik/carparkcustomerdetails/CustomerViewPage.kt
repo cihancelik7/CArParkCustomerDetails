@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,6 +40,10 @@ class CustomerViewPage : AppCompatActivity() {
             intent.putExtra("selectedCustomer", customer)
             startActivity(intent)
         }
+        adapter.setOnClickDeleteItem {
+                deleteCustomer(it.id)
+
+        }
     }
 
     override fun onResume() {
@@ -63,4 +68,43 @@ class CustomerViewPage : AppCompatActivity() {
         val customerList = sqLiteHelper.getAllCustomers()
         adapter.addItems(customerList)
     }
+
+    fun deleteCustomer(id: Int) {
+        if (id == null) return
+
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("Are you sure you want to delete Customer?")
+        builder.setCancelable(true)
+        builder.setPositiveButton("Yes") { dialog, _ ->
+            // Müşteriyi sil
+            sqLiteHelper.deleteCustomerById(id)
+            // Tüm müşteri listesini al
+            val customerList = sqLiteHelper.getAllCustomers()
+
+            // Silinen müşterinin indisini bul
+            val deletedCustomerIndex = customerList.indexOfFirst { it.id == id }
+
+            // Eğer silinen müşteri listede bulunursa ve listede daha fazla müşteri varsa,
+            // silinen müşteriden sonraki müşterilerin id değerlerini birer azalt
+            if (deletedCustomerIndex != -1 && deletedCustomerIndex < customerList.size - 1) {
+                for (i in (deletedCustomerIndex + 1) until customerList.size) {
+                    val currentCustomer = customerList[i]
+                    val newId = currentCustomer.id - 1
+                    currentCustomer.id = newId
+                    // Güncellenmiş müşteriyi veritabanına kaydet
+                    sqLiteHelper.updateCustomer(currentCustomer)
+                }
+            }
+
+            // Yeniden güncellenmiş müşteri listesini ekranda göster
+            adapter.addItems(customerList)
+            dialog.dismiss()
+        }
+        builder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss()
+        }
+        val alert = builder.create()
+        alert.show()
+    }
+
 }

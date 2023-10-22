@@ -11,6 +11,7 @@ class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>
 
     private var cstList : ArrayList<CustomerModel> = ArrayList()
     private var onClickItem: ((CustomerModel) -> Unit)? = null
+    private var onClickDeleteItem: ((CustomerModel) -> Unit)? = null
 
     fun addItems(items:ArrayList<CustomerModel>){
         this.cstList = items
@@ -20,6 +21,9 @@ class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>
     fun setOnClickItem(callback: (CustomerModel) -> Unit){
         this.onClickItem = callback
 
+    }
+    fun setOnClickDeleteItem(callback: (CustomerModel) -> Unit){
+        this.onClickDeleteItem = callback
     }
 
 
@@ -39,10 +43,10 @@ class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>
         val cst = cstList[position]
         holder.bindView(cst)
         holder.itemView.setOnClickListener {onClickItem?.invoke(cst)}
+        holder.btnDelete.setOnClickListener { onClickDeleteItem?.invoke(cst) }
+
 
     }
-
-
 
 
 
@@ -57,7 +61,7 @@ class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>
         private var city = view.findViewById<TextView>(R.id.tvCity)
         private var carplate = view.findViewById<TextView>(R.id.tvCarPlate)
 
-        private var btnDelete = view.findViewById<Button>(R.id.btnDelete)
+         var btnDelete = view.findViewById<Button>(R.id.btnDelete)
 
         fun bindView(cst:CustomerModel){
             id.text = cst.id.toString()

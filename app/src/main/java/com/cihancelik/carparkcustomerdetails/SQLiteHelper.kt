@@ -135,4 +135,13 @@ class SQLiteHelper(context: Context) :
 
     }
 
+    fun deleteCustomerById(id:Int):Int {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(ID,id)
+
+        val success = db.delete(TABLE_CUSTOMER, "id= $id",null)
+        db.close()
+        return success
+    }
 }
