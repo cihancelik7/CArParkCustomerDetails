@@ -1,5 +1,6 @@
 package com.cihancelik.carparkcustomerdetails
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -22,6 +23,7 @@ class CustomerViewPage : AppCompatActivity() {
     private lateinit var etCarPlate: EditText
     private lateinit var btnAdd: Button
     private lateinit var btnView: Button
+    private var cst: CustomerModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,20 +36,17 @@ class CustomerViewPage : AppCompatActivity() {
         recyclerView.adapter = adapter
         getCustomers()
 
-
-
-
-
+        adapter?.setOnClickItem {customer ->
+            // İkinci aktiviteye veriyi iletmek için Intent oluştur
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("selectedCustomer", customer)
+            startActivity(intent)
+        }
     }
-    private fun getCustomers() {
+
+    fun getCustomers() {
         val customerList = sqLiteHelper.getAllCustomers()
         Log.e("pppp", "${customerList.size}")
-
-        // we need to display data in recyclerview
         adapter.addItems(customerList)
-
-
-
     }
-
 }
