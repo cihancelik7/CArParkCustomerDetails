@@ -47,7 +47,24 @@ class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>
 
 
     }
+    fun removeItem(position: Int) {
+        if (position in 0 until cstList.size) {
+            val deletedCustomer = cstList.removeAt(position)
+            notifyDataSetChanged()
 
+            // Silinen müşteriden sonraki müşterilerin ID'lerini güncelle
+            val deletedCustomerId = deletedCustomer.id
+            for (i in position until cstList.size) {
+                val customer = cstList[i]
+                customer.id = deletedCustomerId + i
+            }
+        }
+    }
+    fun updateCustomerList(customerList: List<CustomerModel>) {
+        cstList.clear()
+        cstList.addAll(customerList)
+        notifyDataSetChanged()
+    }
 
 
     class CustomerViewHolder(var view: View):RecyclerView.ViewHolder(view){

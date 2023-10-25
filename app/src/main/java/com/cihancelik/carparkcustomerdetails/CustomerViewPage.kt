@@ -70,7 +70,7 @@ class CustomerViewPage : AppCompatActivity() {
     }
 
     fun deleteCustomer(id: Int) {
-        if (id == null) return
+        if (id <= 0) return
 
         val builder = AlertDialog.Builder(this)
         builder.setMessage("Are you sure you want to delete Customer?")
@@ -78,26 +78,36 @@ class CustomerViewPage : AppCompatActivity() {
         builder.setPositiveButton("Yes") { dialog, _ ->
             // Müşteriyi sil
             sqLiteHelper.deleteCustomerById(id)
+
             // Tüm müşteri listesini al
             val customerList = sqLiteHelper.getAllCustomers()
 
             // Silinen müşterinin indisini bul
-            val deletedCustomerIndex = customerList.indexOfFirst { it.id == id }
+            var deletedCustomerIndex = -1
 
-            // Eğer silinen müşteri listede bulunursa ve listede daha fazla müşteri varsa,
-            // silinen müşteriden sonraki müşterilerin id değerlerini birer azalt
-            if (deletedCustomerIndex != -1 && deletedCustomerIndex < customerList.size - 1) {
-                for (i in (deletedCustomerIndex + 1) until customerList.size) {
-                    val currentCustomer = customerList[i]
-                    val newId = currentCustomer.id - 1
-                    currentCustomer.id = newId
-                    // Güncellenmiş müşteriyi veritabanına kaydet
-                    sqLiteHelper.updateCustomer(currentCustomer)
+            for (i in customerList.indices) {
+                if (customerList[i].id == id) {
+                    deletedCustomerIndex = i
+                    break
                 }
             }
 
+            // Eğer silinen müşteri listede bulunursa ve listede daha fazla müşteri varsa,
+            // silinen müşteriden sonraki müşterilerin ID değerlerini birer azalt
+            if (deletedCustomerIndex != -1 && deletedCustomerIndex < customerList.size - 1) {
+                for (i in (deletedCustomerIndex + 1) until customerList.size) {
+                    val currentCustomer = customerList[i]
+                    currentCustomer.id = currentCustomer.id - 1 // ID'yi bir azalt
+                    sqLiteHelper.updateCustomer(currentCustomer)
+                }
+            } else if (deletedCustomerIndex != -1) {
+                // Eğer silinen müşteri listenin son elemanıysa, bu durumda diğer müşterilerin ID'lerine dokunmanıza gerek yok.
+                // Sadece son müşteriyi kaldırın.
+                customerList.removeAt(deletedCustomerIndex)
+            }
+
             // Yeniden güncellenmiş müşteri listesini ekranda göster
-            adapter.addItems(customerList)
+            adapter.updateCustomerList(customerList) // Adapter verilerini güncelle
             dialog.dismiss()
         }
         builder.setNegativeButton("No") { dialog, _ ->
@@ -106,5 +116,6 @@ class CustomerViewPage : AppCompatActivity() {
         val alert = builder.create()
         alert.show()
     }
+
 
 }
