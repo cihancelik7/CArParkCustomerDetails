@@ -7,8 +7,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.cihancelik.SQL.SQLiteHelperForCustomer
 
-class MainActivity : AppCompatActivity() {
+class CustomerMainActivity : AppCompatActivity() {
     private lateinit var etName: EditText
     private lateinit var etLastName: EditText
     private lateinit var etEmail: EditText
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnView: Button
     private lateinit var btnUpdate: Button
 
-    private lateinit var sqLiteHelper: SQLiteHelper
+    private lateinit var sqLiteHelper: SQLiteHelperForCustomer
 
     private var cst: CustomerModel? = null
 
@@ -28,11 +29,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.customer_activity_main)
 
         initView()
 
-        sqLiteHelper = SQLiteHelper(this)
+        sqLiteHelper = SQLiteHelperForCustomer(this)
 
         btnAdd.setOnClickListener { addCustomer() }
         btnView.setOnClickListener {
@@ -85,7 +86,7 @@ class MainActivity : AppCompatActivity() {
             if (status > -1) {
                 Toast.makeText(this, "Update successful", Toast.LENGTH_SHORT).show()
                 cst = updatedCustomer  // Güncellenen verileri "cst" değişkenine atayın
-                val intent = Intent(this,MainActivity::class.java)
+                val intent = Intent(this,CustomerMainActivity::class.java)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "Update failed...", Toast.LENGTH_SHORT).show()

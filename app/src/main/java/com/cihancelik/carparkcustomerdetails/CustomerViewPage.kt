@@ -8,11 +8,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cihancelik.SQL.SQLiteHelperForCustomer
 
 class CustomerViewPage : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private val adapter = CustomerAdapter()
-    private lateinit var sqLiteHelper: SQLiteHelper
+    private lateinit var sqLiteHelper: SQLiteHelperForCustomer
     private lateinit var etName: EditText
     private lateinit var etLastName: EditText
     private lateinit var etEmail: EditText
@@ -28,7 +29,7 @@ class CustomerViewPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_customer_view_page)
 
-        sqLiteHelper = SQLiteHelper(this)
+        sqLiteHelper = SQLiteHelperForCustomer(this)
 
         recyclerView = findViewById(R.id.customerRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -36,7 +37,7 @@ class CustomerViewPage : AppCompatActivity() {
         getCustomers()
 
         adapter?.setOnClickItem { customer ->
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, CustomerMainActivity::class.java)
             intent.putExtra("selectedCustomer", customer)
             startActivity(intent)
         }

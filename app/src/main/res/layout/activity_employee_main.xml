@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context="com.cihancelik.employee.EmployeeMainActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,11 +13,11 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="Car Park Customer Details"
-        android:textSize="20sp" />
+        android:text="Car Park Employee Details"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/cstName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -25,7 +25,6 @@
         android:hint="Enter Name" />
 
     <EditText
-        android:id="@+id/cstLastName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -33,45 +32,25 @@
         android:hint="Enter LastName" />
 
     <EditText
-        android:id="@+id/cstEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Enter email" />
+        android:hint="Department" />
 
     <EditText
-        android:id="@+id/cstPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Enter phone" />
+        android:hint="Email" />
 
     <EditText
-        android:id="@+id/cstAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Enter address" />
-
-    <EditText
-        android:id="@+id/cstCity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Enter city" />
-
-    <EditText
-        android:id="@+id/cstCarNumberPlate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:hint="Enter car plate" />
+        android:hint="Address" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -79,28 +58,22 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/btnAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add"/>
-        <Button
-            android:id="@+id/btnView"
-            android:layout_marginStart="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View"/>
-        <Button
-            android:id="@+id/btnUpdate"
-            android:layout_marginStart="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Update"/>
+            android:text="Add" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_height="wrap_content"
+            android:text="View" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_height="wrap_content"
+            android:text="Update" />
 
     </LinearLayout>
-
-
-
-
 
 </LinearLayout>

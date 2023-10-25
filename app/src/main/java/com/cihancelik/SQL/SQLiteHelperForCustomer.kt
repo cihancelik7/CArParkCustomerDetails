@@ -1,12 +1,13 @@
-package com.cihancelik.carparkcustomerdetails
+package com.cihancelik.SQL
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.cihancelik.carparkcustomerdetails.CustomerModel
 
-class SQLiteHelper(context: Context) :
+class SQLiteHelperForCustomer(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
         private const val DATABASE_VERSION = 1
