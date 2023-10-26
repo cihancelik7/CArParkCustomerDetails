@@ -21,8 +21,7 @@ class CustomerViewPage : AppCompatActivity() {
     private lateinit var etAddress: EditText
     private lateinit var etCity: EditText
     private lateinit var etCarPlate: EditText
-    private lateinit var btnAdd: Button
-    private lateinit var btnView: Button
+
     private var cst: CustomerModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

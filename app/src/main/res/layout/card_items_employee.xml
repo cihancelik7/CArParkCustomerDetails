@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#B48AED"
     android:padding="16dp"
     android:weightSum="1"
-    tools:context=".CustomerViewPage">
+    tools:context="com.cihancelik.employee.EmployeeViewPage">
 
     <LinearLayout
         android:id="@+id/ll_cardview"
@@ -18,7 +17,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvId"
+            android:id="@+id/tvIdC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
@@ -26,7 +25,7 @@
             android:textStyle="italic" />
 
         <TextView
-            android:id="@+id/tvName"
+            android:id="@+id/tvNameC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
@@ -34,51 +33,37 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvLastName"
+            android:id="@+id/tvLastNameC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Last Name: " />
 
         <TextView
-            android:id="@+id/tvEmail"
+            android:id="@+id/tvDepartmentC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:text="Department: " />
+
+        <TextView
+            android:id="@+id/tvEmailC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="E-mail: " />
 
         <TextView
-            android:id="@+id/tvPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:text="Phone: " />
-
-        <TextView
-            android:id="@+id/tvAddress"
+            android:id="@+id/tvAddressC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Address: " />
 
-        <TextView
-            android:id="@+id/tvCity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:text="City: " />
-
-        <TextView
-            android:id="@+id/tvCarPlate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:text="Car Plate: " />
-
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnDelete"
+        android:id="@+id/btnDeleteC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -88,6 +73,4 @@
         android:text="Delete"
         android:textColor="#6200EA" />
 
-
 </LinearLayout>
-
