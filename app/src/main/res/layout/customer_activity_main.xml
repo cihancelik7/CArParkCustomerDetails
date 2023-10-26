@@ -80,18 +80,18 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/btnAdd"
+            android:id="@+id/btnCstAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add"/>
         <Button
-            android:id="@+id/btnView"
+            android:id="@+id/btnCstView"
             android:layout_marginStart="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="View"/>
         <Button
-            android:id="@+id/btnUpdate"
+            android:id="@+id/btnCstUpdate"
             android:layout_marginStart="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
