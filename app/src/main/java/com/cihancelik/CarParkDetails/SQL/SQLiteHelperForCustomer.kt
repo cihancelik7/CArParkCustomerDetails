@@ -1,11 +1,11 @@
-package com.cihancelik.SQL
+package com.cihancelik.CarParkDetails.SQL
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.cihancelik.carparkcustomerdetails.CustomerModel
+import com.cihancelik.CarParkDetails.customer_details.CustomerModel
 
 class SQLiteHelperForCustomer(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {

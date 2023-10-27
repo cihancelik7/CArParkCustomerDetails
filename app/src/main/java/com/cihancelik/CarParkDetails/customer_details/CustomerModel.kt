@@ -1,4 +1,4 @@
-package com.cihancelik.carparkcustomerdetails
+package com.cihancelik.CarParkDetails.customer_details
 
 import java.io.Serializable
 

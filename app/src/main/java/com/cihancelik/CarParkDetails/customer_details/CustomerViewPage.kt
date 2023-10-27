@@ -1,19 +1,19 @@
-package com.cihancelik.carparkcustomerdetails
+package com.cihancelik.CarParkDetails.customer_details
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.cihancelik.SQL.SQLiteHelperForCustomer
+import com.cihancelik.CarParkDetails.SQL.SQLiteHelperForCustomer
+import com.cihancelik.carparkcustomerdetails.R
 
 class CustomerViewPage : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private val adapter = CustomerAdapter()
-    private lateinit var sqLiteHelper: SQLiteHelperForCustomer
+    private lateinit var sqLiteHelperForCustomer: SQLiteHelperForCustomer
     private lateinit var etName: EditText
     private lateinit var etLastName: EditText
     private lateinit var etEmail: EditText
@@ -28,7 +28,7 @@ class CustomerViewPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_customer_view_page)
 
-        sqLiteHelper = SQLiteHelperForCustomer(this)
+        sqLiteHelperForCustomer = SQLiteHelperForCustomer(this)
 
         recyclerView = findViewById(R.id.customerRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -41,7 +41,7 @@ class CustomerViewPage : AppCompatActivity() {
             startActivity(intent)
         }
         adapter.setOnClickDeleteItem {
-                deleteCustomer(it.id)
+            deleteCustomer(it.id)
 
         }
     }
@@ -65,7 +65,7 @@ class CustomerViewPage : AppCompatActivity() {
     }
 
     fun getCustomers() {
-        val customerList = sqLiteHelper.getAllCustomers()
+        val customerList = sqLiteHelperForCustomer.getAllCustomers()
         adapter.addItems(customerList)
     }
 
@@ -77,10 +77,10 @@ class CustomerViewPage : AppCompatActivity() {
         builder.setCancelable(true)
         builder.setPositiveButton("Yes") { dialog, _ ->
             // Müşteriyi sil
-            sqLiteHelper.deleteCustomerById(id)
+            sqLiteHelperForCustomer.deleteCustomerById(id)
 
             // Tüm müşteri listesini al
-            val customerList = sqLiteHelper.getAllCustomers()
+            val customerList = sqLiteHelperForCustomer.getAllCustomers()
 
             // Silinen müşterinin indisini bul
             var deletedCustomerIndex = -1
@@ -98,7 +98,7 @@ class CustomerViewPage : AppCompatActivity() {
                 for (i in (deletedCustomerIndex + 1) until customerList.size) {
                     val currentCustomer = customerList[i]
                     currentCustomer.id = currentCustomer.id - 1 // ID'yi bir azalt
-                    sqLiteHelper.updateCustomer(currentCustomer)
+                    sqLiteHelperForCustomer.updateCustomer(currentCustomer)
                 }
             } else if (deletedCustomerIndex != -1) {
                 // Eğer silinen müşteri listenin son elemanıysa, bu durumda diğer müşterilerin ID'lerine dokunmanıza gerek yok.

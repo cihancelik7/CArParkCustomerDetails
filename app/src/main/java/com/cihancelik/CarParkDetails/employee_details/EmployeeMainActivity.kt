@@ -1,4 +1,4 @@
-package com.cihancelik.employee
+package com.cihancelik.CarParkDetails.employee_details
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,8 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.cihancelik.SQL.SQLiteHelperForCustomer
-import com.cihancelik.SQL.SQLiteHelperForEmployee
+import com.cihancelik.CarParkDetails.SQL.SQLiteHelperForEmployee
 import com.cihancelik.carparkcustomerdetails.R
 
 class EmployeeMainActivity : AppCompatActivity() {
@@ -69,7 +68,7 @@ class EmployeeMainActivity : AppCompatActivity() {
             if (status > -1){
                 Toast.makeText(this, "Updated Successful", Toast.LENGTH_SHORT).show()
                 emp = updatedEmployee
-                val intent = Intent(this,EmployeeMainActivity::class.java)
+                val intent = Intent(this, EmployeeMainActivity::class.java)
                 startActivity(intent)
             }else{
                 Toast.makeText(this, "Updated failed", Toast.LENGTH_SHORT).show()
@@ -82,14 +81,14 @@ class EmployeeMainActivity : AppCompatActivity() {
         val lastname = etLastName.text.toString()
         val department = etDepartment.text.toString()
         val email = etEmail.text.toString()
-        val address = etAddress.text.toString().uppercase()
+        val address = etAddress.text.toString()
 
         if (name.isEmpty() || lastname.isEmpty() || department.isEmpty() ||
             email.isEmpty() || address.isEmpty()){
 
             Toast.makeText(this, "Please Enter Reqirement Field", Toast.LENGTH_SHORT).show()
         }else if (!(department.equals("MUHASEBE") || department.equals("SATINALMA") || department.equals("IK"))){
-            Toast.makeText(this, "you should write 'Muhasebe , satinalma or ik'", Toast.LENGTH_SHORT)
+            Toast.makeText(this, "you should write 'MUHASEBE , SATINALMA or IK'", Toast.LENGTH_SHORT)
                 .show()
         }else{
             val emp = EmployeeModel(
@@ -102,7 +101,7 @@ class EmployeeMainActivity : AppCompatActivity() {
             val status  = sqLiteHelper.insertEmployee(emp)
             // check insert employee success or not success
             if (status > -1){
-                Toast.makeText(this, "Record not saved", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Employee Added", Toast.LENGTH_SHORT).show()
                 clearEditText()
             }else{
                 Toast.makeText(this, "Record not saved", Toast.LENGTH_SHORT).show()

@@ -1,4 +1,4 @@
-package com.cihancelik.employee
+package com.cihancelik.CarParkDetails.employee_details
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cihancelik.carparkcustomerdetails.R
-import org.w3c.dom.Text
 
 class EmployeeAdapter : RecyclerView.Adapter<EmployeeAdapter.EmployeeViewHolder>() {
 
@@ -29,11 +28,11 @@ class EmployeeAdapter : RecyclerView.Adapter<EmployeeAdapter.EmployeeViewHolder>
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    )= EmployeeAdapter.EmployeeViewHolder (
+    )= EmployeeViewHolder (
         LayoutInflater.from(parent.context).inflate(R.layout.card_items_employee,parent,false)
         )
 
-    override fun onBindViewHolder(holder: EmployeeAdapter.EmployeeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: EmployeeViewHolder, position: Int) {
         val emp = empList[position]
         holder.bindView(emp)
         holder.itemView.setOnClickListener { onClickItem?.invoke(emp) }
@@ -71,7 +70,7 @@ class EmployeeAdapter : RecyclerView.Adapter<EmployeeAdapter.EmployeeViewHolder>
 
         var btnDelete  = view.findViewById<Button>(R.id.btnDeleteC)
 
-        fun bindView(emp:EmployeeModel){
+        fun bindView(emp: EmployeeModel){
             id.text = emp.id.toString()
             name.text = emp.name
             lastName.text = emp.lastName

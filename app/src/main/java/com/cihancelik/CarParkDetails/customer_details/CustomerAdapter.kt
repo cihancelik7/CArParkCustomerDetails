@@ -1,4 +1,4 @@
-package com.cihancelik.carparkcustomerdetails
+package com.cihancelik.CarParkDetails.customer_details
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.cihancelik.carparkcustomerdetails.R
 
 class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>() {
 
@@ -80,7 +81,7 @@ class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>
 
          var btnDelete = view.findViewById<Button>(R.id.btnDelete)
 
-        fun bindView(cst:CustomerModel){
+        fun bindView(cst: CustomerModel){
             id.text = cst.id.toString()
             name.text = cst.name
             lastname.text = cst.lastName

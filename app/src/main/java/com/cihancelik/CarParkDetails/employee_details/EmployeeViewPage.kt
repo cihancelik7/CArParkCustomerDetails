@@ -1,15 +1,15 @@
-package com.cihancelik.employee
+package com.cihancelik.CarParkDetails.employee_details
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.cihancelik.SQL.SQLiteHelperForEmployee
+import com.cihancelik.CarParkDetails.SQL.SQLiteHelperForEmployee
 import com.cihancelik.carparkcustomerdetails.R
-import java.net.Inet4Address
+
 
 class EmployeeViewPage : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -43,11 +43,12 @@ class EmployeeViewPage : AppCompatActivity() {
         }
 
     }
-    override fun onResume(){
+
+    override fun onResume() {
         super.onResume()
         // main activity sayfasinda guncellenmis veriyi al
         val updatedEmployee = intent.getSerializableExtra("updatedEmployee") as? EmployeeModel
-        if (updatedEmployee != null){
+        if (updatedEmployee != null) {
             // eger guncellenmis veri varsa "emp" degiseknini guncelle
             emp = updatedEmployee
             // edittextlere guncellenmis verileri yerlestir
@@ -95,7 +96,7 @@ class EmployeeViewPage : AppCompatActivity() {
                     currentEmployee.id = currentEmployee.id - 1 // id yi bir azalt
                     sqLiteHelperForEmployee.updateEmployee(currentEmployee)
                 }
-            }else if (deletedEmployeeIndex != -1){
+            } else if (deletedEmployeeIndex != -1) {
                 // eger silinen musteri listenin son elemaniysa, bu durumda diger musterin id lerine dokunmaniza gerek yok.
                 // sadece son musteriyi kaldirin
                 employeeList.removeAt(deletedEmployeeIndex)
@@ -105,7 +106,7 @@ class EmployeeViewPage : AppCompatActivity() {
             adapter.updateEmployeeList(employeeList)// adapter verilerini guncelle
             dialog.dismiss()
         }
-        builder.setNegativeButton("No") {dialog, _ ->
+        builder.setNegativeButton("No") { dialog, _ ->
             dialog.dismiss()
         }
         val alert = builder.create()

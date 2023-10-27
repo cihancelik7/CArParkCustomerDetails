@@ -1,4 +1,4 @@
-package com.cihancelik.employee
+package com.cihancelik.CarParkDetails.employee_details
 
 import java.io.Serializable
 
