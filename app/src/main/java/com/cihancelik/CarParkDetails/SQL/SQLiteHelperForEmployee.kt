@@ -318,6 +318,132 @@ class SQLiteHelperForEmployee(context: Context) :
         FOREIGN KEY (CHECK_ACCOUNT_ID) REFERENCES GL_ACCOUNT_COMBINATIONS(GL_COD_COM_ID)
     )            
 """.trimIndent()
+        val createPurchaseOrders = """
+            CREATE TABLE IF NOT EXISTS PURCHASE_ORDERS (
+            ORDER_ID INTEGER PRIMARY KEY,
+            ORDER_CODE TEXT,
+            ITEM_ID INTEGER,
+            ITEM_UNIT TEXT,
+            ITEM_AMOUNT TEXT,
+            UPDATE_DATE DATE,
+            CREATION_DATE DATE,
+            FOREIGN KEY (ITEM_ID) REFERENCES ITEMS(ITEM_ID) 
+            )
+            """.trimIndent()
+
+        val createItems = """
+            CREATE TABLE IF NOT EXISTS ITEMS (
+            ITEM_ID INTEGER PRIMARY KEY,
+            ITEM_CODE TEXT,
+            ITEM_DESCRIPTION TEXT,
+            UPDATE_DATE DATE,
+            CREATION_DATE DATE
+            )
+            """.trimIndent()
+
+        val createRecCustomers = """
+            CREATE TABLE IF NOT EXISTS REC_CUSTOMERS (
+            CUSTOMER_ID INTEGER PRIMARY KEY,
+            CUSTOMER_NUMBER INTEGER,
+            CUSTOMER_NAME TEXT,
+            START_DATE DATE,
+            END_DATE DATE,
+            TCKN NUMBER(11),
+            EMP_CUSTOMER BOOLEAN,
+            GLCCID INTEGER,
+            ADDRESS_ID INTEGER,
+            EMAIL_ADDRESS TEXT,
+            UPDATE_DATE DATE,
+            CREATION_DATE
+            )
+            """.trimIndent()
+
+        val createRecInvoices = """
+            CREATE TABLE IF NOT EXISTS REC_INVOICES (
+            REC_INVOICE_ID INTEGER PRIMARY KEY,
+            CUSTOMER_ID INTEGER,
+            INVOICE_DATE DATE,
+            INVOICE_TYPE TEXT,
+            INVOICE_AMOUNT INTEGER,
+            TAX_AMOUNT INTEGER,
+            CURRENCY TEXT,
+            RECEIPT_METHOD_ID INTEGER,
+            RECEIPT_TERM_ID INTEGER,
+            UPDATE_DATE DATE,
+            CREATION_DATE DATE,
+            FOREIGN KEY (CUSTOMER_ID) REFERENCES REC_CUSTOMERS(CUSTOMER_ID),
+            FOREIGN KEY (CURRENCY) REFERENCES PAY_INVOICES(CURRENCY),
+            FOREIGN KEY (RECEIPT_METHOD_ID) REFERENCES REC_RECEIPT_METHOD(RECEIPT_METHOD_ID),
+            FOREIGN KEY (RECEIPT_TERM_ID) REFERENCES REC_RECEIPT_TERMS(RECEIPT_TERM_ID)
+            )
+            """.trimIndent()
+
+        val createRecInvoiceLines = """
+            CREATE TABLE IF NOT EXISTS (
+            REC_INVOICE_LINE_ID INTEGER PRIMARY KEY,
+            REC_INVOICE_ID INTEGER,
+            LINE_AMOUNT INTEGER,
+            TAX_RATE TEXT,
+            TAX_AMOUNT INTEGER,
+            GLCCID INTEGER,
+            UPDATE_DATE DATE,
+            CREATION_DATE DATE,
+            FOREIGN KEY (REC_INVOICE_ID) REFERENCES PAY_INVOICES(INVOICE_ID),
+            FOREIGN KEY (GLCCID) REFERENCES GL_ACCOUNT_COMBINATIONS(GL_COD_COM_ID)
+            )
+            """.trimIndent()
+        val createRecReceiptTerms = """
+            CREATE TABLE IF NOT EXISTS REC_RECEIPT_TERMS (
+            RECEIPT_TERM_ID INTEGER PRIMARY KEY,
+            TERM_NAME TEXT,
+            UPDATE_DATE DATE,
+            CREATION_DATE DATE
+            )
+            """.trimIndent()
+
+        val createRecReceiptMethods = """
+            CREATE TABLE IF NOT EXISTS REC_RECEIPT_METHODS (
+            RECEIPT_METHOD_ID INTEGER PRIMARY KEY,
+            METHOD_NAME TEXT,
+            RECEIPT_TERM_ID INTEGER,
+            UPDATE_DATE DATE,
+            CREATION_DATE DATE,
+            FOREIGN KEY(RECEIPT_TERM_ID) REFERENCES REC_RECEIPT_TERMS(RECEIPT_TERM_ID)
+            )
+            """.trimIndent()
+
+        val createRecReceipts = """
+        CREATE TABLE IF NOT EXISTS REC_RECEIPTS (
+        RECEIPT_ID INTEGER PRIMARY KEY,
+        RECEIPT_METHOD_ID INTEGER,
+        RECEIPT_TERM_ID INTEGER,
+        CUSTOMER_ID INTEGER,
+        CUSTOMER_NUMBER INTEGER,
+        CUSTOMER_NAME TEXT,
+        RECEIPT_DATE DATE,
+        RECEIPT_AMOUNT INTEGER,
+        CHECK_ACCOUNT_ID INTEGER,
+        UPDATE_DATE DATE,
+        CREATION_DATE DATE,
+        FOREIGN KEY (RECEIPT_METHOD_ID) REFERENCES REC_RECEIPT_METHODS(RECEIPT_METHOD_ID),
+        FOREIGN KEY (RECEIPT_TERM_ID) REFERENCES REC_RECEIPT_TERM(RECEIPT_TERM_ID),
+        FOREIGN KEY (CUSTOMER_ID) REFERENCES REC_CUSTOMERS(CUSTOMER_ID),
+        FOREIGN KEY (CUSTOMER_NUMBER) REFERENCES REC_CUSTOMERS(CUSTOMER_NUMBER),
+        FOREIGN KEY (CUSTOMER_NAME) REFERENCES REC_CUSTOMERS(CUSTOMER_NAME),
+        FOREIGN KEY (CHECK_ACCOUNT_ID) REFERENCES GL_ACCOUNT_COMBINATIONS(GL_COD_COM_ID)
+        )
+        """.trimIndent()
+        val createCrmCustCarInfo = """
+            CREATE TABLE IF NOT EXISTS CRM_CUST_CAR_INFO (
+            CAR_INFO_ID INTEGER PRIMARY KEY,
+            PLATE_NUMBER TEXT,
+            MODEL TEXT,
+            CUSTOMER_ID INTEGER,
+            UPDATE_DATE DATE,
+            CREATION_DATE DATE
+            )
+            """.trimIndent()
+
 
 
 
@@ -342,6 +468,16 @@ class SQLiteHelperForEmployee(context: Context) :
         db?.execSQL(createPayCheckTerms)
         db?.execSQL(createPayCheckMethods)
         db?.execSQL(createPayChecks)
+        db?.execSQL(createPurchaseOrders)
+        db?.execSQL(createItems)
+        db?.execSQL(createRecCustomers)
+        db?.execSQL(createRecInvoices)
+        db?.execSQL(createRecInvoiceLines)
+        db?.execSQL(createRecReceiptTerms)
+        db?.execSQL(createRecReceiptMethods)
+        db?.execSQL(createRecReceipts)
+        db?.execSQL(createCrmCustCarInfo)
+
 
 
     }
