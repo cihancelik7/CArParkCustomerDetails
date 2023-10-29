@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
@@ -11,35 +11,46 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CArParkCustomerDetails"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+        <activity
+            android:name="com.cihancelik.CarParkDetails.general.GeneralViewPage"
+            android:exported="false" />
+        <activity
+            android:name="com.cihancelik.CarParkDetails.receivable.ReceivableViewPage"
+            android:exported="false" />
+        <activity
+            android:name="com.cihancelik.CarParkDetails.debt.DebtViewPage"
+            android:exported="false" />
+        <activity
+            android:name="com.cihancelik.CarParkDetails.CRM.CRMViewPage"
+            android:exported="false" />
+        <activity
+            android:name="com.cihancelik.CarParkDetails.ledger.LedgerViewPage"
+            android:exported="false" />
+        <activity
+            android:name="com.cihancelik.CarParkDetails.purchasing.PurchasingViewPage"
+            android:exported="false" />
         <activity
             android:name="com.cihancelik.CarParkDetails.firstscreen.Enterance"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
         </activity>
         <activity
-            android:name="com.cihancelik.CarParkDetails.employee_details.EmployeeViewPage"
-            android:exported="false" >
-        </activity>
+            android:name="com.cihancelik.oldData.employee_details.EmployeeViewPage"
+            android:exported="false" />
         <activity
             android:name="com.cihancelik.CarParkDetails.employee_details.EmployeeMainActivity"
-            android:exported="false" >
-
-        </activity>
+            android:exported="false" />
         <activity
-            android:name="com.cihancelik.CarParkDetails.customer_details.CustomerViewPage"
-            android:exported="false" >
-        </activity>
+            android:name="com.cihancelik.oldData.customer_details.CustomerViewPage"
+            android:exported="false" />
         <activity
-            android:name="com.cihancelik.CarParkDetails.customer_details.CustomerMainActivity"
-            android:exported="false" >
-        </activity>
+            android:name="com.cihancelik.oldData.customer_details.CustomerMainActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

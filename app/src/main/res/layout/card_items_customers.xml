@@ -7,7 +7,7 @@
     android:background="#B48AED"
     android:padding="16dp"
     android:weightSum="1"
-    tools:context="com.cihancelik.CarParkDetails.customer_details.CustomerViewPage">
+    tools:context="com.cihancelik.oldData.customer_details.CustomerViewPage">
 
     <LinearLayout
         android:id="@+id/ll_cardview"

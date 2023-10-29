@@ -1,122 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.cihancelik.CarParkDetails.firstscreen.Enterance">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/carparkTv"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Car Park Detail Services"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_goneMarginTop="16dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="Car Park App"
+        android:textColor="#00B8D4"
+        android:textSize="26sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ledgerIv"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="70dp"
+            android:clickable="true"
+            android:padding="5dp"
+            android:src="@drawable/accounting" />
+
+        <ImageView
+            android:id="@+id/purchasingIv"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="120dp"
+            android:clickable="true"
+            android:padding="5dp"
+            android:src="@drawable/shopping_cart" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/ledgerTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:clickable="true"
+            android:text="General Ledger"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/purchasingTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="115dp"
+            android:clickable="true"
+            android:text="Purchasing"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/crmIv"
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="70dp"
+            android:clickable="true"
+            android:padding="5dp"
+            android:src="@drawable/client" />
+
+        <ImageView
+            android:id="@+id/hrIv"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="120dp"
+            android:clickable="true"
+            android:padding="5dp"
+            android:src="@drawable/human_resources" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/crmTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="90dp"
+            android:clickable="true"
+            android:text="CRM"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/hrTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="170dp"
+            android:clickable="true"
+            android:text="HR"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/debtIv"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="75dp"
+            android:clickable="true"
+            android:padding="5dp"
+            android:src="@drawable/debt" />
+
+        <ImageView
+            android:id="@+id/receivableIv"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="120dp"
+            android:clickable="true"
+            android:padding="5dp"
+            android:src="@drawable/payment" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/debtTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="95dp"
+            android:clickable="true"
+            android:text="Debt"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/receivableTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="148dp"
+            android:clickable="true"
+            android:text="Receivable"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <ImageView
-        android:id="@+id/satinalmaIv"
-        android:layout_width="131dp"
-        android:layout_height="135dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="116dp"
+        android:id="@+id/generalIv"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
         android:clickable="true"
-        app:layout_constraintEnd_toStartOf="@+id/muhasebeIv"
-        app:layout_constraintHorizontal_bias="0.048"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/shopping_cart" />
+        android:padding="5dp"
+        android:src="@drawable/car_park" />
 
     <TextView
-        android:id="@+id/satinalmaTv"
-        android:layout_width="131dp"
+        android:id="@+id/generalTv"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="39dp"
+        android:layout_gravity="center"
         android:clickable="true"
-        android:text="Satinalma"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/satinalmaIv" />
+        android:text="General"
+        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/ikTv"
-        android:layout_width="133dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:clickable="true"
-        android:layout_marginStart="60dp"
-        android:text="IK"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ikIv" />
 
-    <TextView
-        android:id="@+id/customerServicesTv"
-        android:layout_width="131dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="46dp"
-        android:clickable="true"
-        android:text="Musteri Iliskileri"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@id/customerServicesIv" />
-
-    <ImageView
-        android:id="@+id/muhasebeIv"
-        android:layout_width="131dp"
-        android:layout_height="135dp"
-        android:layout_marginTop="116dp"
-        android:layout_marginEnd="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/accounting" />
-
-    <TextView
-        android:id="@+id/muhasebeTv"
-        android:layout_width="131dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="44dp"
-        android:clickable="true"
-        android:text="Muhasebe"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@id/muhasebeIv" />
-
-    <ImageView
-        android:id="@+id/ikIv"
-        android:layout_width="131dp"
-        android:layout_height="135dp"
-        android:layout_marginTop="340dp"
-        android:layout_marginEnd="40dp"
-        app:layout_constraintEnd_toStartOf="@+id/customerServicesIv"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/human_resources" />
-
-    <ImageView
-        android:id="@+id/customerServicesIv"
-        android:layout_width="131dp"
-        android:layout_height="135dp"
-        android:layout_marginTop="340dp"
-        android:layout_marginEnd="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/client" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

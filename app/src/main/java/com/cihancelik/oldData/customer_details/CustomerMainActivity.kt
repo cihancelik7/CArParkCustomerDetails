@@ -1,4 +1,4 @@
-package com.cihancelik.CarParkDetails.customer_details
+package com.cihancelik.oldData.customer_details
 
 
 import android.content.Intent
