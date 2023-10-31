@@ -39,20 +39,20 @@ class Enterance : AppCompatActivity() {
         binding.ledgerTv.setOnClickListener { startActivity(ledgerPage) }
 
         var receivablePage = Intent(this,ReceivableViewPage::class.java)
-        binding.receivableIv.setOnClickListener { receivablePage }
-        binding.receivableTv.setOnClickListener { receivablePage }
+        binding.receivableIv.setOnClickListener { startActivity(receivablePage) }
+        binding.receivableTv.setOnClickListener { startActivity(receivablePage) }
 
         var hrViewPage = Intent(this,HrViewPage::class.java)
-        binding.hrIv.setOnClickListener { hrViewPage }
-        binding.hrTv.setOnClickListener { hrViewPage }
+        binding.hrIv.setOnClickListener { startActivity(hrViewPage) }
+        binding.hrTv.setOnClickListener { startActivity(hrViewPage) }
 
         var debtViewPage = Intent(this,DebtViewPage::class.java)
-        binding.debtIv.setOnClickListener { debtViewPage }
-        binding.debtTv.setOnClickListener { debtViewPage }
+        binding.debtIv.setOnClickListener { startActivity(debtViewPage) }
+        binding.debtTv.setOnClickListener { startActivity(debtViewPage) }
 
         var generalViewPage = Intent(this,GeneralViewPage::class.java)
-        binding.generalIv.setOnClickListener { generalViewPage }
-        binding.generalTv.setOnClickListener { generalViewPage }
+        binding.generalIv.setOnClickListener { startActivity(generalViewPage) }
+        binding.generalTv.setOnClickListener { startActivity(generalViewPage) }
 
 
 

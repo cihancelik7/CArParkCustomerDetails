@@ -34,7 +34,8 @@
             android:layout_marginStart="70dp"
             android:clickable="true"
             android:padding="5dp"
-            android:src="@drawable/accounting" />
+            android:src="@drawable/accounting"
+            android:focusable="true" />
 
         <ImageView
             android:id="@+id/purchasingIv"
@@ -43,7 +44,8 @@
             android:layout_marginStart="120dp"
             android:clickable="true"
             android:padding="5dp"
-            android:src="@drawable/shopping_cart" />
+            android:src="@drawable/shopping_cart"
+            android:focusable="true" />
 
     </LinearLayout>
 
@@ -59,7 +61,8 @@
             android:layout_marginStart="55dp"
             android:clickable="true"
             android:text="General Ledger"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:focusable="true" />
 
         <TextView
             android:id="@+id/purchasingTv"
@@ -68,7 +71,8 @@
             android:layout_marginStart="115dp"
             android:clickable="true"
             android:text="Purchasing"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:focusable="true" />
 
     </LinearLayout>
 
@@ -85,7 +89,8 @@
             android:layout_marginStart="70dp"
             android:clickable="true"
             android:padding="5dp"
-            android:src="@drawable/client" />
+            android:src="@drawable/client"
+            android:focusable="true" />
 
         <ImageView
             android:id="@+id/hrIv"
@@ -94,7 +99,8 @@
             android:layout_marginStart="120dp"
             android:clickable="true"
             android:padding="5dp"
-            android:src="@drawable/human_resources" />
+            android:src="@drawable/human_resources"
+            android:focusable="true" />
     </LinearLayout>
 
     <LinearLayout
@@ -109,7 +115,8 @@
             android:layout_marginStart="90dp"
             android:clickable="true"
             android:text="CRM"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:focusable="true" />
 
         <TextView
             android:id="@+id/hrTv"
@@ -118,7 +125,8 @@
             android:layout_marginStart="170dp"
             android:clickable="true"
             android:text="HR"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:focusable="true" />
 
     </LinearLayout>
 
@@ -135,7 +143,8 @@
             android:layout_marginStart="75dp"
             android:clickable="true"
             android:padding="5dp"
-            android:src="@drawable/debt" />
+            android:src="@drawable/debt"
+            android:focusable="true" />
 
         <ImageView
             android:id="@+id/receivableIv"
@@ -144,7 +153,8 @@
             android:layout_marginStart="120dp"
             android:clickable="true"
             android:padding="5dp"
-            android:src="@drawable/payment" />
+            android:src="@drawable/payment"
+            android:focusable="true" />
     </LinearLayout>
 
     <LinearLayout
@@ -159,7 +169,8 @@
             android:layout_marginStart="95dp"
             android:clickable="true"
             android:text="Debt"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:focusable="true" />
 
         <TextView
             android:id="@+id/receivableTv"
@@ -168,7 +179,8 @@
             android:layout_marginStart="148dp"
             android:clickable="true"
             android:text="Receivable"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:focusable="true" />
     </LinearLayout>
 
     <ImageView
@@ -179,7 +191,8 @@
         android:layout_marginTop="15dp"
         android:clickable="true"
         android:padding="5dp"
-        android:src="@drawable/car_park" />
+        android:src="@drawable/car_park"
+        android:focusable="true" />
 
     <TextView
         android:id="@+id/generalTv"
@@ -188,7 +201,8 @@
         android:layout_gravity="center"
         android:clickable="true"
         android:text="General"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:focusable="true" />
 
 
 </LinearLayout>
