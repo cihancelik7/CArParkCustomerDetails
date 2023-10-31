@@ -5,7 +5,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class SQLiteHelperForCarParkDataBase(context: Context) :
+open class SQLiteHelperForCarParkDataBase(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
@@ -20,7 +20,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
         // Kullanıcılar Tablosu
         val createUserTable = """
     CREATE TABLE IF NOT EXISTS USERS (
-        USER_ID INTEGER PRIMARY KEY,
+        USER_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
         USER_NAME TEXT,
         PASSWORD TEXT,
         EMAIL_ADDRESS TEXT,
@@ -36,7 +36,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 // Personel Bilgileri Tablosu
         val createHrEmployeesTable = """
     CREATE TABLE IF NOT EXISTS HR_EMPLOYEES (
-        EMPLOYEE_ID INTEGER PRIMARY KEY,
+        EMPLOYEE_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
         EMPLOYEE_NUMBER INTEGER,
         START_DATE DATE,
         END_DATE DATE,
@@ -56,7 +56,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 // Adresler Tablosu
         val createAddressesTable = """
     CREATE TABLE IF NOT EXISTS ADDRESSES (
-        ADDRESS_ID INTEGER PRIMARY KEY,
+        ADDRESS_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
         ADDRESS_NAME TEXT,
         START_DATE DATE,
         END_DATE DATE,
@@ -67,7 +67,6 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
         ADDRESS_LINE TEXT,
         UPDATE_DATE DATE,
         CREATION_DATE DATE,
-        CREATED_BY INTEGER,
         FOREIGN KEY (CREATED_BY) REFERENCES USERS(USER_ID)
     )
 """.trimIndent()
@@ -75,7 +74,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 // İş Yeri (Lokasyon) Tablosu
         val createHrLocationsTable = """
     CREATE TABLE IF NOT EXISTS HR_LOCATIONS (
-        LOCATION_ID INTEGER PRIMARY KEY,
+        LOCATION_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
         LOCATION_NAME TEXT,
         START_DATE DATE,
         END_DATE DATE,
@@ -84,7 +83,6 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
         TEHLIKE_SINIFI TEXT,
         UPDATE_DATE DATE,
         CREATION_DATE DATE,
-        CREATED_BY INTEGER,
         FOREIGN KEY (ADDRESS_ID) REFERENCES ADDRESSES(ADDRESS_ID),
         FOREIGN KEY (CREATED_BY) REFERENCES USERS(USER_ID)
     )
@@ -93,7 +91,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
         // Organizasyonlar Tablosu
         val createHrOrganizationsTable = """
     CREATE TABLE IF NOT EXISTS HR_ORGANIZATIONS (
-        ORGANIZATION_ID INTEGER PRIMARY KEY,
+        ORGANIZATION_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
         ORGANIZATION_NAME TEXT,
         START_DATE DATE,
         END_DATE DATE,
@@ -101,7 +99,6 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
         LOCATION_ID INTEGER,
         UPDATE_DATE DATE,
         CREATION_DATE DATE,
-        CREATED_BY INTEGER,
         FOREIGN KEY (PARENT_ORG_ID) REFERENCES HR_ORGANIZATIONS(ORGANIZATION_ID),
         FOREIGN KEY (LOCATION_ID) REFERENCES HR_LOCATIONS(LOCATION_ID),
         FOREIGN KEY (CREATED_BY) REFERENCES USERS(USER_ID)
@@ -111,7 +108,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 // İş Pozisyonları Tablosu
         val createHrJobsTable = """
     CREATE TABLE IF NOT EXISTS HR_JOBS (
-        JOB_ID INTEGER PRIMARY KEY,
+        JOB_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
         JOB_NAME TEXT,
         START_DATE DATE,
         END_DATE DATE,
@@ -123,14 +120,13 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 // Pozisyonlar Tablosu
         val createHrPositionsTable = """
     CREATE TABLE IF NOT EXISTS HR_POSITIONS (
-        POSITION_ID INTEGER PRIMARY KEY,
+        POSITION_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
         POSITION_NAME TEXT,
         START_DATE DATE,
         END_DATE DATE,
         JOB_ID INTEGER,
         UPDATE_DATE DATE,
         CREATION_DATE DATE,
-        CREATED_BY INTEGER,
         FOREIGN KEY (JOB_ID) REFERENCES HR_JOBS(JOB_ID),
         FOREIGN KEY (CREATED_BY) REFERENCES USERS(USER_ID)
     )
@@ -139,7 +135,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 // Personel Atamaları Tablosu
         val createHrEmpAssignmentsTable = """
     CREATE TABLE IF NOT EXISTS HR_EMP_ASSIGNMENTS (
-        ASSIGNMENT_ID INTEGER PRIMARY KEY,
+        ASSIGNMENT_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
         EMPLOYEE_ID INTEGER,
         POSITION_ID INTEGER,
         START_DATE DATE,
@@ -154,7 +150,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 // Maaşlar Tablosu
         val createHrSalariesTable = """
     CREATE TABLE IF NOT EXISTS HR_SALARIES (
-        SALARY_ID INTEGER PRIMARY KEY,
+        SALARY_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
         EMPLOYEE_ID INTEGER,
         AMOUNT NUMBER(10, 2),
         START_DATE DATE,
@@ -167,7 +163,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 
         val createGlPeriods = """
             CREATE TABLE IF NOT EXISTS GL_PERIODS (
-            PERIOD_ID INTEGER PRIMARY KEY,
+            PERIOD_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             PERIOD_NAME TEXT,
             YEAR DATE,
             UPDATE_DATE DATE,
@@ -177,7 +173,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 
         val createGlAccountCombinations = """
             CREATE TABLE IF NOT EXISTS GL_ACCOUNT_COMBINATIONS (
-            GL_COD_COM_ID INTEGER PRIMARY KEY,
+            GL_COD_COM_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             SEGMENT1 TEXT,
             SEGMENT2 TEXT,
             SEGMENT3 TEXT,
@@ -191,7 +187,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 
         val createGlJournals = """
             CREATE TABLE IF NOT EXISTS GL_JOURNALS (
-            JOURNAL_ID INTEGER PRIMARY KEY,
+            JOURNAL_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             PERIOD_ID INTEGER,
             JOURNAL_DATE DATE,
             STATUS TEXT,
@@ -204,7 +200,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 
         val createGlJournalLines = """
             CREATE TABLE IF NOT EXISTS GL_JOURNAL_LINES (
-            JOURNAL_LINE_ID INTEGER PRIMARY KEY,
+            JOURNAL_LINE_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             JOURNAL_ID INTEGER,
             JOURNAL_DATE DATE,
             GL_COD_COM_ID INTEGER,
@@ -218,7 +214,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 
         val createPaySuppliers = """
             CREATE TABLE IF NOT EXISTS PAY_SUPPLIERS (
-            SUPPLIER_ID INTEGER PRIMARY KEY,
+            SUPPLIER_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             SUPPLIER_NUMBER INTEGER,
             START_DATE DATE,
             END_DATE,
@@ -237,7 +233,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 
         val createPayInvoices = """
             CREATE TABLE IF NOT EXISTS PAY_INVOICES (
-            INVOICE_ID INTEGER PRIMARY KEY,
+            INVOICE_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             SUPPLIER_ID INTEGER,
             INVOICE_DATE DATE,
             INVOICE_TYPE TEXT,
@@ -254,7 +250,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 
         val createPayInvoiceLines = """
             CREATE TABLE IF NOT EXISTS PAY_INVOICE_LINES (
-            INVOICE_LINE_ID INTEGER PRIMARY KEY,
+            INVOICE_LINE_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             INVOICE_ID INTEGER,
             ORDER_ID DATE,
             LINE_AMOUNT INTEGER,
@@ -269,7 +265,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 """.trimIndent()
         val createPayCheckTerms = """
             CREATE TABLE IF NOT EXISTS PAY_CHECK_TERMS (
-            CHECK_TERM_ID INTEGER PRIMARY KEY,
+            CHECK_TERM_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             TERM_NAME TEXT,
             UPDATE_DATE DATE,
             CREATION_DATE DATE
@@ -279,7 +275,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 
         val createPayCheckMethods = """
             CREATE TABLE IF NOT EXISTS PAY_CHECK_METHODS (
-            CHECK_METHOD_ID INTEGER PRIMARY KEY,
+            CHECK_METHOD_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
              METHOD_NAME TEXT,
              TERM_ID INTEGER,
              UPDATE_DATE DATE,
@@ -290,7 +286,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 
         val createPayChecks = """
         CREATE TABLE IF NOT EXISTS PAY_CHECKS ( 
-        CHECK_ID INTEGER PRIMARY KEY,
+        CHECK_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
         CHECK_METHOD_ID INTEGER,
         CHECK_TERM_ID INTEGER,
         SUPPLIER_ID INTEGER,
@@ -311,7 +307,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 """.trimIndent()
         val createPurchaseOrders = """
             CREATE TABLE IF NOT EXISTS PURCHASE_ORDERS (
-            ORDER_ID INTEGER PRIMARY KEY,
+            ORDER_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             ORDER_CODE TEXT,
             ITEM_ID INTEGER,
             ITEM_UNIT TEXT,
@@ -324,7 +320,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 
         val createItems = """
             CREATE TABLE IF NOT EXISTS ITEMS (
-            ITEM_ID INTEGER PRIMARY KEY,
+            ITEM_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             ITEM_CODE TEXT,
             ITEM_DESCRIPTION TEXT,
             UPDATE_DATE DATE,
@@ -334,7 +330,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 
         val createRecCustomers = """
             CREATE TABLE IF NOT EXISTS REC_CUSTOMERS (
-            CUSTOMER_ID INTEGER PRIMARY KEY,
+            CUSTOMER_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             CUSTOMER_NUMBER INTEGER,
             CUSTOMER_NAME TEXT,
             START_DATE DATE,
@@ -351,7 +347,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 
         val createRecInvoices = """
             CREATE TABLE IF NOT EXISTS REC_INVOICES (
-            REC_INVOICE_ID INTEGER PRIMARY KEY,
+            REC_INVOICE_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             CUSTOMER_ID INTEGER,
             INVOICE_DATE DATE,
             INVOICE_TYPE TEXT,
@@ -371,7 +367,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 
         val createRecInvoiceLines = """
             CREATE TABLE IF NOT EXISTS REC_INVOICE_LINES (
-            REC_INVOICE_LINE_ID INTEGER PRIMARY KEY,
+            REC_INVOICE_LINE_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             REC_INVOICE_ID INTEGER,
             LINE_AMOUNT INTEGER,
             TAX_RATE TEXT,
@@ -385,7 +381,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
             """.trimIndent()
         val createRecReceiptTerms = """
             CREATE TABLE IF NOT EXISTS REC_RECEIPT_TERMS (
-            RECEIPT_TERM_ID INTEGER PRIMARY KEY,
+            RECEIPT_TERM_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             TERM_NAME TEXT,
             UPDATE_DATE DATE,
             CREATION_DATE DATE
@@ -394,7 +390,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 
         val createRecReceiptMethods = """
             CREATE TABLE IF NOT EXISTS REC_RECEIPT_METHODS (
-            RECEIPT_METHOD_ID INTEGER PRIMARY KEY,
+            RECEIPT_METHOD_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             METHOD_NAME TEXT,
             RECEIPT_TERM_ID INTEGER,
             UPDATE_DATE DATE,
@@ -405,7 +401,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
 
         val createRecReceipts = """
         CREATE TABLE IF NOT EXISTS REC_RECEIPTS (
-        RECEIPT_ID INTEGER PRIMARY KEY,
+        RECEIPT_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
         RECEIPT_METHOD_ID INTEGER,
         RECEIPT_TERM_ID INTEGER,
         CUSTOMER_ID INTEGER,
@@ -426,7 +422,7 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
         """.trimIndent()
         val createCrmCustCarInfo = """
             CREATE TABLE IF NOT EXISTS CRM_CUST_CAR_INFO (
-            CAR_INFO_ID INTEGER PRIMARY KEY,
+            CAR_INFO_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             PLATE_NUMBER TEXT,
             MODEL TEXT,
             CUSTOMER_ID INTEGER,
@@ -476,4 +472,8 @@ class SQLiteHelperForCarParkDataBase(context: Context) :
         override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
                 TODO("Not yet implemented")
         }
+
+
+
+
 }

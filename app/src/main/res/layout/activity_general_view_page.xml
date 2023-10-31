@@ -7,25 +7,25 @@
     tools:context="com.cihancelik.CarParkDetails.general.GeneralViewPage">
 
     <Button
-        android:id="@+id/usersButtonId"
+        android:id="@+id/usersGeneralViewPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="296dp"
         android:layout_marginEnd="12dp"
         android:text="Users"
-        app:layout_constraintEnd_toStartOf="@+id/addressesButtonId"
+        app:layout_constraintEnd_toStartOf="@+id/addressesButtonIdGeneralViewPage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/addressesButtonId"
+        android:id="@+id/addressesButtonIdGeneralViewPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="296dp"
         android:layout_marginEnd="16dp"
         android:text="Addresses"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/usersButtonId"
+        app:layout_constraintStart_toEndOf="@+id/usersGeneralViewPage"
         app:layout_constraintTop_toTopOf="parent" />
 
 

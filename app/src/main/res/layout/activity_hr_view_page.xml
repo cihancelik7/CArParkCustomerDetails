@@ -7,25 +7,25 @@
     tools:context="com.cihancelik.CarParkDetails.HR.HrViewPage">
 
     <Button
-        android:id="@+id/usersButtonId"
+        android:id="@+id/usersButtonIdGEneralViewPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="152dp"
         android:layout_marginEnd="12dp"
         android:text="Button"
-        app:layout_constraintEnd_toStartOf="@+id/addressesButtonId"
+        app:layout_constraintEnd_toStartOf="@+id/addressesButtonIdGeneralViewPage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/addressesButtonId"
+        android:id="@+id/addressesButtonIdGeneralViewPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="148dp"
         android:layout_marginEnd="16dp"
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/usersButtonId"
+        app:layout_constraintStart_toEndOf="@+id/usersButtonIdGEneralViewPage"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -48,7 +48,7 @@
         android:text="Button"
         app:layout_constraintEnd_toStartOf="@+id/button6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usersButtonId" />
+        app:layout_constraintTop_toBottomOf="@+id/usersButtonIdGEneralViewPage" />
 
     <Button
         android:id="@+id/button5"
@@ -70,7 +70,7 @@
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button7"
-        app:layout_constraintTop_toBottomOf="@+id/addressesButtonId" />
+        app:layout_constraintTop_toBottomOf="@+id/addressesButtonIdGeneralViewPage" />
 
     <Button
         android:id="@+id/button3"

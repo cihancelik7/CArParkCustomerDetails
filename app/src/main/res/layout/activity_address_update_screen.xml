@@ -50,7 +50,7 @@
         android:hint="Country" />
 
     <EditText
-        android:id="@+id/addressCity"
+        android:id="@+id/tvAddressesCity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -85,12 +85,12 @@
         android:layout_marginEnd="16dp"
         android:hint="updateDate" />
     <EditText
-        android:id="@+id/addressCreationDate"
+        android:id="@+id/tvAddressesCreationDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="creationDat" />
+        android:hint="creationDate" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -98,20 +98,20 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/btnEmpAdd"
+            android:id="@+id/addBtnAddresses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add" />
 
         <Button
-            android:id="@+id/btnEmpView"
+            android:id="@+id/viewBtnAddresses"
             android:layout_width="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_height="wrap_content"
             android:text="View" />
 
         <Button
-            android:id="@+id/btnEmpUpdate"
+            android:id="@+id/btnUpdateAddresses"
             android:layout_width="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_height="wrap_content"
