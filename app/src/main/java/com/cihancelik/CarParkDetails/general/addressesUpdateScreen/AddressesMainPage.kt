@@ -1,6 +1,7 @@
 package com.cihancelik.CarParkDetails.general.addressesUpdateScreen
 
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -27,11 +28,9 @@ class AddressesMainPage : AppCompatActivity() {
     private lateinit var btnUpdate: Button
 
 
+    private lateinit var sqlHelper: SQLHelperForAddresses
 
-
-    private lateinit var sqlHelper: SQLiteHelperForCarParkDataBase
-
-    private var addresses: AddressessModel? = null
+    private var addressInfo: AddressessModel? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,14 +39,38 @@ class AddressesMainPage : AppCompatActivity() {
 
         initView()
 
-        sqlHelper = SQLiteHelperForCarParkDataBase(this)
+        sqlHelper = SQLiteHelperForCarParkDataBase(this) as SQLHelperForAddresses
 
 
         btnAdd.setOnClickListener { addAddresses() }
 
 
 
+        val selectedAddressInfo =
+            intent.getSerializableExtra("selectedAddressesInfo") as? AddressessModel
+        if (selectedAddressInfo != null) {
+            // edittextlere verileri yerlestir
+            etAddress.setText(selectedAddressInfo.address)
+            etStartDAte.setText(selectedAddressInfo.startDate)
+            etEndDate.setText(selectedAddressInfo.endDAte)
+            etCountry.setText(selectedAddressInfo.country)
+            etCity.setText(selectedAddressInfo.city)
+            etRegion.setText(selectedAddressInfo.region)
+            etPostalCode.setText(selectedAddressInfo.postalCode)
+            etAddressLine.setText(selectedAddressInfo.addressLine)
+            etUpdateDate.setText(selectedAddressInfo.updateDate)
+            etCreationDate.setText(selectedAddressInfo.creationDate)
 
+            addressInfo = selectedAddressInfo
+        }
+        btnUpdate.setOnClickListener { updateAddresses() }
+
+    }
+    fun onUpgrade(db:SQLiteDatabase?,oldVersion:Int,newVersion:Int){
+        if (oldVersion < 2){
+            // bu surume kadar olan tabloyu guncelle
+            db?.execSQL("ALTER TABLE table_carparkdatabase ADD COLUMN START_DATE TEXT")
+        }
     }
 
     private fun addAddresses() {
@@ -68,7 +91,7 @@ class AddressesMainPage : AppCompatActivity() {
         ) {
             Toast.makeText(this, "Please Enter Requirement Field", Toast.LENGTH_SHORT).show()
         } else {
-            val addresses = AddressessModel(
+            val addressInfo = AddressessModel(
                 address = address,
                 startDate = startDate,
                 endDAte = endDate,
@@ -80,12 +103,49 @@ class AddressesMainPage : AppCompatActivity() {
                 updateDate = updateDate,
                 creationDate = creationDate
             )
-            val dbHelper = SQLHelperForAddresses(this)
-            dbHelper.createAddress(addresses)
-            clearEditText()
-            Toast.makeText(this, "Address added successfully", Toast.LENGTH_SHORT).show()
+            val status =
+                Toast.makeText(this, "Address added successfully", Toast.LENGTH_SHORT).show()
         }
 
+    }
+
+    private fun updateAddresses() {
+        val address = etAddress.text.toString()
+        val startDate = etStartDAte.text.toString()
+        val endDate = etEndDate.text.toString()
+        val country = etCountry.text.toString()
+        val city = etCity.text.toString()
+        val region = etRegion.text.toString()
+        val postalCode = etPostalCode.text.toString()
+        val addressLine = etAddressLine.text.toString()
+        val updateDate = etUpdateDate.text.toString()
+        val creationDate = etCreationDate.text.toString()
+
+        // guncelleme islemi burada gerceklesecek
+        if (addressInfo != null) {
+            val updatedAddresses = AddressessModel(
+                addressId = addressInfo!!.addressId,
+                address = address,
+                startDate = startDate,
+                endDAte = endDate,
+                country = country,
+                city = city,
+                region = region,
+                postalCode = postalCode,
+                addressLine = addressLine,
+                updateDate = updateDate,
+                creationDate = creationDate
+            )
+            val status = sqlHelper.updateAddresses(updatedAddresses)
+            if (status > -1){
+                Toast.makeText(this, "Update Successful", Toast.LENGTH_SHORT).show()
+                addressInfo = updatedAddresses
+                val intent = Intent(this,AddressesMainPage::class.java)
+                startActivity(intent)
+            }else{
+                Toast.makeText(this, "update failed...", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun clearEditText() {
