@@ -1,8 +1,9 @@
-package com.cihancelik.CarParkDetails.SQL
+package com.cihancelik.CarParkDetails.SQL.addresses
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
+import com.cihancelik.CarParkDetails.SQL.SQLiteHelperForCarParkDataBase
 import com.cihancelik.CarParkDetails.general.addressesUpdateScreen.AddressessModel
 
 

@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import com.cihancelik.CarParkDetails.general.addressesUpdateScreen.AddressesMainPage
-import com.cihancelik.CarParkDetails.general.userUpdateScreen.UserUpdateScreen
+import com.cihancelik.CarParkDetails.general.addressesUpdateScreen.AddressesMainScreen
+import com.cihancelik.CarParkDetails.general.userUpdateScreen.UsersMainScreen
 import com.cihancelik.carparkcustomerdetails.R
 
 class GeneralViewPage : AppCompatActivity() {
@@ -19,10 +19,10 @@ class GeneralViewPage : AppCompatActivity() {
         btnGeneralAddresses = findViewById(R.id.addressesButtonIdGeneralViewPage)
         btnGeneralUsers = findViewById(R.id.usersGeneralViewPage)
 
-        val goToAddressUpdateScreenIntent = Intent(this,AddressesMainPage::class.java)
+        val goToAddressUpdateScreenIntent = Intent(this,AddressesMainScreen::class.java)
         btnGeneralAddresses.setOnClickListener { startActivity(goToAddressUpdateScreenIntent) }
 
-        val goToUsersUpdateScreenIntent = Intent(this,UserUpdateScreen::class.java)
+        val goToUsersUpdateScreenIntent = Intent(this,UsersMainScreen::class.java)
         btnGeneralUsers.setOnClickListener { startActivity(goToUsersUpdateScreenIntent) }
     }
 }

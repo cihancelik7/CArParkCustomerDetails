@@ -3,13 +3,12 @@ package com.cihancelik.CarParkDetails.general.addressesUpdateScreen
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.cihancelik.CarParkDetails.SQL.SQLHelperForAddresses
+import com.cihancelik.CarParkDetails.SQL.addresses.SQLHelperForAddresses
 import com.cihancelik.carparkcustomerdetails.R
 
 class AddressViewScreen : AppCompatActivity() {
@@ -42,7 +41,7 @@ class AddressViewScreen : AppCompatActivity() {
         getAddresses()
 
         adapter.setOnclickItem { addresses ->
-            val intent = Intent(this,AddressesMainPage::class.java)
+            val intent = Intent(this,AddressesMainScreen::class.java)
             intent.putExtra("selectedAddressesUpdate",addresses)
             startActivity(intent)
         }
@@ -104,7 +103,7 @@ class AddressViewScreen : AppCompatActivity() {
 
             adapter.updateAddressesList(addressesList)
             dialog.dismiss()
-            var goToAddressesMainPage = Intent(this,AddressesMainPage::class.java)
+            var goToAddressesMainPage = Intent(this,AddressesMainScreen::class.java)
             startActivity(goToAddressesMainPage)
         }
         builder.setNegativeButton("No"){dialog, _ ->

@@ -26,8 +26,7 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
         START_DATE DATE,
         END_DATE DATE,
         UPDATE_DATE DATE,
-        CREATION_DATE DATE,
-        CREATED_BY INTEGER
+        CREATION_DATE DATE
     )
 """.trimIndent()
 

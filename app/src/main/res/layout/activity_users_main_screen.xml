@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.cihancelik.CarParkDetails.general.userUpdateScreen.UserUpdateScreen">
+    tools:context="com.cihancelik.CarParkDetails.general.userUpdateScreen.UsersMainScreen">
 
     <TextView
         android:layout_width="wrap_content"
@@ -77,20 +77,20 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/btnEmpAdd"
+            android:id="@+id/btnUserAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add" />
 
         <Button
-            android:id="@+id/btnEmpView"
+            android:id="@+id/btnUserView"
             android:layout_width="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_height="wrap_content"
             android:text="View" />
 
         <Button
-            android:id="@+id/btnEmpUpdate"
+            android:id="@+id/btnUserUpdate"
             android:layout_width="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_height="wrap_content"

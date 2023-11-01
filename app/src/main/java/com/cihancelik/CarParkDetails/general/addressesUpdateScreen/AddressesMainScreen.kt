@@ -1,17 +1,15 @@
 package com.cihancelik.CarParkDetails.general.addressesUpdateScreen
 
 import android.content.Intent
-import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import com.cihancelik.CarParkDetails.SQL.SQLHelperForAddresses
-import com.cihancelik.CarParkDetails.SQL.SQLiteHelperForCarParkDataBase
+import com.cihancelik.CarParkDetails.SQL.addresses.SQLHelperForAddresses
 import com.cihancelik.carparkcustomerdetails.R
 
-class AddressesMainPage : AppCompatActivity() {
+class AddressesMainScreen : AppCompatActivity() {
     private lateinit var etAddress: TextView
     private lateinit var etStartDAte: TextView
     private lateinit var etEndDate: TextView
