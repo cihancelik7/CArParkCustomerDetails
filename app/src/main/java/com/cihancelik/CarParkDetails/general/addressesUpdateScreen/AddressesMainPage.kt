@@ -27,11 +27,9 @@ class AddressesMainPage : AppCompatActivity() {
     private lateinit var btnView: Button
     private lateinit var btnUpdate: Button
 
-
     private lateinit var sqlHelper: SQLHelperForAddresses
 
     private var addressInfo: AddressessModel? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,39 +37,49 @@ class AddressesMainPage : AppCompatActivity() {
 
         initView()
 
-        sqlHelper = SQLiteHelperForCarParkDataBase(this) as SQLHelperForAddresses
-
+        sqlHelper = SQLHelperForAddresses(this) // SQLiteHelperForCarParkDataBase dönüşümü kaldırıldı
 
         btnAdd.setOnClickListener { addAddresses() }
-
-
 
         val selectedAddressInfo =
             intent.getSerializableExtra("selectedAddressesInfo") as? AddressessModel
         if (selectedAddressInfo != null) {
-            // edittextlere verileri yerlestir
-            etAddress.setText(selectedAddressInfo.address)
-            etStartDAte.setText(selectedAddressInfo.startDate)
-            etEndDate.setText(selectedAddressInfo.endDAte)
-            etCountry.setText(selectedAddressInfo.country)
-            etCity.setText(selectedAddressInfo.city)
-            etRegion.setText(selectedAddressInfo.region)
-            etPostalCode.setText(selectedAddressInfo.postalCode)
-            etAddressLine.setText(selectedAddressInfo.addressLine)
-            etUpdateDate.setText(selectedAddressInfo.updateDate)
-            etCreationDate.setText(selectedAddressInfo.creationDate)
+            // edittextlere verileri yerleştir
+            etAddress.text = selectedAddressInfo.address
+            etStartDAte.text = selectedAddressInfo.startDate
+            etEndDate.text = selectedAddressInfo.endDAte
+            etCountry.text = selectedAddressInfo.country
+            etCity.text = selectedAddressInfo.city
+            etRegion.text = selectedAddressInfo.region
+            etPostalCode.text = selectedAddressInfo.postalCode
+            etAddressLine.text = selectedAddressInfo.addressLine
+            etUpdateDate.text = selectedAddressInfo.updateDate
+            etCreationDate.text = selectedAddressInfo.creationDate
 
             addressInfo = selectedAddressInfo
         }
         btnUpdate.setOnClickListener { updateAddresses() }
 
-    }
-    fun onUpgrade(db:SQLiteDatabase?,oldVersion:Int,newVersion:Int){
-        if (oldVersion < 2){
-            // bu surume kadar olan tabloyu guncelle
-            db?.execSQL("ALTER TABLE table_carparkdatabase ADD COLUMN START_DATE TEXT")
+        var goToAddressesViewPage =Intent(this,AddressViewScreen::class.java)
+        btnView.setOnClickListener { startActivity(goToAddressesViewPage) }
+
+        var selectedAddressesUpdate = intent.getSerializableExtra("selectedAddressesUpdate") as? AddressessModel
+        if(selectedAddressesUpdate != null){
+            etAddress.text = selectedAddressesUpdate.address
+            etStartDAte.text = selectedAddressesUpdate.startDate
+            etEndDate.text = selectedAddressesUpdate.endDAte
+            etCountry.text = selectedAddressesUpdate.country
+            etCity.text = selectedAddressesUpdate.city
+            etRegion.text = selectedAddressesUpdate.region
+            etPostalCode.text = selectedAddressesUpdate.postalCode
+            etAddressLine.text = selectedAddressesUpdate.addressLine
+            etUpdateDate.text = selectedAddressesUpdate.updateDate
+            etCreationDate.text = selectedAddressesUpdate.creationDate
         }
     }
+
+
+    // onUpdate fonksiyonu burada yer alıyor
 
     private fun addAddresses() {
         val address = etAddress.text.toString()
@@ -85,7 +93,7 @@ class AddressesMainPage : AppCompatActivity() {
         val updateDate = etUpdateDate.text.toString()
         val creationDate = etCreationDate.text.toString()
 
-        if (address.isEmpty() || startDate.isEmpty() || endDate.isEmpty() || country.isEmpty() ||
+        if (address.isEmpty() || startDate.isEmpty() || country.isEmpty() ||
             city.isEmpty() || region.isEmpty() || postalCode.isEmpty() || addressLine.isEmpty() ||
             updateDate.isEmpty() || creationDate.isEmpty()
         ) {
@@ -103,10 +111,16 @@ class AddressesMainPage : AppCompatActivity() {
                 updateDate = updateDate,
                 creationDate = creationDate
             )
-            val status =
-                Toast.makeText(this, "Address added successfully", Toast.LENGTH_SHORT).show()
-        }
+            val status: Long = sqlHelper.insertAddress(addressInfo)
+            // check insert success or not success
+            if (status > -1) {
+                Toast.makeText(this, "Address Added", Toast.LENGTH_SHORT).show()
+                clearEditText()
+            } else {
+                Toast.makeText(this, "Record not saved", Toast.LENGTH_SHORT).show()
+            }
 
+        }
     }
 
     private fun updateAddresses() {
@@ -121,7 +135,7 @@ class AddressesMainPage : AppCompatActivity() {
         val updateDate = etUpdateDate.text.toString()
         val creationDate = etCreationDate.text.toString()
 
-        // guncelleme islemi burada gerceklesecek
+        // Güncelleme işlemi burada gerçekleşecek
         if (addressInfo != null) {
             val updatedAddresses = AddressessModel(
                 addressId = addressInfo!!.addressId,
@@ -137,48 +151,60 @@ class AddressesMainPage : AppCompatActivity() {
                 creationDate = creationDate
             )
             val status = sqlHelper.updateAddresses(updatedAddresses)
-            if (status > -1){
+            if (status > -1) {
+                // Güncelleme başarılı
                 Toast.makeText(this, "Update Successful", Toast.LENGTH_SHORT).show()
+
+                // Güncelleme işleminden sonra yeni verileri yükle
+                etAddress.text = updatedAddresses.address
+                etStartDAte.text = updatedAddresses.startDate
+                etEndDate.text = updatedAddresses.endDAte
+                etCountry.text = updatedAddresses.country
+                etCity.text = updatedAddresses.city
+                etRegion.text = updatedAddresses.region
+                etPostalCode.text = updatedAddresses.postalCode
+                etAddressLine.text = updatedAddresses.addressLine
+                etUpdateDate.text = updatedAddresses.updateDate
+                etCreationDate.text = updatedAddresses.creationDate
+
                 addressInfo = updatedAddresses
-                val intent = Intent(this,AddressesMainPage::class.java)
-                startActivity(intent)
-            }else{
-                Toast.makeText(this, "update failed...", Toast.LENGTH_SHORT).show()
+            } else {
+                // Güncelleme başarısız
+                Toast.makeText(this, "Update failed...", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+
     private fun clearEditText() {
-        etAddress.setText("")
-        etStartDAte.setText("")
-        etEndDate.setText("")
-        etCountry.setText("")
-        etCity.setText("")
-        etRegion.setText("")
-        etPostalCode.setText("")
-        etAddressLine.setText("")
-        etUpdateDate.setText("")
-        etCreationDate.setText("")
+        etAddress.text = ""
+        etStartDAte.text = ""
+        etEndDate.text = ""
+        etCountry.text = ""
+        etCity.text = ""
+        etRegion.text = ""
+        etPostalCode.text = ""
+        etAddressLine.text = ""
+        etUpdateDate.text = ""
+        etCreationDate.text = ""
 
         etAddress.requestFocus()
     }
 
     private fun initView() {
-        etAddress = findViewById(R.id.tvAddresses)
-        etStartDAte = findViewById(R.id.tvStartDateAddessess)
-        etEndDate = findViewById(R.id.tvEndDateAddresses)
-        etCountry = findViewById(R.id.tvCountryAddresses)
+        etAddress = findViewById(R.id.addressName)
+        etStartDAte = findViewById(R.id.addressStartDate)
+        etEndDate = findViewById(R.id.addressEndDate)
+        etCountry = findViewById(R.id.addressCountry)
         etCity = findViewById(R.id.tvAddressesCity)
-        etRegion = findViewById(R.id.tvRegionAddresses)
-        etPostalCode = findViewById(R.id.tvPostalCodeAddresses)
-        etAddressLine = findViewById(R.id.tvAddressLineAddresses)
-        etUpdateDate = findViewById(R.id.tvUpdateDateAddresses)
+        etRegion = findViewById(R.id.addressRegion)
+        etPostalCode = findViewById(R.id.addressPostalCode)
+        etAddressLine = findViewById(R.id.addressLine)
+        etUpdateDate = findViewById(R.id.addressUpdateDate)
         etCreationDate = findViewById(R.id.tvAddressesCreationDate)
 
         btnAdd = findViewById(R.id.addBtnAddresses)
-        btnView = findViewById(R.id.viewBtnAddresses)
+        btnView = findViewById(R.id.viewBtnAddresses) // XML dosyanızda bu düğmeyi tanımlamışsanız
         btnUpdate = findViewById(R.id.btnUpdateAddresses)
-
-
     }
 }

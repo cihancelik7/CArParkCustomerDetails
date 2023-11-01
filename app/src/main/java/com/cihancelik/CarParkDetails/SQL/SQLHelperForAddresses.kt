@@ -3,16 +3,16 @@ package com.cihancelik.CarParkDetails.SQL
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import android.location.Address
 import com.cihancelik.CarParkDetails.general.addressesUpdateScreen.AddressessModel
 
 
 
-class SQLHelperForAddresses(context: Context) : SQLiteHelperForCarParkDataBase(context) {
+class SQLHelperForAddresses(context: Context) :
+    SQLiteHelperForCarParkDataBase(context) {
 
     // Adreslerle ilgili SQL işlemlerini burada tanımlayın
 
-    fun createAddress(address: AddressessModel) {
+    fun insertAddress(address: AddressessModel) : Long {
         val db = this.writableDatabase
         val values = ContentValues()
 
@@ -27,13 +27,15 @@ class SQLHelperForAddresses(context: Context) : SQLiteHelperForCarParkDataBase(c
         values.put("UPDATE_DATE", address.updateDate)
         values.put("CREATION_DATE", address.creationDate)
 
-        db.insert("ADDRESSES", null, values)
+        val insertedId = db.insert("ADDRESSES", null, values)
         db.close()
+        return insertedId // Ekleme işlemi sonucu olarak eklendiği satırın ID'sini döndürün
     }
 
     fun getAllAddresses(): ArrayList<AddressessModel> {
         val addressesList: ArrayList<AddressessModel> = ArrayList()
-        val selectQuery = "SELECT * FROM table_carparkdatabase"
+        val selectQuery = "SELECT * FROM ADDRESSES"
+
         val db = this.writableDatabase
         val cursor: Cursor?
         try {
@@ -89,6 +91,7 @@ class SQLHelperForAddresses(context: Context) : SQLiteHelperForCarParkDataBase(c
 
     }
 
+
     fun updateAddresses(address: AddressessModel): Int {
         val db = this.writableDatabase
         val contextValues = ContentValues()
@@ -105,17 +108,17 @@ class SQLHelperForAddresses(context: Context) : SQLiteHelperForCarParkDataBase(c
         contextValues.put("CREATION_DATE", address.creationDate)
 
         val success =
-            db.update("table_carparkdatabase", contextValues, "id= " + address.addressId, null)
+            db.update("ADDRESSES", contextValues, "ADDRESS_ID= " + address.addressId, null)
         db.close()
         return success
     }
 
-    fun deleteCustomerById(id: Int): Int {
+    fun deleteAddressesById(id: Int): Int {
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put("ADDRESS_ID", id)
 
-        val success = db.delete("table_carparkdatabase", "id= $id", null)
+        val success = db.delete("ADDRESSES", "ADDRESS_ID= $id", null)
         db.close()
         return success
     }

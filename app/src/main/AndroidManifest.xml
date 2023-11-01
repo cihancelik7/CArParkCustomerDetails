@@ -16,7 +16,7 @@
             android:name="com.cihancelik.CarParkDetails.general.addressesUpdateScreen.AddressesMainPage"
             android:exported="false" />
         <activity
-            android:name="com.cihancelik.CarParkDetails.general.addressesUpdateScreen.AddressUpdateScreen"
+            android:name="com.cihancelik.CarParkDetails.general.addressesUpdateScreen.AddressViewScreen"
             android:exported="false" />
         <activity
             android:name="com.cihancelik.CarParkDetails.general.userUpdateScreen.UserUpdateScreen"

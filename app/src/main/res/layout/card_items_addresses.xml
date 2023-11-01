@@ -7,10 +7,11 @@
     android:background="#B48AED"
     android:padding="16dp"
     android:weightSum="1"
-    tools:context="com.cihancelik.CarParkDetails.general.addressesUpdateScreen.AddressUpdateScreen">
+    tools:context="com.cihancelik.CarParkDetails.general.addressesUpdateScreen.AddressViewScreen">
 
     <LinearLayout
         android:id="@+id/address_cardview"
+        android:clickable="true"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -18,7 +19,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvId"
+            android:id="@+id/tvAddressId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
@@ -90,7 +91,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnDelete"
+        android:id="@+id/btnDeleteAddresses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"

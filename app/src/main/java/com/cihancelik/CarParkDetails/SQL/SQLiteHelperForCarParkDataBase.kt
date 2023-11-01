@@ -11,7 +11,6 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
     companion object {
         private const val DATABASE_VERSION = 1
         private const val DATABASE_NAME = "carpark.db"
-        private const val TABLE_CARPARKDATABASE = "table_carparkdatabase"
         private lateinit var cursor: Cursor
 
     }
@@ -28,8 +27,7 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
         END_DATE DATE,
         UPDATE_DATE DATE,
         CREATION_DATE DATE,
-        CREATED_BY INTEGER,
-        FOREIGN KEY (CREATED_BY) REFERENCES USERS(USER_ID)
+        CREATED_BY INTEGER
     )
 """.trimIndent()
 
@@ -66,8 +64,7 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
         POSTAL_CODE TEXT,
         ADDRESS_LINE TEXT,
         UPDATE_DATE DATE,
-        CREATION_DATE DATE,
-        FOREIGN KEY (CREATED_BY) REFERENCES USERS(USER_ID)
+        CREATION_DATE DATE
     )
 """.trimIndent()
 
@@ -83,8 +80,7 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
         TEHLIKE_SINIFI TEXT,
         UPDATE_DATE DATE,
         CREATION_DATE DATE,
-        FOREIGN KEY (ADDRESS_ID) REFERENCES ADDRESSES(ADDRESS_ID),
-        FOREIGN KEY (CREATED_BY) REFERENCES USERS(USER_ID)
+        FOREIGN KEY (ADDRESS_ID) REFERENCES ADDRESSES(ADDRESS_ID)
     )
 """.trimIndent()
 
@@ -100,8 +96,7 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
         UPDATE_DATE DATE,
         CREATION_DATE DATE,
         FOREIGN KEY (PARENT_ORG_ID) REFERENCES HR_ORGANIZATIONS(ORGANIZATION_ID),
-        FOREIGN KEY (LOCATION_ID) REFERENCES HR_LOCATIONS(LOCATION_ID),
-        FOREIGN KEY (CREATED_BY) REFERENCES USERS(USER_ID)
+        FOREIGN KEY (LOCATION_ID) REFERENCES HR_LOCATIONS(LOCATION_ID)
     )
 """.trimIndent()
 
@@ -127,8 +122,7 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
         JOB_ID INTEGER,
         UPDATE_DATE DATE,
         CREATION_DATE DATE,
-        FOREIGN KEY (JOB_ID) REFERENCES HR_JOBS(JOB_ID),
-        FOREIGN KEY (CREATED_BY) REFERENCES USERS(USER_ID)
+        FOREIGN KEY (JOB_ID) REFERENCES HR_JOBS(JOB_ID)
     )
 """.trimIndent()
 
