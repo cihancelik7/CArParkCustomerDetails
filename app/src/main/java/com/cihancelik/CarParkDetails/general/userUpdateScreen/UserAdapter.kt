@@ -8,14 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cihancelik.carparkcustomerdetails.R
 
-class UserAdapter :RecyclerView.Adapter<UserAdapter.UsersViewHolder>(){
-    private var userList : ArrayList<UserModel> = ArrayList()
-    private var onClickItem : ((UserModel) ->Unit )? = null
-    private var onCLickDeleteItem : ((UserModel) -> Unit)? = null
+class UserAdapter : RecyclerView.Adapter<UserAdapter.UsersViewHolder>() {
+    private var userList: ArrayList<UserModel> = ArrayList()
+    private var onClickItem: ((UserModel) -> Unit)? = null
+    private var onCLickDeleteItem: ((UserModel) -> Unit)? = null
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)= UsersViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.card_items_users,parent,false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = UsersViewHolder(
+        LayoutInflater.from(parent.context).inflate(R.layout.card_items_users, parent, false)
     )
 
     override fun getItemCount(): Int {
@@ -29,24 +29,26 @@ class UserAdapter :RecyclerView.Adapter<UserAdapter.UsersViewHolder>(){
         holder.btnDelete.setOnClickListener { onCLickDeleteItem?.invoke(users) }
     }
 
-    fun addItems(items:ArrayList<UserModel>){
+    fun addItems(items: ArrayList<UserModel>) {
         this.userList = items
         notifyDataSetChanged()
     }
-    fun setOnClickItem(callback: (UserModel) ->Unit){
+
+    fun setOnClickItem(callback: (UserModel) -> Unit) {
         this.onClickItem = callback
     }
-    fun setOnclickDeleteItem(callback: (UserModel) -> Unit){
+
+    fun setOnclickDeleteItem(callback: (UserModel) -> Unit) {
         this.onCLickDeleteItem = callback
     }
 
 
-
-    fun updateUsersList(userListForUpdate : List<UserModel>){
+    fun updateUsersList(userListForUpdate: List<UserModel>) {
         userList.clear()
         userList.addAll(userListForUpdate)
     }
-    class UsersViewHolder(var view : View):RecyclerView.ViewHolder(view) {
+
+    class UsersViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
         private var id = view.findViewById<TextView>(R.id.userIdTv)
         private var username = view.findViewById<TextView>(R.id.userUsernameTv)
         private var password = view.findViewById<TextView>(R.id.userPasswordTv)
@@ -58,7 +60,7 @@ class UserAdapter :RecyclerView.Adapter<UserAdapter.UsersViewHolder>(){
 
         var btnDelete = view.findViewById<Button>(R.id.btnDeleteUsers)
 
-        fun bindView(users:UserModel){
+        fun bindView(users: UserModel) {
             id.text = users.userId.toString()
             username.text = users.username
             password.text = users.password

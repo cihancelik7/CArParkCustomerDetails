@@ -14,6 +14,7 @@ class AddressesAdapter : RecyclerView.Adapter<AddressesAdapter.AddressesViewHold
     private var onClickItem: ((AddressessModel) -> Unit)? = null
     private var onClickDeleteItem: ((AddressessModel) -> Unit)? = null
 
+
     fun addItems(items: ArrayList<AddressessModel>) {
         this.addressesList = items
         notifyDataSetChanged()
@@ -26,6 +27,7 @@ class AddressesAdapter : RecyclerView.Adapter<AddressesAdapter.AddressesViewHold
     fun setOnClickDeleteItem(callback: (AddressessModel) -> Unit) {
         this.onClickDeleteItem = callback
     }
+
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

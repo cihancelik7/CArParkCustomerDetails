@@ -3,8 +3,10 @@ package com.cihancelik.CarParkDetails.SQL.users
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
 import com.cihancelik.CarParkDetails.SQL.SQLiteHelperForCarParkDataBase
 import com.cihancelik.CarParkDetails.general.userUpdateScreen.UserModel
+import kotlinx.coroutines.coroutineScope
 
 class SQLiteHelperForUsers(context: Context) :
     SQLiteHelperForCarParkDataBase(context) {
@@ -98,11 +100,56 @@ class SQLiteHelperForUsers(context: Context) :
     fun deleteUsersById(id:Int):Int{
         val db = this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put("USERS_ID",id)
+        contentValues.put("USER_ID",id)
 
-        val success = db.delete("USERS","USERS_ID= $id",null)
+        val success = db.delete("USERS","USER_ID= $id",null)
         db.close()
         return success
+    }
+    fun getUserById(usersId:Int):UserModel?{
+        val db = this.writableDatabase
+        val selectQuery = "SELECT * FROM USERS WHERE USER_ID = $usersId"
+
+        val cursor:Cursor?
+        try {
+            cursor = db.rawQuery(selectQuery,null)
+        }catch (e:Exception){
+            e.printStackTrace()
+            db.execSQL(selectQuery)
+            return null
+        }
+
+        var userInfo  : UserModel? = null
+        if (cursor.moveToFirst()){
+            val id = cursor.getInt(cursor.getColumnIndex("USER_ID"))
+            val username = cursor.getString(cursor.getColumnIndex("USER_NAME"))
+            val password = cursor.getString(cursor.getColumnIndex("PASSWORD"))
+            val email = cursor.getString(cursor.getColumnIndex("EMAIL_ADDRESS"))
+            val startDate = cursor.getString(cursor.getColumnIndex("END_DATE"))
+            val endDate = cursor.getString(cursor.getColumnIndex("UPDATE_DATE"))
+            val updateDate = cursor.getString(cursor.getColumnIndex("CREATION_DATE"))
+            val creationDate = cursor.getString(cursor.getColumnIndex("START_DATE"))
+
+            userInfo = UserModel(
+                userId = id,
+                username = username,
+                password = password,
+                email = email,
+                startDate = startDate,
+                endDate = endDate,
+                updateDate = updateDate,
+                creationDate = creationDate
+            )
+        }
+         cursor?.close()
+        db.close()
+        return userInfo
+    }
+
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        super.onUpgrade(db, oldVersion, newVersion)
+        db!!.execSQL("DROP TABLE IF EXISTS USERS")
+        onCreate(db)
     }
 
 }

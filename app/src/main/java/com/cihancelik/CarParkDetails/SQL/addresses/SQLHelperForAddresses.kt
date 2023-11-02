@@ -3,6 +3,7 @@ package com.cihancelik.CarParkDetails.SQL.addresses
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
 import com.cihancelik.CarParkDetails.SQL.SQLiteHelperForCarParkDataBase
 import com.cihancelik.CarParkDetails.general.addressesUpdateScreen.AddressessModel
 
@@ -123,6 +124,58 @@ class SQLHelperForAddresses(context: Context) :
         db.close()
         return success
     }
+    fun getAddressesById(addressId: Int): AddressessModel? {
+        val db = this.writableDatabase
+        val selectQuery = "SELECT * FROM ADDRESSES WHERE ADDRESS_ID = $addressId"
 
+        val cursor: Cursor?
+        try {
+            cursor = db.rawQuery(selectQuery, null)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            db.execSQL(selectQuery)
+            return null
+        }
 
-}
+        var addressInfo: AddressessModel? = null
+
+        if (cursor.moveToFirst()) {
+            val id = cursor.getInt(cursor.getColumnIndex("ADDRESS_ID"))
+            val address = cursor.getString(cursor.getColumnIndex("ADDRESS_NAME"))
+            val startDate = cursor.getString(cursor.getColumnIndex("START_DATE"))
+            val endDate = cursor.getString(cursor.getColumnIndex("END_DATE"))
+            val country = cursor.getString(cursor.getColumnIndex("COUNTRY"))
+            val city = cursor.getString(cursor.getColumnIndex("CITY"))
+            val region = cursor.getString(cursor.getColumnIndex("REGION"))
+            val postalCode = cursor.getString(cursor.getColumnIndex("POSTAL_CODE"))
+            val addressLine = cursor.getString(cursor.getColumnIndex("ADDRESS_LINE"))
+            val updateDate = cursor.getString(cursor.getColumnIndex("UPDATE_DATE"))
+            val creationDate = cursor.getString(cursor.getColumnIndex("CREATION_DATE"))
+
+            addressInfo = AddressessModel(
+                addressId = id,
+                address = address,
+                startDate = startDate,
+                endDAte = endDate,
+                country = country,
+                city = city,
+                region = region,
+                postalCode = postalCode,
+                addressLine = addressLine,
+                updateDate = updateDate,
+                creationDate = creationDate
+            )
+        }
+
+        cursor?.close()
+        db.close()
+
+        return addressInfo
+    }
+
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        super.onUpgrade(db, oldVersion, newVersion)
+        db!!.execSQL("DROP TABLE IF EXISTS ADDRESSES")
+        onCreate(db)
+    }
+    }

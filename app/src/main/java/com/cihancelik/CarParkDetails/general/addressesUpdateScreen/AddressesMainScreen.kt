@@ -29,6 +29,7 @@ class AddressesMainScreen : AppCompatActivity() {
 
     private var addressInfo: AddressessModel? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_addresses_main_page)
@@ -56,13 +57,15 @@ class AddressesMainScreen : AppCompatActivity() {
 
             addressInfo = selectedAddressInfo
         }
-        btnUpdate.setOnClickListener { updateAddresses() }
 
-        var goToAddressesViewPage =Intent(this,AddressViewScreen::class.java)
+
+
+        var goToAddressesViewPage = Intent(this, AddressViewScreen::class.java)
         btnView.setOnClickListener { startActivity(goToAddressesViewPage) }
 
-        var selectedAddressesUpdate = intent.getSerializableExtra("selectedAddressesUpdate") as? AddressessModel
-        if(selectedAddressesUpdate != null){
+        val selectedAddressesUpdate =
+            intent.getSerializableExtra("selectedAddressesUpdate") as? AddressessModel
+        if (selectedAddressesUpdate != null) {
             etAddress.text = selectedAddressesUpdate.address
             etStartDAte.text = selectedAddressesUpdate.startDate
             etEndDate.text = selectedAddressesUpdate.endDAte
@@ -73,6 +76,10 @@ class AddressesMainScreen : AppCompatActivity() {
             etAddressLine.text = selectedAddressesUpdate.addressLine
             etUpdateDate.text = selectedAddressesUpdate.updateDate
             etCreationDate.text = selectedAddressesUpdate.creationDate
+            addressInfo = selectedAddressesUpdate
+        }
+        btnUpdate.setOnClickListener {
+            updateAddresses()
         }
     }
 
@@ -133,7 +140,6 @@ class AddressesMainScreen : AppCompatActivity() {
         val updateDate = etUpdateDate.text.toString()
         val creationDate = etCreationDate.text.toString()
 
-        // Güncelleme işlemi burada gerçekleşecek
         if (addressInfo != null) {
             val updatedAddresses = AddressessModel(
                 addressId = addressInfo!!.addressId,
@@ -148,31 +154,30 @@ class AddressesMainScreen : AppCompatActivity() {
                 updateDate = updateDate,
                 creationDate = creationDate
             )
-            val status = sqlHelper.updateAddresses(updatedAddresses)
-            if (status > -1) {
-                // Güncelleme başarılı
-                Toast.makeText(this, "Update Successful", Toast.LENGTH_SHORT).show()
-
-                // Güncelleme işleminden sonra yeni verileri yükle
-                etAddress.text = updatedAddresses.address
-                etStartDAte.text = updatedAddresses.startDate
-                etEndDate.text = updatedAddresses.endDAte
-                etCountry.text = updatedAddresses.country
-                etCity.text = updatedAddresses.city
-                etRegion.text = updatedAddresses.region
-                etPostalCode.text = updatedAddresses.postalCode
-                etAddressLine.text = updatedAddresses.addressLine
-                etUpdateDate.text = updatedAddresses.updateDate
-                etCreationDate.text = updatedAddresses.creationDate
-
-                addressInfo = updatedAddresses
+            val isUpdated = isDataUpdated(updatedAddresses)
+            if (isUpdated) {
+                val status = sqlHelper.updateAddresses(updatedAddresses)
+                if (status > -1) {
+                    Toast.makeText(this, "Update Successful", Toast.LENGTH_SHORT).show()
+                    // MainScreen'e dönüş yap
+                    val intent = Intent(this, AddressesMainScreen::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "Update failed...", Toast.LENGTH_SHORT).show()
+                }
             } else {
-                // Güncelleme başarısız
-                Toast.makeText(this, "Update failed...", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "No changes were made.", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+    private fun isDataUpdated(updatedAddresses: AddressessModel): Boolean {
+        // Mevcut verileri al
+        val currentAddresses = sqlHelper.getAddressesById(updatedAddresses.addressId)
+
+        // Yeni veriler ile mevcut verileri karşılaştır
+        return currentAddresses != updatedAddresses
+    }
 
     private fun clearEditText() {
         etAddress.text = ""
