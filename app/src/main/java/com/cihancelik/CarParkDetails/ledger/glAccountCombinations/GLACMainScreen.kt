@@ -36,6 +36,35 @@ class GLACMainScreen : AppCompatActivity() {
         sqlHelper = SQLHelperForGLAC(this)
         btnAdd.setOnClickListener { addGLAC() }
 
+        var selectedGLACInfo =
+            intent.getSerializableExtra("selectedGLACInfo") as? GLACModel
+
+        if (selectedGLACInfo != null) {
+            etSegment1.text = selectedGLACInfo.segment1
+            etSegment2.text = selectedGLACInfo.segment2
+            etSegment3.text = selectedGLACInfo.segment3
+            etSegment4.text = selectedGLACInfo.segment4
+            etSegment5.text = selectedGLACInfo.segment5
+            etSegmentCombination.text = selectedGLACInfo.segmentCombination
+            etUpdateDate.text = selectedGLACInfo.updateDate
+            etCreationDate.text = selectedGLACInfo.creationDate
+
+            glacInfo = selectedGLACInfo
+        }
+        var gotoGLACViewScreen = Intent(this, GLACViewScreen::class.java)
+        btnView.setOnClickListener { startActivity(gotoGLACViewScreen) }
+
+        var selectedGLACUpdate = intent.getSerializableExtra("selectedGLACUpdate") as? GLACModel
+        if (selectedGLACUpdate != null){
+            etSegment1.text = selectedGLACUpdate.segment1
+            etSegment2.text = selectedGLACUpdate.segment2
+            etSegment3.text = selectedGLACUpdate.segment3
+            etSegment4.text = selectedGLACUpdate.segment4
+            etSegment5.text = selectedGLACUpdate.segment5
+            glacInfo = selectedGLACUpdate
+        }
+        btnUpdate.setOnClickListener { updateGLAC() }
+
     }
 
     private fun addGLAC() {
