@@ -6,4 +6,9 @@
     android:layout_height="match_parent"
     tools:context="com.cihancelik.CarParkDetails.ledger.glAccountCombinations.GLACViewScreen">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/glacRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
