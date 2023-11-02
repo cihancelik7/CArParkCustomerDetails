@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#B48AED"
     android:padding="16dp"
     android:weightSum="1"
-    tools:context="com.cihancelik.oldData.employee_details.EmployeeViewPage">
+    tools:context="com.cihancelik.CarParkDetails.ledger.glAccountCombinations.GLACViewScreen">
 
     <LinearLayout
-        android:id="@+id/ll_cardview"
+        android:id="@+id/glacCardItemLL"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -17,60 +17,72 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvIdC"
+            android:id="@+id/glacIdCardItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="id: "
-            android:textStyle="italic" />
-
+            android:textStyle="italic"/>
         <TextView
-            android:id="@+id/tvNameC"
+            android:id="@+id/glacSegment1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
-            android:text="Name: "
-            android:textStyle="bold" />
-
+            android:text="Segment1: "/>
         <TextView
-            android:id="@+id/tvLastNameC"
+            android:id="@+id/glacSegment2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
-            android:text="Last Name: " />
-
+            android:text="Segment2: "/>
         <TextView
-            android:id="@+id/tvDepartmentC"
+            android:id="@+id/glacSegment3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
-            android:text="Department: " />
-
+            android:text="Segment3: "/>
         <TextView
-            android:id="@+id/tvEmailC"
+            android:id="@+id/glacSegment4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
-            android:text="E-mail: " />
-
+            android:text="Segment4: "/>
         <TextView
-            android:id="@+id/tvAddressC"
+            android:id="@+id/glacSegment5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
-            android:text="Address: " />
+            android:text="Segment5: "/>
+        <TextView
+            android:id="@+id/glacSegmentCombination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:text="SegmentCombination: "/>
+        <TextView
+            android:id="@+id/glacUpdateDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:text="updateDate: "/>
+        <TextView
+            android:id="@+id/creationDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:text="creationDate: "/>
+
 
     </LinearLayout>
-
     <Button
-        android:id="@+id/btnDeleteC"
+        android:id="@+id/btnDeleteGLAC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
+        android:layout_gravity="center"
         android:layout_marginStart="10dp"
         android:backgroundTint="@color/white"
         android:gravity="center_vertical"
         android:text="Delete"
-        android:textColor="#6200EA" />
+        android:textColor="#6200EA"/>
 
 </LinearLayout>

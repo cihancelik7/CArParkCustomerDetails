@@ -172,9 +172,9 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
             SEGMENT3 TEXT,
             SEGMENT4 TEXT,
             SEGMENT5 TEXT,
-            SEGMENT COMBINATION,
-            UPDATE_DATE,
-            CREATION_DATE
+            SEGMENT_COMBINATION TEXT,
+            UPDATE_DATE DATE,
+            CREATION_DATE DATE
     )
 """.trimIndent()
 
