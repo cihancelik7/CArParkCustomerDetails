@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cihancelik.carparkcustomerdetails.R
-import javax.microedition.khronos.opengles.GL
+
 
 class GLACAdapter:RecyclerView.Adapter<GLACAdapter.GLACViewHolder>() {
     private var GLACList : ArrayList<GLACModel> = ArrayList()

@@ -1,8 +1,10 @@
 package com.cihancelik.CarParkDetails.ledger.glAccountCombinations
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cihancelik.CarParkDetails.SQL.ledger.SQLHelperForGLAC
@@ -31,5 +33,66 @@ class GLACViewScreen : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
 
+        getGlac()
+
+        adapter.setOnClickItem { glac ->
+            val intent = Intent(this,GLACMainScreen::class.java)
+            intent.putExtra("selectedGLACUpdate",glac)
+            startActivity(intent)
+        }
+        adapter.setOnClickItem {
+            deleteGLAC(it.glCodComId)
+        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val updateGLAC =
+            intent.getSerializableExtra("selectedGLACInfo") as? GLACModel
+        if (updateGLAC!=null){
+            glac1 = updateGLAC
+
+            etSegment1.setText(updateGLAC.segment1)
+            etSegment2.setText(updateGLAC.segment2)
+            etSegment3.setText(updateGLAC.segment3)
+            etSegment4.setText(updateGLAC.segment4)
+            etSegment5.setText(updateGLAC.segment5)
+            etSegmentCombination.setText(updateGLAC.segmentCombination)
+            etUpdateDate.setText(updateGLAC.updateDate)
+            etCreationDate.setText(updateGLAC.creationDate)
+        }
+    }
+    fun getGlac(){
+        val glacList = sqlHelperForGLAC.getAllGLAC()
+        adapter.addItems(glacList)
+    }
+    fun deleteGLAC(id:Int){
+        if (id <= 0)return
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("Are you want to delete GLAC info?")
+        builder.setCancelable(true)
+        builder.setPositiveButton("Yes") {dialog, _ ->
+            sqlHelperForGLAC.deleteGLACById(id)
+
+            val GLACList = sqlHelperForGLAC.getAllGLAC()
+            var deletedGLACIndex = -1
+            for (i in GLACList.indices){
+                if (GLACList[i].glCodComId == id){
+                    deletedGLACIndex = i
+                    break
+                }
+            }
+            adapter.updateGLACList(GLACList)
+            dialog.dismiss()
+            var goToGLACMainPage = Intent(this,GLACMainScreen::class.java)
+            startActivity(goToGLACMainPage)
+        }
+        builder.setNegativeButton("No") {dialog, _ ->
+            dialog.dismiss()
+        }
+        val alert = builder.create()
+        alert.show()
     }
 }
