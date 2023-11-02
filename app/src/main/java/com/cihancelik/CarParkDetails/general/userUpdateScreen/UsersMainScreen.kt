@@ -63,6 +63,7 @@ class UsersMainScreen : AppCompatActivity() {
                 etCreationDate.text = selectedUserUpdate.creationDate
 
             }
+            btnUpdate.setOnClickListener { updateUser() }
         }
     }
 
