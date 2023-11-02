@@ -1,4 +1,4 @@
-package com.cihancelik.CarParkDetails.SQL
+package com.cihancelik.oldData
 
 import android.content.ContentValues
 import android.content.Context

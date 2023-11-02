@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.cihancelik.CarParkDetails.SQL.SQLiteHelperForCustomer
+import com.cihancelik.oldData.SQLiteHelperForCustomer
 import com.cihancelik.carparkcustomerdetails.R
 
 class CustomerMainActivity : AppCompatActivity() {

@@ -7,7 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.cihancelik.CarParkDetails.SQL.SQLiteHelperForCustomer
+import com.cihancelik.oldData.SQLiteHelperForCustomer
 import com.cihancelik.carparkcustomerdetails.R
 
 class CustomerViewPage : AppCompatActivity() {

@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import com.cihancelik.CarParkDetails.SQL.addresses.SQLHelperForAddresses
+import com.cihancelik.CarParkDetails.SQL.general.SQLHelperForAddresses
 import com.cihancelik.carparkcustomerdetails.R
 
 class AddressesMainScreen : AppCompatActivity() {
