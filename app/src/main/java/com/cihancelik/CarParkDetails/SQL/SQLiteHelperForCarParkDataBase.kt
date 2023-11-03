@@ -320,7 +320,7 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
             CREATION_DATE DATE
             )
 """.trimIndent()
-
+// burasi olan
         val createRecCustomers = """
         CREATE TABLE IF NOT EXISTS REC_CUSTOMERS (
             CUSTOMER_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
@@ -335,7 +335,7 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
             EMAIL_ADDRESS TEXT,
             UPDATE_DATE DATE,
             CREATION_DATE
-            )
+            ) 
 """.trimIndent()
 
         val createRecInvoices = """
