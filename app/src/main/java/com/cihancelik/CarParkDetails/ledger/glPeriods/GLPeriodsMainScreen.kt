@@ -50,6 +50,7 @@ class GLPeriodsMainScreen : AppCompatActivity() {
             etPeriodYear.text = selectedGLPeriodUpdate.periodYear
             etUpdateYear.text = selectedGLPeriodUpdate.updateDate
             etCreationDate.text = selectedGLPeriodUpdate.creationDate
+            glPeriodInfo = selectedGLPeriodUpdate
         }
         btnUpdate.setOnClickListener { updateGLPeriod() }
     }
@@ -127,9 +128,9 @@ private fun isUpdated(updatedGLperiod:GLPeriodsModel):Boolean{
         etPeriodName = findViewById(R.id.glPeriodNameTv)
         etPeriodYear = findViewById(R.id.glPeriodYearTv)
         etUpdateYear = findViewById(R.id.glPeriodUpdateDateTv)
-        etPeriodName = findViewById(R.id.glperiodCreationDateTv)
+        etCreationDate = findViewById(R.id.glperiodCreationDateTv)
 
-        btnAdd = findViewById(R.id.btnDeleteGLPeriod)
+        btnAdd = findViewById(R.id.btnGLPeriodAdd)
         btnView = findViewById(R.id.btnGLPeriodView)
         btnUpdate = findViewById(R.id.btnGLPeriodUpdate)
     }

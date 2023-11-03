@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.cihancelik.CarParkDetails.ledger.glAccountCombinations.GLACMainScreen
+import com.cihancelik.CarParkDetails.ledger.glPeriods.GLPeriodsMainScreen
 import com.cihancelik.carparkcustomerdetails.R
 
 class LedgerViewPage : AppCompatActivity() {
@@ -23,5 +24,8 @@ class LedgerViewPage : AppCompatActivity() {
 
         val goToGLACMainScreen = Intent(this,GLACMainScreen::class.java)
         btnGLAC.setOnClickListener { startActivity(goToGLACMainScreen) }
+
+        val goToGLPeriodMainScreen = Intent(this,GLPeriodsMainScreen::class.java)
+        btnGLPeriods.setOnClickListener { startActivity(goToGLPeriodMainScreen) }
     }
 }

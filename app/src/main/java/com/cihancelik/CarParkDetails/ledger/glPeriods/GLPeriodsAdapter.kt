@@ -11,7 +11,7 @@ import com.cihancelik.carparkcustomerdetails.R
 class GLPeriodsAdapter:RecyclerView.Adapter<GLPeriodsAdapter.GLPeriodViewHolder>() {
     private var GLPeriodList : ArrayList<GLPeriodsModel> = ArrayList()
     private var onClickItem : ((GLPeriodsModel) -> Unit)? = null
-    private var onClickDeleteitem : ((GLPeriodsModel)-> Unit)? = null
+    private var onClickDeleteItem : ((GLPeriodsModel)-> Unit)? = null
 
     fun addItems(items:ArrayList<GLPeriodsModel>){
         this.GLPeriodList = items
@@ -21,7 +21,7 @@ class GLPeriodsAdapter:RecyclerView.Adapter<GLPeriodsAdapter.GLPeriodViewHolder>
         this.onClickItem = callback
     }
     fun setOnClickDeleteItem(callback: (GLPeriodsModel) -> Unit){
-        this.onClickDeleteitem = callback
+        this.onClickDeleteItem = callback
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = GLPeriodViewHolder (
@@ -29,8 +29,9 @@ class GLPeriodsAdapter:RecyclerView.Adapter<GLPeriodsAdapter.GLPeriodViewHolder>
     )
     override fun onBindViewHolder(holder: GLPeriodViewHolder, position: Int) {
         val glPeriod = GLPeriodList[position]
+        holder.bindView(glPeriod)
         holder.itemView.setOnClickListener { onClickItem?.invoke(glPeriod)
-        holder.btnDelete.setOnClickListener { onClickDeleteitem?.invoke(glPeriod) }}
+        holder.btnDelete.setOnClickListener { onClickDeleteItem?.invoke(glPeriod) }}
     }
     override fun getItemCount(): Int {
         return GLPeriodList.size
