@@ -86,7 +86,4 @@ class GLPeriodsViewScreen : AppCompatActivity() {
         val alert = builder.create()
         alert.show()
     }
-
-
-
 }
