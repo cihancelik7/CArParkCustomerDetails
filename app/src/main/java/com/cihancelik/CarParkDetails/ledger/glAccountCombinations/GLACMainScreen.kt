@@ -8,7 +8,6 @@ import android.widget.TextView
 import android.widget.Toast
 import com.cihancelik.CarParkDetails.SQL.ledger.SQLHelperForGLAC
 import com.cihancelik.carparkcustomerdetails.R
-import java.nio.channels.InterruptedByTimeoutException
 
 class GLACMainScreen : AppCompatActivity() {
     private lateinit var etSegment1: TextView
@@ -30,6 +29,7 @@ class GLACMainScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_glacmain_screen)
+
 
         initView()
 
@@ -61,6 +61,9 @@ class GLACMainScreen : AppCompatActivity() {
             etSegment3.text = selectedGLACUpdate.segment3
             etSegment4.text = selectedGLACUpdate.segment4
             etSegment5.text = selectedGLACUpdate.segment5
+            etSegmentCombination.text = selectedGLACUpdate.segmentCombination
+            etUpdateDate.text = selectedGLACUpdate.updateDate
+            etCreationDate.text = selectedGLACUpdate.creationDate
             glacInfo = selectedGLACUpdate
         }
         btnUpdate.setOnClickListener { updateGLAC() }
@@ -94,6 +97,7 @@ class GLACMainScreen : AppCompatActivity() {
                 creationDate = creationDate
             )
             val status: Long = sqlHelper.insertGLAC(glacInfo)
+
             if (status > -1) {
                 Toast.makeText(this, "GLAC Added!!", Toast.LENGTH_SHORT).show()
                 clearEditText()
@@ -156,17 +160,19 @@ class GLACMainScreen : AppCompatActivity() {
         etSegmentCombination.text = ""
         etUpdateDate.text = ""
         etCreationDate.text = ""
+
+        etSegment1.requestFocus()
     }
 
     private fun initView() {
-        etSegment1 = findViewById(R.id.glacSegment1)
-        etSegment2 = findViewById(R.id.glacSegment2)
-        etSegment3 = findViewById(R.id.glacSegment3)
-        etSegment4 = findViewById(R.id.glacSegment4)
-        etSegment5 = findViewById(R.id.glacSegment5)
-        etSegmentCombination = findViewById(R.id.glacSegmentCombination)
-        etUpdateDate = findViewById(R.id.glacUpdateDate)
-        etCreationDate = findViewById(R.id.glacCreatonDate)
+        etSegment1 = findViewById(R.id.glacSegment1tv)
+        etSegment2 = findViewById(R.id.glacSegment2tv)
+        etSegment3 = findViewById(R.id.glacSegment3tv)
+        etSegment4 = findViewById(R.id.glacSegment4tv)
+        etSegment5 = findViewById(R.id.glacSegment5tv)
+        etSegmentCombination = findViewById(R.id.glacSegmentCombinationtv)
+        etUpdateDate = findViewById(R.id.glacUpdateDatetv)
+        etCreationDate = findViewById(R.id.glacCreatonDatetv)
 
         btnAdd = findViewById(R.id.btnGLACadd)
         btnView = findViewById(R.id.btnGLACview)

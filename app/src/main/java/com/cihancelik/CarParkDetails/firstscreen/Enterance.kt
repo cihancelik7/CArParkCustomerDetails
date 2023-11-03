@@ -12,7 +12,6 @@ import com.cihancelik.CarParkDetails.general.GeneralViewPage
 import com.cihancelik.CarParkDetails.ledger.LedgerViewPage
 import com.cihancelik.CarParkDetails.purchasing.PurchasingViewPage
 import com.cihancelik.CarParkDetails.receivable.ReceivableViewPage
-import com.cihancelik.oldData.customer_details.CustomerMainActivity
 import com.cihancelik.carparkcustomerdetails.R
 import com.cihancelik.carparkcustomerdetails.databinding.ActivityEnteranceBinding
 
@@ -54,9 +53,6 @@ class Enterance : AppCompatActivity() {
         binding.generalIv.setOnClickListener { startActivity(generalViewPage) }
         binding.generalTv.setOnClickListener { startActivity(generalViewPage) }
 
-
-
-        var customerServices = Intent(this, CustomerMainActivity::class.java)
 
 
 

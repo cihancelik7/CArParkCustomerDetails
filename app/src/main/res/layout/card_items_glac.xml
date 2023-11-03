@@ -24,49 +24,49 @@
             android:text="id: "
             android:textStyle="italic"/>
         <TextView
-            android:id="@+id/glacSegment1"
+            android:id="@+id/glacSegment1tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Segment1: "/>
         <TextView
-            android:id="@+id/glacSegment2"
+            android:id="@+id/glacSegment2tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Segment2: "/>
         <TextView
-            android:id="@+id/glacSegment3"
+            android:id="@+id/glacSegment3tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Segment3: "/>
         <TextView
-            android:id="@+id/glacSegment4"
+            android:id="@+id/glacSegment4tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Segment4: "/>
         <TextView
-            android:id="@+id/glacSegment5"
+            android:id="@+id/glacSegment5tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Segment5: "/>
         <TextView
-            android:id="@+id/glacSegmentCombination"
+            android:id="@+id/glacSegmentCombinationtv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="SegmentCombination: "/>
         <TextView
-            android:id="@+id/glacUpdateDate"
+            android:id="@+id/glacUpdateDatetv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="updateDate: "/>
         <TextView
-            android:id="@+id/creationDate"
+            android:id="@+id/glacCreationDatetv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"

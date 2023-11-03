@@ -40,7 +40,7 @@ class GLACViewScreen : AppCompatActivity() {
             intent.putExtra("selectedGLACUpdate",glac)
             startActivity(intent)
         }
-        adapter.setOnClickItem {
+        adapter.setOnClickDeleteItem {
             deleteGLAC(it.glCodComId)
         }
 

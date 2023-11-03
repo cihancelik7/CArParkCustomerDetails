@@ -11,7 +11,6 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
     companion object {
         private const val DATABASE_VERSION = 1
         private const val DATABASE_NAME = "carpark.db"
-        private lateinit var cursor: Cursor
 
     }
 
@@ -164,17 +163,18 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
     )
 """.trimIndent()
 
+
         val createGlAccountCombinations = """
-            CREATE TABLE IF NOT EXISTS GL_ACCOUNT_COMBINATIONS (
-            GL_COD_COM_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
-            SEGMENT1 TEXT,
-            SEGMENT2 TEXT,
-            SEGMENT3 TEXT,
-            SEGMENT4 TEXT,
-            SEGMENT5 TEXT,
-            SEGMENT_COMBINATION TEXT,
-            UPDATE_DATE DATE,
-            CREATION_DATE DATE
+    CREATE TABLE IF NOT EXISTS GL_ACCOUNT_COMBINATIONS (
+        GL_COD_COM_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
+        SEGMENT1 TEXT,
+        SEGMENT2 TEXT,
+        SEGMENT3 TEXT,
+        SEGMENT4 TEXT,
+        SEGMENT5 TEXT,
+        SEGMENT_COMBINATION TEXT,
+        UPDATE_DATE DATE,
+        CREATION_DATE DATE
     )
 """.trimIndent()
 
@@ -192,7 +192,7 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
 """.trimIndent()
 
         val createGlJournalLines = """
-            CREATE TABLE IF NOT EXISTS GL_JOURNAL_LINES (
+   CREATE TABLE IF NOT EXISTS GL_JOURNAL_LINES (
             JOURNAL_LINE_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             JOURNAL_ID INTEGER,
             JOURNAL_DATE DATE,
@@ -206,7 +206,7 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
 """.trimIndent()
 
         val createPaySuppliers = """
-            CREATE TABLE IF NOT EXISTS PAY_SUPPLIERS (
+   CREATE TABLE IF NOT EXISTS PAY_SUPPLIERS (
             SUPPLIER_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             SUPPLIER_NUMBER INTEGER,
             START_DATE DATE,
@@ -242,7 +242,7 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
 """.trimIndent()
 
         val createPayInvoiceLines = """
-            CREATE TABLE IF NOT EXISTS PAY_INVOICE_LINES (
+   CREATE TABLE IF NOT EXISTS PAY_INVOICE_LINES (
             INVOICE_LINE_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             INVOICE_ID INTEGER,
             ORDER_ID DATE,
@@ -257,7 +257,7 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
    )
 """.trimIndent()
         val createPayCheckTerms = """
-            CREATE TABLE IF NOT EXISTS PAY_CHECK_TERMS (
+   CREATE TABLE IF NOT EXISTS PAY_CHECK_TERMS (
             CHECK_TERM_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             TERM_NAME TEXT,
             UPDATE_DATE DATE,
@@ -267,7 +267,7 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
 
 
         val createPayCheckMethods = """
-            CREATE TABLE IF NOT EXISTS PAY_CHECK_METHODS (
+   CREATE TABLE IF NOT EXISTS PAY_CHECK_METHODS (
             CHECK_METHOD_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
              METHOD_NAME TEXT,
              TERM_ID INTEGER,
@@ -278,7 +278,7 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
 """.trimIndent()
 
         val createPayChecks = """
-        CREATE TABLE IF NOT EXISTS PAY_CHECKS ( 
+    CREATE TABLE IF NOT EXISTS PAY_CHECKS ( 
         CHECK_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
         CHECK_METHOD_ID INTEGER,
         CHECK_TERM_ID INTEGER,
@@ -299,7 +299,7 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
     )            
 """.trimIndent()
         val createPurchaseOrders = """
-            CREATE TABLE IF NOT EXISTS PURCHASE_ORDERS (
+        CREATE TABLE IF NOT EXISTS PURCHASE_ORDERS (
             ORDER_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             ORDER_CODE TEXT,
             ITEM_ID INTEGER,
@@ -309,20 +309,20 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
             CREATION_DATE DATE,
             FOREIGN KEY (ITEM_ID) REFERENCES ITEMS(ITEM_ID) 
             )
-            """.trimIndent()
+""".trimIndent()
 
         val createItems = """
-            CREATE TABLE IF NOT EXISTS ITEMS (
+        CREATE TABLE IF NOT EXISTS ITEMS (
             ITEM_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             ITEM_CODE TEXT,
             ITEM_DESCRIPTION TEXT,
             UPDATE_DATE DATE,
             CREATION_DATE DATE
             )
-            """.trimIndent()
+""".trimIndent()
 
         val createRecCustomers = """
-            CREATE TABLE IF NOT EXISTS REC_CUSTOMERS (
+        CREATE TABLE IF NOT EXISTS REC_CUSTOMERS (
             CUSTOMER_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             CUSTOMER_NUMBER INTEGER,
             CUSTOMER_NAME TEXT,
@@ -336,10 +336,10 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
             UPDATE_DATE DATE,
             CREATION_DATE
             )
-            """.trimIndent()
+""".trimIndent()
 
         val createRecInvoices = """
-            CREATE TABLE IF NOT EXISTS REC_INVOICES (
+        CREATE TABLE IF NOT EXISTS REC_INVOICES (
             REC_INVOICE_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             CUSTOMER_ID INTEGER,
             INVOICE_DATE DATE,
@@ -356,10 +356,10 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
             FOREIGN KEY (RECEIPT_METHOD_ID) REFERENCES REC_RECEIPT_METHOD(RECEIPT_METHOD_ID),
             FOREIGN KEY (RECEIPT_TERM_ID) REFERENCES REC_RECEIPT_TERMS(RECEIPT_TERM_ID)
             )
-            """.trimIndent()
+""".trimIndent()
 
         val createRecInvoiceLines = """
-            CREATE TABLE IF NOT EXISTS REC_INVOICE_LINES (
+        CREATE TABLE IF NOT EXISTS REC_INVOICE_LINES (
             REC_INVOICE_LINE_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             REC_INVOICE_ID INTEGER,
             LINE_AMOUNT INTEGER,
@@ -371,15 +371,15 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
             FOREIGN KEY (REC_INVOICE_ID) REFERENCES PAY_INVOICES(INVOICE_ID),
             FOREIGN KEY (GLCCID) REFERENCES GL_ACCOUNT_COMBINATIONS(GL_COD_COM_ID)
             )
-            """.trimIndent()
+""".trimIndent()
         val createRecReceiptTerms = """
-            CREATE TABLE IF NOT EXISTS REC_RECEIPT_TERMS (
+        CREATE TABLE IF NOT EXISTS REC_RECEIPT_TERMS (
             RECEIPT_TERM_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
             TERM_NAME TEXT,
             UPDATE_DATE DATE,
             CREATION_DATE DATE
             )
-            """.trimIndent()
+""".trimIndent()
 
         val createRecReceiptMethods = """
             CREATE TABLE IF NOT EXISTS REC_RECEIPT_METHODS (
@@ -459,14 +459,9 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
         db?.execSQL(createCrmCustCarInfo)
 
 
-
     }
 
-        override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-                TODO("Not yet implemented")
-        }
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
 
-
-
-
+    }
 }

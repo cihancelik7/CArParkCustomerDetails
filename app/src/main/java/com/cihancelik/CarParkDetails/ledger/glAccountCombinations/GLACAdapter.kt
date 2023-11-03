@@ -33,7 +33,7 @@ class GLACAdapter:RecyclerView.Adapter<GLACAdapter.GLACViewHolder>() {
         val glac = GLACList[position]
         holder.bindView(glac)
         holder.itemView.setOnClickListener{onClickItem?.invoke(glac)}
-        holder.itemView.setOnClickListener{onClickDeleteItem?.invoke(glac)}
+        holder.btnDelete.setOnClickListener{onClickDeleteItem?.invoke(glac)}
     }
 
     override fun getItemCount(): Int {
@@ -45,14 +45,14 @@ class GLACAdapter:RecyclerView.Adapter<GLACAdapter.GLACViewHolder>() {
     }
     class GLACViewHolder(var view: View):RecyclerView.ViewHolder(view){
         private var id = view.findViewById<TextView>(R.id.glacIdCardItem)
-        private var segment1 = view.findViewById<TextView>(R.id.glacSegment1)
-        private var segment2 = view.findViewById<TextView>(R.id.glacSegment2)
-        private var segment3 = view.findViewById<TextView>(R.id.glacSegment3)
-        private var segment4 = view.findViewById<TextView>(R.id.glacSegment4)
-        private var segment5 = view.findViewById<TextView>(R.id.glacSegment5)
-        private var segmentCombination = view.findViewById<TextView>(R.id.glacSegmentCombination)
-        private var updateDate = view.findViewById<TextView>(R.id.glacUpdateDate)
-        private var creationDate = view.findViewById<TextView>(R.id.glacCreatonDate)
+        private var segment1 = view.findViewById<TextView>(R.id.glacSegment1tv)
+        private var segment2 = view.findViewById<TextView>(R.id.glacSegment2tv)
+        private var segment3 = view.findViewById<TextView>(R.id.glacSegment3tv)
+        private var segment4 = view.findViewById<TextView>(R.id.glacSegment4tv)
+        private var segment5 = view.findViewById<TextView>(R.id.glacSegment5tv)
+        private var segmentCombination = view.findViewById<TextView>(R.id.glacSegmentCombinationtv)
+        private var updateDate = view.findViewById<TextView>(R.id.glacUpdateDatetv)
+        private var creationDate = view.findViewById<TextView>(R.id.glacCreationDatetv)
 
 
         var btnDelete = view.findViewById<Button>(R.id.btnDeleteGLAC)

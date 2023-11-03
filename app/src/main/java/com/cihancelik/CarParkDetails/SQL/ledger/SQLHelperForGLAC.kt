@@ -2,7 +2,6 @@ package com.cihancelik.CarParkDetails.SQL.ledger
 
 import android.content.ContentValues
 import android.content.Context
-import android.content.pm.PackageManager.OnChecksumsReadyListener
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.cihancelik.CarParkDetails.SQL.SQLiteHelperForCarParkDataBase
@@ -14,6 +13,8 @@ class SQLHelperForGLAC(context: Context) :
     fun insertGLAC(glac: GLACModel): Long {
         val db = this.writableDatabase
         val values = ContentValues()
+        db.execSQL("CREATE TABLE IF NOT EXISTS GL_ACCOUNT_COMBINATIONS (SEGMENT_COMBINATION TEXT, SEGMENT1 TEXT, SEGMENT2 TEXT, SEGMENT3 TEXT, SEGMENT4 TEXT, SEGMENT5 TEXT, CREATION_DATE DATE, UPDATE_DATE DATE)")
+
 
         values.put("SEGMENT1", glac.segment1)
         values.put("SEGMENT2", glac.segment2)
@@ -104,7 +105,7 @@ class SQLHelperForGLAC(context: Context) :
         val contentValues = ContentValues()
         contentValues.put("GL_COD_COM_ID",id)
 
-        val success = db.delete("GL_ACCOUNT_COMBINATIONS", "GL_COD_COM_ID$id",null)
+        val success = db.delete("GL_ACCOUNT_COMBINATIONS", "GL_COD_COM_ID=$id",null)
         db.close()
         return success
     }
@@ -149,9 +150,11 @@ class SQLHelperForGLAC(context: Context) :
         return glacInfo
     }
 
+ 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         super.onUpgrade(db, oldVersion, newVersion)
         db!!.execSQL("DROP TABLE IF EXISTS GL_ACCOUNT_COMBINATIONS")
         onCreate(db)
     }
+
 }

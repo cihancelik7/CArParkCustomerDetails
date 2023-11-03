@@ -18,56 +18,56 @@
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/glacSegment1"
+        android:id="@+id/glacSegment1tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:hint="segment1" />
     <EditText
-        android:id="@+id/glacSegment2"
+        android:id="@+id/glacSegment2tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:hint="segment2"/>
     <EditText
-        android:id="@+id/glacSegment3"
+        android:id="@+id/glacSegment3tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:hint="segment3"/>
     <EditText
-        android:id="@+id/glacSegment4"
+        android:id="@+id/glacSegment4tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:hint="segment4"/>
     <EditText
-        android:id="@+id/glacSegment5"
+        android:id="@+id/glacSegment5tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:hint="segment5"/>
     <EditText
-        android:id="@+id/glacSegmentCombination"
+        android:id="@+id/glacSegmentCombinationtv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:hint="segmentCombination"/>
     <EditText
-        android:id="@+id/glacUpdateDate"
+        android:id="@+id/glacUpdateDatetv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:hint="updateDate"/>
     <EditText
-        android:id="@+id/glacCreatonDate"
+        android:id="@+id/glacCreatonDatetv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

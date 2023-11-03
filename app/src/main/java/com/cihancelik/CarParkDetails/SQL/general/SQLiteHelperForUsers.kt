@@ -6,7 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.cihancelik.CarParkDetails.SQL.SQLiteHelperForCarParkDataBase
 import com.cihancelik.CarParkDetails.general.userUpdateScreen.UserModel
-import kotlinx.coroutines.coroutineScope
+
 
 class SQLiteHelperForUsers(context: Context) :
     SQLiteHelperForCarParkDataBase(context) {

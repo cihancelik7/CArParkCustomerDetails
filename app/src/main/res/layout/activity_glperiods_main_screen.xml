@@ -5,103 +5,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.cihancelik.oldData.customer_details.CustomerMainActivity">
+    tools:context="com.cihancelik.CarParkDetails.ledger.glPeriods.GLPeriodsMainScreen">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="Car Park Customer Details"
-        android:textStyle="bold"
-        android:textSize="20sp" />
+        android:text="General Ledger Period Screen"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/cstName"
+        android:id="@+id/glPeriodNameTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Enter Name" />
-
+        android:hint="PeriodName: "/>
     <EditText
-        android:id="@+id/cstLastName"
+        android:id="@+id/glPeriodYearTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Enter LastName" />
-
+        android:hint="PeriodYear: "/>
     <EditText
-        android:id="@+id/cstEmail"
+        android:id="@+id/glPeriodUpdateDateTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Enter email" />
-
+        android:hint="UpdateDate: "/>
     <EditText
-        android:id="@+id/cstPhone"
+        android:id="@+id/glperiodCreationDateTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Enter phone" />
-
-    <EditText
-        android:id="@+id/cstAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Enter address" />
-
-    <EditText
-        android:id="@+id/cstCity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Enter city" />
-
-    <EditText
-        android:id="@+id/cstCarNumberPlate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:hint="Enter car plate" />
-
+        android:hint="CreationDate: "/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
-
         <Button
-            android:id="@+id/btnCstAdd"
+            android:id="@+id/btnGLPeriodAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add"/>
         <Button
-            android:id="@+id/btnCstView"
-            android:layout_marginStart="8dp"
+            android:id="@+id/btnGLPeriodView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="View"/>
         <Button
-            android:id="@+id/btnCstUpdate"
-            android:layout_marginStart="8dp"
+            android:id="@+id/btnGLPeriodUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Update"/>
-
-
     </LinearLayout>
-
-
-
 
 
 </LinearLayout>

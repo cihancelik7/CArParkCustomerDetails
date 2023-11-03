@@ -13,6 +13,12 @@
         android:theme="@style/Theme.CArParkCustomerDetails"
         tools:targetApi="31">
         <activity
+            android:name="com.cihancelik.CarParkDetails.ledger.glPeriods.GLPeriodsViewScreen"
+            android:exported="false" />
+        <activity
+            android:name="com.cihancelik.CarParkDetails.ledger.glPeriods.GLPeriodsMainScreen"
+            android:exported="false" />
+        <activity
             android:name="com.cihancelik.CarParkDetails.ledger.glAccountCombinations.GLACViewScreen"
             android:exported="false" />
         <activity
