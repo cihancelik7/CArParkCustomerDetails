@@ -1,4 +1,3 @@
-import com.cihancelik.CarParkDetails.ledger.glPeriods.GLPeriodsModel
 import java.io.Serializable
 
 data class GLJournalsModel(
@@ -9,5 +8,4 @@ data class GLJournalsModel(
     var amount: Int = 0,
     var updateDate: String = "",
     var creationDate: String = "",
-    var glPeriod: GLPeriodsModel? = null // İlişkili periodi tutmak için
 ): Serializable

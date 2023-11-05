@@ -6,13 +6,23 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.cihancelik.CarParkDetails.SQL.SQLiteHelperForCarParkDataBase
+import com.cihancelik.CarParkDetails.ledger.glPeriods.GLPeriodsModel
 
 
 class SQLHelperForGLJournals(context: Context) :
     SQLiteHelperForCarParkDataBase(context) {
+
+    private val glPeriodsHelper = SQLHelperForGLPeriods(context)
     fun insertJournal(glJournal: GLJournalsModel): Long {
         val db = this.writableDatabase
         val values = ContentValues()
+        val glPeriod = glPeriodsHelper.getGLPeriodById(glJournal.periodId)
+        if (glPeriod != null) {
+            // Örnek olarak GL_PERIODS verisinden bir alanı kullanarak GL_JOURNALS verisini güncelleyebiliriz.
+            val updatedStatus = "Updated Status"
+            glJournal.status = updatedStatus
+        }
+
         db.execSQL(
             "CREATE TABLE IF NOT EXISTS GL_JOURNALS(PERIOD_ID INTEGER,JOURNAL_DATE DATE, STATUS TEXT," +
                     "AMOUNT NUMBER(10), UPDATE_DATE DATE, CREATION_DATE DATE)"
@@ -28,6 +38,10 @@ class SQLHelperForGLJournals(context: Context) :
         val insertId = db.insert("GL_JOURNALS", null, values)
         db.close()
         return insertId
+    }
+    fun getGLPeriodForJournal(journal: GLJournalsModel): GLPeriodsModel? {
+        // GL_PERIODS tablosundan veriyi çekmek için SQLHelperForGLPeriods sınıfını kullanabiliriz.
+        return glPeriodsHelper.getGLPeriodById(journal.periodId)
     }
 
     fun getAllPeriod(): ArrayList<GLJournalsModel> {
