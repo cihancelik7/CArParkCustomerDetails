@@ -17,9 +17,7 @@
             android:exported="false" />
         <activity
             android:name="com.cihancelik.CarParkDetails.ledger.glJournals.GLJournalsMainScreen"
-            android:exported="false"
-            android:label="@string/title_activity_gljournals_main_screen"
-            android:theme="@style/Theme.CArParkCustomerDetails" />
+            android:exported="false" />
         <activity
             android:name="com.cihancelik.CarParkDetails.ledger.glPeriods.GLPeriodsViewScreen"
             android:exported="false" />
@@ -71,18 +69,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.cihancelik.oldData.employee_details.EmployeeViewPage"
-            android:exported="false" />
-        <activity
-            android:name="com.cihancelik.CarParkDetails.employee_details.EmployeeMainActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.cihancelik.oldData.customer_details.CustomerViewPage"
-            android:exported="false" />
-        <activity
-            android:name="com.cihancelik.oldData.customer_details.CustomerMainActivity"
-            android:exported="false" />
+
     </application>
 
 </manifest>

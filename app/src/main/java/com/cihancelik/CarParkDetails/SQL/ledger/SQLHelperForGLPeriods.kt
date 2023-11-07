@@ -79,29 +79,31 @@ class SQLHelperForGLPeriods(context: Context) :
         db.close()
         return success
     }
-    fun deleteGLPeriodById(id:Int):Int{
+
+    fun deleteGLPeriodById(id: Int): Int {
         val db = this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put("PERIOD_ID",id)
+        contentValues.put("PERIOD_ID", id)
 
-        val success = db.delete("GL_PERIODS","PERIOD_ID=$id",null)
+        val success = db.delete("GL_PERIODS", "PERIOD_ID=$id", null)
         db.close()
         return success
     }
-    fun getGLPeriodById(glPeriodId :Int):GLPeriodsModel?{
+
+    fun getGLPeriodById(glPeriodId: Int): GLPeriodsModel? {
         val db = this.writableDatabase
         val selectQuery = "SELECT * FROM GL_PERIODS WHERE PERIOD_ID = $glPeriodId"
 
-        val cursor : Cursor?
+        val cursor: Cursor?
         try {
-            cursor = db.rawQuery(selectQuery,null)
-        }catch (e:Exception){
+            cursor = db.rawQuery(selectQuery, null)
+        } catch (e: Exception) {
             e.printStackTrace()
             db.execSQL(selectQuery)
             return null
         }
-        var glPeriodInfo : GLPeriodsModel? = null
-        if (cursor.moveToFirst()){
+        var glPeriodInfo: GLPeriodsModel? = null
+        if (cursor.moveToFirst()) {
             val id = cursor.getInt(cursor.getColumnIndex("PERIOD_ID"))
             val periodName = cursor.getString(cursor.getColumnIndex("PERIOD_NAME"))
             val year = cursor.getString(cursor.getColumnIndex("YEAR"))
@@ -125,5 +127,28 @@ class SQLHelperForGLPeriods(context: Context) :
         super.onUpgrade(db, oldVersion, newVersion)
         db!!.execSQL("DROP TABLE IF EXISTS GL_PERIODS")
         onCreate(db)
+    }
+
+    fun getGLPeriodNameById(periodId: Int): String? {
+        val db = this.writableDatabase
+        val selectQuery = "SELECT PERIOD_NAME FROM GL_PERIODS WHERE PERIOD_ID = $periodId"
+
+        val cursor: Cursor?
+        try {
+            cursor = db.rawQuery(selectQuery, null)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            db.execSQL(selectQuery)
+            return null
+        }
+
+        var periodName: String? = null
+        if (cursor.moveToFirst()) {
+            periodName = cursor.getString(cursor.getColumnIndex("PERIOD_NAME"))
+        }
+
+        cursor?.close()
+        db.close()
+        return periodName
     }
 }

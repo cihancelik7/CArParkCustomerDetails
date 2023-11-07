@@ -184,7 +184,7 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
             PERIOD_ID INTEGER,
             JOURNAL_DATE DATE,
             STATUS TEXT,
-            AMOUNT NUMBER(10),
+            AMOUNT TEXT,
             UPDATE_DATE DATE,
             CREATION_DATE DATE,
             FOREIGN KEY (PERIOD_ID) REFERENCES GL_PERIODS(PERIOD_ID)
