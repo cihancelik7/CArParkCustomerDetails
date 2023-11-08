@@ -13,6 +13,12 @@
         android:theme="@style/Theme.CArParkCustomerDetails"
         tools:targetApi="31">
         <activity
+            android:name="com.cihancelik.CarParkDetails.ledger.glJournalLines.GLJLViewScreen"
+            android:exported="false" />
+        <activity
+            android:name="com.cihancelik.CarParkDetails.ledger.glJournalLines.GLJLMainScreen"
+            android:exported="false" />
+        <activity
             android:name="com.cihancelik.CarParkDetails.ledger.glJournals.GLJournalsViewScreen"
             android:exported="false" />
         <activity
@@ -69,7 +75,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
