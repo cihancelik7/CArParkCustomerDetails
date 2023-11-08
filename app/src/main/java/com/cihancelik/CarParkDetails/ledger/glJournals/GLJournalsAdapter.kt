@@ -72,7 +72,7 @@ class GLJournalsAdapter : RecyclerView.Adapter<GLJournalsAdapter.GLJournalViewHo
             periodId.text = journal.periodId.toString()
             journalDate.text = journal.journalDate
             status.text = journal.status
-            amount.text = journal.amount.toString()
+            amount.text = journal.amount
             updateDate.text = journal.updateDate
             creationDate.text = journal.creationDate
         }
