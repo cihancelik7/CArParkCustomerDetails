@@ -39,7 +39,7 @@ class GLJLMainScreen : AppCompatActivity() {
 
         var selectedGJLInfo = intent.getSerializableExtra("selectedGLJLInfo") as? GLJLModel
 
-        if (selectedGJLInfo != null){
+        if (selectedGJLInfo != null) {
             etJournalId.setText(selectedGJLInfo.journalId.toString())
             etJournalDate.setText(selectedGJLInfo.journalDate)
             etGlCodComId.setText(selectedGJLInfo.glCodComId)
@@ -52,12 +52,12 @@ class GLJLMainScreen : AppCompatActivity() {
         }
         btnAdd.setOnClickListener { addGLJL() }
 
-        var goToGLJLViewScreen = Intent(this,GLJLViewScreen::class.java)
+        var goToGLJLViewScreen = Intent(this, GLJLViewScreen::class.java)
         btnView.setOnClickListener { startActivity(goToGLJLViewScreen) }
 
         var selectedGLJLUpdate = intent.getSerializableExtra("selectedGLJLUpdate") as? GLJLModel
 
-        if (selectedGLJLUpdate != null){
+        if (selectedGLJLUpdate != null) {
             etJournalId.setText(selectedGLJLUpdate.journalId.toString())
             etJournalDate.setText(selectedGLJLUpdate.journalDate)
             etGlCodComId.setText(selectedGLJLUpdate.glCodComId)
@@ -69,6 +69,47 @@ class GLJLMainScreen : AppCompatActivity() {
         btnUpdate.setOnClickListener { updateGLJL() }
     }
 
+    private fun updateGLJL() {
+        val journalId = etJournalId.text.toString()
+        val journalDate = etJournalDate.text.toString()
+        val glCodComId = etGlCodComId.text.toString()
+        val accountedCrAmount = etAccountedCrAmount.text.toString()
+        val accountedDrAmount = etAccountedDrAmount.text.toString()
+        val updateDate = etUpdateDate.text.toString()
+        val creationDate = etCreationDate.text.toString()
+
+        if (gljlInfo1 != null) {
+            val updateGLJL = GLJLModel(
+                journalLineId = gljlInfo1!!.journalLineId,
+                journalId = gljlInfo1!!.journalId,
+                journalDate = journalDate,
+                glCodComId = glCodComId.toInt(),
+                accountedCrAmount = accountedCrAmount.toInt(),
+                accountedDrAmount = accountedDrAmount.toInt(),
+                updateDate = updateDate,
+                creationDate = creationDate
+            )
+            val isUpdate = isUpdate(updateGLJL)
+            if (isUpdate) {
+                val status = sqlHelperForGLJL.updateGLJL(updateGLJL)
+                if (status > -1) {
+                    Toast.makeText(this, "Update Successful", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, GLJLViewScreen::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "Update Failed...", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "No Changes Were Made", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun isUpdate(updatedGLJL: GLJLModel): Boolean {
+        val currentJournalLine = sqlHelperForGLJL.getGLJLById(updatedGLJL.journalLineId)
+        return currentJournalLine != updatedGLJL
+    }
+
     private fun addGLJL() {
         val journalIdtext = etJournalId.text.toString()
         val journalDate = etJournalDate.text.toString()
@@ -78,15 +119,16 @@ class GLJLMainScreen : AppCompatActivity() {
         val updateDate = etUpdateDate.text.toString()
         val createDate = etCreationDate.text.toString()
 
-        if (journalIdtext.isEmpty() || journalDate.isEmpty()|| glCodComId.isEmpty()||
+        if (journalIdtext.isEmpty() || journalDate.isEmpty() || glCodComId.isEmpty() ||
             accountedCrAmount.isEmpty() || accountedDrAmount.isEmpty() || updateDate.isEmpty()
-            || createDate.isEmpty()){
+            || createDate.isEmpty()
+        ) {
             Toast.makeText(this, "Please Enter Requirement Field", Toast.LENGTH_SHORT).show()
-        }else{
+        } else {
             val enteredJournalId = journalIdtext.toInt()
             val glJournal = sqlHelperForGLJournals.getGLJournalById(enteredJournalId)
 
-            if (glJournal != null){
+            if (glJournal != null) {
                 val gljlInfo = GLJLModel(
                     journalLineId = 0,
                     journalId = enteredJournalId,
@@ -97,12 +139,34 @@ class GLJLMainScreen : AppCompatActivity() {
                     updateDate = updateDate,
                     creationDate = createDate
                 )
-                val status : Long = sqlHelperForGLJL.insertJL(gljlInfo)
-                if (status > -1){
+                val status: Long = sqlHelperForGLJL.insertJL(gljlInfo)
+                if (status > -1) {
+                    Toast.makeText(this, "GLJournalLine Added", Toast.LENGTH_SHORT).show()
+                    clearEditText()
+                } else {
+                    Toast.makeText(this, "Record Not Saved!!!", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(
+                    this,
+                    "GLJournalLine with the given journal Id does not exist.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
+    }
+
+    private fun clearEditText() {
+        etJournalId.setText("")
+        etJournalDate.setText("")
+        etGlCodComId.setText("")
+        etAccountedCrAmount.setText("")
+        etAccountedDrAmount.setText("")
+        etUpdateDate.setText("")
+        etCreationDate.setText("")
 
     }
+
 
     private fun initView() {
         etJournalId = findViewById(R.id.journalIdForLinesTv)
