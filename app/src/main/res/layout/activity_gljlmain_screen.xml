@@ -18,15 +18,15 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/periodIdForLinesTv"
+        android:id="@+id/journalIdForLinesTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="periodId:" />
+        android:hint="JournalId:" />
 
     <EditText
-        android:id="@+id/journalIdForLinesTv"
+        android:id="@+id/gljlJournalDateTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

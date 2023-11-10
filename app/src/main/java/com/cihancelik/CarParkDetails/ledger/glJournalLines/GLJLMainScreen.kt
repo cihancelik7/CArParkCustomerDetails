@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.cihancelik.CarParkDetails.SQL.ledger.SQLHelperForGLJL
 import com.cihancelik.CarParkDetails.SQL.ledger.SQLHelperForGLJournals
 import com.cihancelik.carparkcustomerdetails.R
@@ -42,9 +41,9 @@ class GLJLMainScreen : AppCompatActivity() {
         if (selectedGJLInfo != null) {
             etJournalId.setText(selectedGJLInfo.journalId.toString())
             etJournalDate.setText(selectedGJLInfo.journalDate)
-            etGlCodComId.setText(selectedGJLInfo.glCodComId)
-            etAccountedCrAmount.setText(selectedGJLInfo.accountedCrAmount)
-            etAccountedDrAmount.setText(selectedGJLInfo.accountedDrAmount)
+            etGlCodComId.setText(selectedGJLInfo.glCodComId.toString())
+            etAccountedCrAmount.setText(selectedGJLInfo.accountedCrAmount.toString())
+            etAccountedDrAmount.setText(selectedGJLInfo.accountedDrAmount.toString())
             etUpdateDate.setText(selectedGJLInfo.updateDate)
             etCreationDate.setText(selectedGJLInfo.creationDate)
 
@@ -69,6 +68,8 @@ class GLJLMainScreen : AppCompatActivity() {
         btnUpdate.setOnClickListener { updateGLJL() }
     }
 
+    // ...
+
     private fun updateGLJL() {
         val journalId = etJournalId.text.toString()
         val journalDate = etJournalDate.text.toString()
@@ -89,21 +90,19 @@ class GLJLMainScreen : AppCompatActivity() {
                 updateDate = updateDate,
                 creationDate = creationDate
             )
-            val isUpdate = isUpdate(updateGLJL)
-            if (isUpdate) {
-                val status = sqlHelperForGLJL.updateGLJL(updateGLJL)
-                if (status > -1) {
-                    Toast.makeText(this, "Update Successful", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, GLJLViewScreen::class.java)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(this, "Update Failed...", Toast.LENGTH_SHORT).show()
-                }
+
+            val status = sqlHelperForGLJL.updateGLJL(updateGLJL)
+            if (status > -1) {
+                Toast.makeText(this, "Update Successful", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, GLJLViewScreen::class.java)
+                startActivity(intent)
             } else {
-                Toast.makeText(this, "No Changes Were Made", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Update Failed...", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
+
 
     private fun isUpdate(updatedGLJL: GLJLModel): Boolean {
         val currentJournalLine = sqlHelperForGLJL.getGLJLById(updatedGLJL.journalLineId)
@@ -113,9 +112,9 @@ class GLJLMainScreen : AppCompatActivity() {
     private fun addGLJL() {
         val journalIdtext = etJournalId.text.toString()
         val journalDate = etJournalDate.text.toString()
-        val glCodComId = etGlCodComId.text
-        val accountedCrAmount = etAccountedCrAmount.text
-        val accountedDrAmount = etAccountedDrAmount.text
+        val glCodComId = etGlCodComId.text.toString()
+        val accountedCrAmount = etAccountedCrAmount.text.toString()
+        val accountedDrAmount = etAccountedDrAmount.text.toString()
         val updateDate = etUpdateDate.text.toString()
         val createDate = etCreationDate.text.toString()
 
@@ -129,13 +128,14 @@ class GLJLMainScreen : AppCompatActivity() {
             val glJournal = sqlHelperForGLJournals.getGLJournalById(enteredJournalId)
 
             if (glJournal != null) {
+
                 val gljlInfo = GLJLModel(
                     journalLineId = 0,
                     journalId = enteredJournalId,
                     journalDate = journalDate,
-                    glCodComId = 0,
-                    accountedCrAmount = 0,
-                    accountedDrAmount = 0,
+                    glCodComId = glCodComId.toInt(),
+                    accountedCrAmount = accountedCrAmount.toInt(),
+                    accountedDrAmount = accountedDrAmount.toInt(),
                     updateDate = updateDate,
                     creationDate = createDate
                 )
@@ -167,7 +167,6 @@ class GLJLMainScreen : AppCompatActivity() {
 
     }
 
-
     private fun initView() {
         etJournalId = findViewById(R.id.journalIdForLinesTv)
         etJournalDate = findViewById(R.id.gljlJournalDateTv)
@@ -177,8 +176,11 @@ class GLJLMainScreen : AppCompatActivity() {
         etUpdateDate = findViewById(R.id.gljlUpdateDateTv)
         etCreationDate = findViewById(R.id.gljlCreationDateTv)
 
+
         btnAdd = findViewById(R.id.gljlAddBtn)
         btnView = findViewById(R.id.gljlViewBtn)
         btnUpdate = findViewById(R.id.gljlUpdateBtn)
+
+
     }
 }
