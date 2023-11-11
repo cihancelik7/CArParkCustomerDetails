@@ -144,7 +144,7 @@ open class SQLiteHelperForCarParkDataBase(context: Context) :
     CREATE TABLE IF NOT EXISTS HR_SALARIES (
         SALARY_ID INTEGER PRIMARY KEY AUTOINCREMENT ,
         EMPLOYEE_ID INTEGER,
-        AMOUNT NUMBER(10, 2),
+        AMOUNT INTEGER,
         START_DATE DATE,
         END_DATE DATE,
         UPDATE_DATE DATE,
