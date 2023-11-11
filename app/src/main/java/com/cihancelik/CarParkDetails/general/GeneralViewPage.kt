@@ -16,7 +16,7 @@ class GeneralViewPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_general_view_page)
 
-        btnGeneralAddresses = findViewById(R.id.addressesButtonIdGeneralViewPage)
+        btnGeneralAddresses = findViewById(R.id.hrEmployees)
         btnGeneralUsers = findViewById(R.id.usersGeneralViewPage)
 
         val goToAddressUpdateScreenIntent = Intent(this,AddressesMainScreen::class.java)

@@ -13,12 +13,12 @@
         android:layout_marginTop="296dp"
         android:layout_marginEnd="12dp"
         android:text="Users"
-        app:layout_constraintEnd_toStartOf="@+id/addressesButtonIdGeneralViewPage"
+        app:layout_constraintEnd_toStartOf="@+id/hrEmployees"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/addressesButtonIdGeneralViewPage"
+        android:id="@+id/hrEmployees"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="296dp"
