@@ -55,10 +55,10 @@ class SQLHelperForGLJL(context: Context) :
             var journalId: Int
             var journalDate: String
             var glCodComId: Int
-            var accountedDrAmount: Int = 0
-            var accountedCrAmount: Int = 0
-            var updateDate: String = ""
-            var creationDate: String = ""
+            var accountedDrAmount: Int
+            var accountedCrAmount: Int
+            var updateDate: String
+            var creationDate: String
 
             if (cursor.moveToFirst()) {
                 do {

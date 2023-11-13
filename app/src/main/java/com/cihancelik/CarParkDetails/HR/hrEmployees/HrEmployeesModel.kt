@@ -9,7 +9,7 @@ data class HrEmployeesModel(
     var firstName: String = "",
     var lastName: String = "",
     var birthDate: String = "",
-    var nationalId: String = "",
+    var nationalId: Int = 0,
     var martialStatus: String = "",
     var gender: String = "",
     var addressId: Int = 0,
