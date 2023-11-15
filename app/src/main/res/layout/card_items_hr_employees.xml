@@ -16,6 +16,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/hrEmployeesEmployeeIdTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
@@ -23,72 +24,84 @@
             android:textStyle="italic" />
 
         <TextView
+            android:id="@+id/hrEmployeesEmployeeNumberTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Employee Number" />
 
         <TextView
+            android:id="@+id/hrEmployeesStartDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Start Date: " />
 
         <TextView
+            android:id="@+id/hrEmployeesEndDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="End Date:" />
 
         <TextView
+            android:id="@+id/hrEmployeesIsActiveTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="is Active:" />
 
         <TextView
+            android:id="@+id/hrEmployeesFirstNameTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="FIrst Name:" />
 
         <TextView
+            android:id="@+id/hrEmployeesLastNameTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Last Name: " />
 
         <TextView
+            android:id="@+id/hrEmployeesBirthDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="BirthDate: " />
 
         <TextView
+            android:id="@+id/hrEmployeesNationalIdTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="national Id:" />
 
         <TextView
+            android:id="@+id/hrEmployeesMartialStatusTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="martial Status:" />
 
         <TextView
+            android:id="@+id/hrEmployeesGenderTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="gender: " />
 
         <TextView
+            android:id="@+id/hrEmployeesAddressIdTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="address Id: " />
 
         <TextView
+            android:id="@+id/hrEmployeesEmailAddressTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
@@ -97,6 +110,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/hrEmployeesDeleteBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

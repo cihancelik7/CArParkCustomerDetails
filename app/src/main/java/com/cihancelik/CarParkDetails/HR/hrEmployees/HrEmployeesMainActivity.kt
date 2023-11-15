@@ -38,6 +38,17 @@ class HrEmployeesMainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-       // etEmployeeNumber = findViewById(R.id.)
+        etEmployeeNumber = findViewById(R.id.hrEmployeesEmployeeNumberTv)
+        etStartDate = findViewById(R.id.hrEmployeesStartDateTv)
+        etEndDate = findViewById(R.id.hrEmployeesEndDateTv)
+        etIsActive = findViewById(R.id.hrEmployeesIsActiveTv)
+        etFirstName = findViewById(R.id.hrEmployeesFirstNameTv)
+        etLastName = findViewById(R.id.hrEmployeesLastNameTv)
+        etBirthDate = findViewById(R.id.hrEmployeesBirthDateTv)
+        etNationalId = findViewById(R.id.hrEmployeesNationalIdTv)
+        etMartialStatus = findViewById(R.id.hrEmployeesMartialStatusTv)
+        etGender = findViewById(R.id.hrEmployeesGenderTv)
+        etAddressId = findViewById(R.id.hrEmployeesAddressIdTv)
+        etEmailAddress = findViewById(R.id.hrEmployeesEmailAddressTv)
     }
 }
