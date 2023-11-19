@@ -27,31 +27,31 @@ class Enterance : AppCompatActivity() {
 
         var purchasingPage = Intent(this,PurchasingViewPage::class.java)
         binding.purchasingIv.setOnClickListener {  startActivity(purchasingPage)}
-        binding.purchasingTv.setOnClickListener {  startActivity(purchasingPage)}
+
 
         var crmPage = Intent(this,CRMViewPage::class.java)
         binding.crmIv.setOnClickListener { startActivity(crmPage) }
-        binding.crmTv.setOnClickListener { startActivity(crmPage) }
+
 
         var ledgerPage = Intent(this,LedgerViewPage::class.java)
         binding.ledgerIv.setOnClickListener { startActivity(ledgerPage) }
-        binding.ledgerTv.setOnClickListener { startActivity(ledgerPage) }
+
 
         var receivablePage = Intent(this,ReceivableViewPage::class.java)
         binding.receivableIv.setOnClickListener { startActivity(receivablePage) }
-        binding.receivableTv.setOnClickListener { startActivity(receivablePage) }
+
 
         var hrViewPage = Intent(this,HrViewPage::class.java)
         binding.hrIv.setOnClickListener { startActivity(hrViewPage) }
-        binding.hrTv.setOnClickListener { startActivity(hrViewPage) }
+
 
         var debtViewPage = Intent(this,DebtViewPage::class.java)
         binding.debtIv.setOnClickListener { startActivity(debtViewPage) }
-        binding.debtTv.setOnClickListener { startActivity(debtViewPage) }
+
 
         var generalViewPage = Intent(this,GeneralViewPage::class.java)
         binding.generalIv.setOnClickListener { startActivity(generalViewPage) }
-        binding.generalTv.setOnClickListener { startActivity(generalViewPage) }
+
 
 
 

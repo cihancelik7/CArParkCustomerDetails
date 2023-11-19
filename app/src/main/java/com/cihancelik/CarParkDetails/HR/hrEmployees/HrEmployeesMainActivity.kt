@@ -8,7 +8,6 @@ import android.widget.EditText
 import android.widget.Toast
 import com.cihancelik.CarParkDetails.SQL.general.SQLHelperForAddresses
 import com.cihancelik.CarParkDetails.SQL.hr.SQLiteHelperForHrEmployees
-import com.cihancelik.CarParkDetails.SQL.ledger.SQLHelperForGLJL
 import com.cihancelik.carparkcustomerdetails.R
 
 class HrEmployeesMainActivity : AppCompatActivity() {
@@ -66,7 +65,7 @@ class HrEmployeesMainActivity : AppCompatActivity() {
         btnView.setOnClickListener { startActivity(goToHrEmployeeViewActivity) }
 
         var selectedHrEmployeesUpdate =
-            intent.getSerializableExtra("selectedHrEmployeesUpdate") as? HrEmployeesModel
+            intent.getSerializableExtra("selectedHrEmployeeUpdated") as? HrEmployeesModel
 
         if (selectedHrEmpInfo != null) {
             etEmployeeNumber.setText(selectedHrEmployeesUpdate?.employeeNumber.toString())
@@ -109,7 +108,7 @@ class HrEmployeesMainActivity : AppCompatActivity() {
                 firstName = firsName,
                 lastName = lastName,
                 birthDate = birthdate,
-                nationalId = nationalId.toInt(),
+                nationalId = nationalId.toLong(),
                 martialStatus = martialStatus,
                 gender = gender,
                 addressId = hrEmpInfo1!!.addressId,
@@ -144,8 +143,8 @@ class HrEmployeesMainActivity : AppCompatActivity() {
         var addressIdText = etAddressId.text.toString()
         var emailAddress = etEmailAddress.text.toString()
 
-        if (employeeNumber.isEmpty() || startDate.isEmpty() || endDate.isEmpty()
-            || isActive.isEmpty() && isActive.equals("Yes") && isActive.equals("No") ||
+        if (employeeNumber.isEmpty() || startDate.isEmpty() ||
+             isActive.isEmpty() && isActive.equals("Yes") && isActive.equals("No") ||
             firstName.isEmpty() || lastName.isEmpty() || birthDate.isEmpty() || nationalId.isEmpty()
             || martialStatus.isEmpty() || addressIdText.isEmpty() || emailAddress.isEmpty()
         ) {
@@ -164,7 +163,7 @@ class HrEmployeesMainActivity : AppCompatActivity() {
                     firstName = firstName,
                     lastName = lastName,
                     birthDate = birthDate,
-                    nationalId = nationalId.toInt(),
+                    nationalId = nationalId.toLong(),
                     martialStatus = martialStatus,
                     gender = gender,
                     addressId = enteredAddressId,

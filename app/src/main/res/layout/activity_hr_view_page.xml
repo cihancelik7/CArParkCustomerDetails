@@ -7,73 +7,73 @@
     tools:context="com.cihancelik.CarParkDetails.HR.HrViewPage">
 
     <Button
-        android:id="@+id/hrEmpAssigments"
+        android:id="@+id/hrEmpAssigmentsMainScreenBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="13dp"
         android:text="HrEmpAssigments"
-        app:layout_constraintBottom_toBottomOf="@+id/hrEmployees"
-        app:layout_constraintEnd_toStartOf="@+id/hrEmployees"
+        app:layout_constraintBottom_toBottomOf="@+id/hrEmployeesMainScreenBtn"
+        app:layout_constraintEnd_toStartOf="@+id/hrEmployeesMainScreenBtn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/hrEmployees" />
+        app:layout_constraintTop_toTopOf="@+id/hrEmployeesMainScreenBtn" />
 
     <Button
-        android:id="@+id/hrEmployees"
+        android:id="@+id/hrEmployeesMainScreenBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:layout_marginEnd="16dp"
         android:text="HrEmployees"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/hrEmpAssigments"
+        app:layout_constraintStart_toEndOf="@+id/hrEmpAssigmentsMainScreenBtn"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/hrSalaries"
+        android:id="@+id/hrSalariesMainScreenBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
         android:text="Hrsalaries"
-        app:layout_constraintStart_toStartOf="@+id/hrPositions"
-        app:layout_constraintTop_toBottomOf="@+id/hrPositions" />
+        app:layout_constraintStart_toStartOf="@+id/hrPositionsMainScreenBtn"
+        app:layout_constraintTop_toBottomOf="@+id/hrPositionsMainScreenBtn" />
 
     <Button
-        android:id="@+id/hrJobs"
+        android:id="@+id/hrJobsMainScreenBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
         android:layout_marginTop="22dp"
         android:text="HrJobs"
-        app:layout_constraintStart_toStartOf="@+id/hrLocations"
-        app:layout_constraintTop_toBottomOf="@+id/hrEmpAssigments" />
+        app:layout_constraintStart_toStartOf="@+id/hrLocationsMainScreenBtn"
+        app:layout_constraintTop_toBottomOf="@+id/hrEmpAssigmentsMainScreenBtn" />
 
     <Button
-        android:id="@+id/hrLocations"
+        android:id="@+id/hrLocationsMainScreenBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="51dp"
         android:layout_marginTop="22dp"
         android:text="HrLocations"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hrJobs" />
+        app:layout_constraintTop_toBottomOf="@+id/hrJobsMainScreenBtn" />
 
     <Button
-        android:id="@+id/hrPositions"
+        android:id="@+id/hrPositionsMainScreenBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
         android:text="HrPositions"
-        app:layout_constraintEnd_toEndOf="@+id/hrEmployees"
-        app:layout_constraintTop_toBottomOf="@+id/hrEmployees" />
+        app:layout_constraintEnd_toEndOf="@+id/hrEmployeesMainScreenBtn"
+        app:layout_constraintTop_toBottomOf="@+id/hrEmployeesMainScreenBtn" />
 
     <Button
-        android:id="@+id/hrOrganizations"
+        android:id="@+id/hrOrganizationsMainScreenBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="53dp"
         android:text="HrOrganization"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hrLocations" />
+        app:layout_constraintTop_toBottomOf="@+id/hrLocationsMainScreenBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

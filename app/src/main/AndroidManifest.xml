@@ -34,9 +34,6 @@
             android:name="com.cihancelik.CarParkDetails.HR.hrLocations.HrLocationsViewActivity"
             android:exported="false" />
         <activity
-            android:name="com.cihancelik.CarParkDetails.HR.hrLocations.HrJobsViewActivity"
-            android:exported="false" />
-        <activity
             android:name="com.cihancelik.CarParkDetails.HR.hrLocations.HrLocationsMainActivity"
             android:exported="false" />
         <activity
@@ -58,8 +55,9 @@
             android:name="com.cihancelik.CarParkDetails.HR.hrEmpAssigments.HrEmpAssigmentsMainActivity"
             android:exported="false" />
         <activity
-            android:name="com.cihancelik.CarParkDetails.HR.hrEmpAssigments.HrEmpAssigments"
+            android:name="com.cihancelik.CarParkDetails.HR.HrViewPage"
             android:exported="false" />
+
         <activity
             android:name="com.cihancelik.CarParkDetails.ledger.glJournalLines.GLJLViewScreen"
             android:exported="false" />

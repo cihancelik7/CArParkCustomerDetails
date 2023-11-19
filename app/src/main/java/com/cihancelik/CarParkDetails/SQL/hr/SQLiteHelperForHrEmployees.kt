@@ -69,7 +69,7 @@ class SQLiteHelperForHrEmployees(context: Context) :
         var firstName: String
         var lastName: String
         var birthDate: String
-        var nationalId: Int
+        var nationalId: Long
         var martialStatus: String
         var gender: String
         var addressId: Int
@@ -85,7 +85,7 @@ class SQLiteHelperForHrEmployees(context: Context) :
                 firstName = cursor.getString(cursor.getColumnIndex("FIRST_NAME"))
                 lastName = cursor.getString(cursor.getColumnIndex("LAST_NAME"))
                 birthDate = cursor.getString(cursor.getColumnIndex("BIRTH_DATE"))
-                nationalId = cursor.getInt(cursor.getColumnIndex("NATIONAL_ID"))
+                nationalId = cursor.getLong(cursor.getColumnIndex("NATIONAL_ID"))
                 martialStatus = cursor.getString(cursor.getColumnIndex("MARITAL_STATUS"))
                 gender = cursor.getString(cursor.getColumnIndex("GENDER"))
                 addressId = cursor.getInt(cursor.getColumnIndex("ADDRESS_ID"))
@@ -169,7 +169,7 @@ class SQLiteHelperForHrEmployees(context: Context) :
             var firstName = cursor.getString(cursor.getColumnIndex("FIRST_NAME"))
             var lastName = cursor.getString(cursor.getColumnIndex("LAST_NAME"))
             var birthDate = cursor.getString(cursor.getColumnIndex("BIRTH_DATE"))
-            var nationalId = cursor.getInt(cursor.getColumnIndex("NATIONAL_ID"))
+            var nationalId = cursor.getLong(cursor.getColumnIndex("NATIONAL_ID"))
             var martialStatus = cursor.getString(cursor.getColumnIndex("MARTIAL_STATUS"))
             var gender = cursor.getString(cursor.getColumnIndex("GENDER"))
             var addressId = cursor.getInt(cursor.getColumnIndex("ADDRESS_ID"))
