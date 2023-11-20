@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.cihancelik.CarParkDetails.SQL.general.SQLHelperForAddresses
 import com.cihancelik.CarParkDetails.SQL.hr.SQLiteHelperForHrEmployees
+import com.cihancelik.CarParkDetails.general.addressesUpdateScreen.AddressessModel
 import com.cihancelik.carparkcustomerdetails.R
 
 class HrEmployeesMainActivity : AppCompatActivity() {
@@ -31,6 +32,7 @@ class HrEmployeesMainActivity : AppCompatActivity() {
     private lateinit var sqlHelperForAddresses: SQLHelperForAddresses
     private lateinit var sqlHelperForHrEmployees: SQLiteHelperForHrEmployees
     private var hrEmpInfo1: HrEmployeesModel? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hr_employees_main)
@@ -40,24 +42,23 @@ class HrEmployeesMainActivity : AppCompatActivity() {
         sqlHelperForHrEmployees = SQLiteHelperForHrEmployees(this)
         sqlHelperForAddresses = SQLHelperForAddresses(this)
 
-        var selectedHrEmpInfo =
-            intent.getSerializableExtra("selectedHrEmployeesInfo") as? HrEmployeesModel
+        val selectedHrEmployeeInfo = intent.getSerializableExtra("selectedHrEmployeeInfo") as? HrEmployeesModel
 
-        if (selectedHrEmpInfo != null) {
-            etEmployeeNumber.setText(selectedHrEmpInfo.employeeNumber.toString())
-            etStartDate.setText(selectedHrEmpInfo.startDate)
-            etEndDate.setText(selectedHrEmpInfo.endDate)
-            etIsActive.setText(selectedHrEmpInfo.isActive)
-            etFirstName.setText(selectedHrEmpInfo.firstName)
-            etLastName.setText(selectedHrEmpInfo.lastName)
-            etBirthDate.setText(selectedHrEmpInfo.birthDate)
-            etNationalId.setText(selectedHrEmpInfo.nationalId.toString())
-            etMartialStatus.setText(selectedHrEmpInfo.martialStatus)
-            etGender.setText(selectedHrEmpInfo.martialStatus)
-            etAddressId.setText(selectedHrEmpInfo.addressId.toString())
-            etEmailAddress.setText(selectedHrEmpInfo.emailAddress)
+        if (selectedHrEmployeeInfo != null) {
+            etEmployeeNumber.setText(selectedHrEmployeeInfo.employeeNumber.toString())
+            etStartDate.setText(selectedHrEmployeeInfo.startDate)
+            etEndDate.setText(selectedHrEmployeeInfo.endDate)
+            etIsActive.setText(selectedHrEmployeeInfo.isActive)
+            etFirstName.setText(selectedHrEmployeeInfo.firstName)
+            etLastName.setText(selectedHrEmployeeInfo.lastName)
+            etBirthDate.setText(selectedHrEmployeeInfo.birthDate)
+            etNationalId.setText(selectedHrEmployeeInfo.nationalId.toString())
+            etMartialStatus.setText(selectedHrEmployeeInfo.martialStatus)
+            etGender.setText(selectedHrEmployeeInfo.martialStatus)
+            etAddressId.setText(selectedHrEmployeeInfo.addressId.toString())
+            etEmailAddress.setText(selectedHrEmployeeInfo.emailAddress)
 
-            hrEmpInfo1 = selectedHrEmpInfo
+            hrEmpInfo1 = selectedHrEmployeeInfo
         }
         btnAdd.setOnClickListener { addHrEmployee() }
 
@@ -67,19 +68,19 @@ class HrEmployeesMainActivity : AppCompatActivity() {
         var selectedHrEmployeesUpdate =
             intent.getSerializableExtra("selectedHrEmployeeUpdated") as? HrEmployeesModel
 
-        if (selectedHrEmpInfo != null) {
-            etEmployeeNumber.setText(selectedHrEmployeesUpdate?.employeeNumber.toString())
-            etStartDate.setText(selectedHrEmployeesUpdate?.startDate)
-            etEndDate.setText(selectedHrEmployeesUpdate?.endDate)
-            etIsActive.setText(selectedHrEmployeesUpdate?.isActive)
-            etFirstName.setText(selectedHrEmployeesUpdate?.firstName)
-            etLastName.setText(selectedHrEmployeesUpdate?.lastName)
-            etBirthDate.setText(selectedHrEmployeesUpdate?.birthDate)
-            etNationalId.setText(selectedHrEmployeesUpdate?.nationalId.toString())
-            etMartialStatus.setText(selectedHrEmployeesUpdate?.martialStatus)
-            etGender.setText(selectedHrEmployeesUpdate?.gender)
-            etAddressId.setText(selectedHrEmployeesUpdate?.addressId.toString())
-            etEmailAddress.setText(selectedHrEmployeesUpdate?.emailAddress)
+        if (selectedHrEmployeesUpdate != null) {
+            etEmployeeNumber.setText(selectedHrEmployeesUpdate.employeeNumber.toString())
+            etStartDate.setText(selectedHrEmployeesUpdate.startDate)
+            etEndDate.setText(selectedHrEmployeesUpdate.endDate)
+            etIsActive.setText(selectedHrEmployeesUpdate.isActive)
+            etFirstName.setText(selectedHrEmployeesUpdate.firstName)
+            etLastName.setText(selectedHrEmployeesUpdate.lastName)
+            etBirthDate.setText(selectedHrEmployeesUpdate.birthDate)
+            etNationalId.setText(selectedHrEmployeesUpdate.nationalId.toString())
+            etMartialStatus.setText(selectedHrEmployeesUpdate.martialStatus)
+            etGender.setText(selectedHrEmployeesUpdate.gender)
+            etAddressId.setText(selectedHrEmployeesUpdate.addressId.toString())
+            etEmailAddress.setText(selectedHrEmployeesUpdate.emailAddress)
 
         }
         btnUpdate.setOnClickListener { updateHrEmp() }
@@ -87,20 +88,21 @@ class HrEmployeesMainActivity : AppCompatActivity() {
 
     private fun updateHrEmp() {
         val employeeNumber = etEmployeeNumber.text.toString()
-        var startDate = etStartDate.text.toString()
-        var endDate = etEndDate.text.toString()
-        var isActive = etIsActive.text.toString()
-        var firsName = etFirstName.text.toString()
-        var lastName = etLastName.text.toString()
-        var birthdate = etBirthDate.text.toString()
-        var nationalId = etNationalId.text.toString()
-        var martialStatus = etMartialStatus.text.toString()
-        var gender = etGender.text.toString()
-        var addressId = etAddressId.text.toString()
-        var emailAddress = etEmailAddress.text.toString()
+        val startDate = etStartDate.text.toString()
+        val endDate = etEndDate.text.toString()
+        val isActive = etIsActive.text.toString()
+        val firsName = etFirstName.text.toString()
+        val lastName = etLastName.text.toString()
+        val birthdate = etBirthDate.text.toString()
+        val nationalId = etNationalId.text.toString()
+        val martialStatus = etMartialStatus.text.toString()
+        val gender = etGender.text.toString()
+        val addressId = etAddressId.text.toString()
+        val emailAddress = etEmailAddress.text.toString()
 
         if (hrEmpInfo1 != null){
             val updateHrEmployees = HrEmployeesModel(
+                employeeId = hrEmpInfo1!!.employeeId,
                 employeeNumber = employeeNumber.toInt(),
                 startDate = startDate,
                 endDate = endDate,
@@ -130,22 +132,21 @@ class HrEmployeesMainActivity : AppCompatActivity() {
     }
 
     private fun addHrEmployee() {
-        var employeeNumber = etEmployeeNumber.text.toString()
-        var startDate = etStartDate.text.toString()
-        var endDate = etEndDate.text.toString()
-        var isActive = etIsActive.text.toString()
-        var firstName = etFirstName.text.toString()
-        var lastName = etLastName.text.toString()
-        var birthDate = etBirthDate.text.toString()
-        var nationalId = etNationalId.text.toString()
-        var martialStatus = etMartialStatus.text.toString()
-        var gender = etGender.text.toString()
-        var addressIdText = etAddressId.text.toString()
-        var emailAddress = etEmailAddress.text.toString()
+        val employeeNumber = etEmployeeNumber.text.toString()
+        val startDate = etStartDate.text.toString()
+        val endDate = etEndDate.text.toString()
+        val isActive = etIsActive.text.toString()
+        val firstName = etFirstName.text.toString()
+        val lastName = etLastName.text.toString()
+        val birthDate = etBirthDate.text.toString()
+        val nationalId = etNationalId.text.toString()
+        val martialStatus = etMartialStatus.text.toString()
+        val gender = etGender.text.toString()
+        val addressIdText = etAddressId.text.toString()
+        val emailAddress = etEmailAddress.text.toString()
 
         if (employeeNumber.isEmpty() || startDate.isEmpty() ||
-             isActive.isEmpty() && isActive.equals("Yes") && isActive.equals("No") ||
-            firstName.isEmpty() || lastName.isEmpty() || birthDate.isEmpty() || nationalId.isEmpty()
+             isActive.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || birthDate.isEmpty() || nationalId.isEmpty()
             || martialStatus.isEmpty() || addressIdText.isEmpty() || emailAddress.isEmpty()
         ) {
             Toast.makeText(this, "Please Enter Requirement Field", Toast.LENGTH_SHORT).show()
@@ -155,7 +156,7 @@ class HrEmployeesMainActivity : AppCompatActivity() {
 
             if (addressId != null) {
                 val hrEmpInfo = HrEmployeesModel(
-                    employeeId = 0,
+                    employeeId = hrEmpInfo1!!.employeeId,
                     employeeNumber = employeeNumber.toInt(),
                     startDate = startDate,
                     endDate = endDate,

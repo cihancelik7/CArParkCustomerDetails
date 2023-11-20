@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cihancelik.CarParkDetails.SQL.general.SQLHelperForAddresses
 import com.cihancelik.CarParkDetails.SQL.hr.SQLiteHelperForHrEmployees
+import com.cihancelik.CarParkDetails.general.addressesUpdateScreen.AddressessModel
 import com.cihancelik.carparkcustomerdetails.R
 
 class HrEmployeesViewActivity : AppCompatActivity() {

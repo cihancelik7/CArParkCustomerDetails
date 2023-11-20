@@ -2,12 +2,18 @@ package com.cihancelik.CarParkDetails.HR.hrEmployees
 
 
 import android.content.Intent
+import android.graphics.Typeface
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.cihancelik.CarParkDetails.SQL.general.SQLHelperForAddresses
+import com.cihancelik.CarParkDetails.general.addressesUpdateScreen.AddressessModel
 import com.cihancelik.carparkcustomerdetails.R
 
 class HrEmployeesAdapter:RecyclerView.Adapter<HrEmployeesAdapter.HrEmployeesViewHolder>() {
@@ -64,24 +70,34 @@ class HrEmployeesAdapter:RecyclerView.Adapter<HrEmployeesAdapter.HrEmployeesView
         private var martialStatus = view.findViewById<TextView>(R.id.hrEmployeesMartialStatusTv)
         private var gender = view.findViewById<TextView>(R.id.hrEmployeesGenderTv)
         private var addressId = view.findViewById<TextView>(R.id.hrEmployeesAddressIdTv)
-        private var emailAddress = view.findViewById<TextView>(R.id.hrEmployeesAddressIdTv)
+        private var emailAddress = view.findViewById<TextView>(R.id.hrEmployeesEmailAddressTv)
 
         var btnDelete = view.findViewById<Button>(R.id.hrEmployeesDeleteBtn)
 
         fun bindView(hrEmp: HrEmployeesModel) {
-            employeeId.text = hrEmp.employeeId.toString()
-            employeeNumber.text = hrEmp.employeeNumber.toString()
-            startDate.text = hrEmp.startDate
-            endDate.text = hrEmp.endDate
-            isActive.text = hrEmp.isActive
-            firstName.text = hrEmp.firstName
-            lastName.text = hrEmp.lastName
-            birthDate.text = hrEmp.birthDate
-            nationalId.text = hrEmp.nationalId.toString()
-            martialStatus.text = hrEmp.martialStatus
-            gender.text = hrEmp.gender
-            addressId.text = hrEmp.addressId.toString()
-            emailAddress.text = hrEmp.emailAddress
+            employeeId.text = "EmployeeId: "+hrEmp.employeeId.toString()
+            employeeNumber.text = "Employee Number: "+hrEmp.employeeNumber.toString()
+            startDate.text = "Start Date: "+hrEmp.startDate
+            endDate.text = "End Date: "+hrEmp.endDate
+            isActive.text = "Is Active: "+ hrEmp.isActive
+            firstName.text = "First Name: "+hrEmp.firstName
+            lastName.text = "Last Name: "+hrEmp.lastName
+            birthDate.text = "Birth Date: "+hrEmp.birthDate
+            nationalId.text = "National Id: "+hrEmp.nationalId.toString()
+            martialStatus.text = "Martial Status: "+hrEmp.martialStatus
+            gender.text = "Gender: "+hrEmp.gender
+            addressId.text = "AddressId"+hrEmp.addressId.toString()
+            emailAddress.text = "Email Address: "+hrEmp.emailAddress
+
+           /* val employeeIdText = "EmployeeId: " + hrEmp.employeeId.toString()
+            val spannable = SpannableStringBuilder(employeeIdText)
+
+// "EmployeeId: " kısmını kalın yapma
+            val boldSpan = StyleSpan(Typeface.BOLD)
+            spannable.setSpan(boldSpan, 0, 11, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+
+// TextView'ye biçimlendirilmiş metni ayarlama
+            employeeId.text = spannable*/
         }
 
     }

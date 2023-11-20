@@ -30,7 +30,7 @@ class SQLiteHelperForHrEmployees(context: Context) :
                     "START_DATE DATE,END_DATE DATE,IS_ACTIVE TEXT,FIRST_NAME TEXT,LAST_NAME TEXT,BIRTH_DATE DATE,NATIONAL_ID INTEGER," +
                     "MARTIAL_STATUS TEXT,GENDER TEXT,ADDRESS_ID INTEGER,EMAIL_ADDRESS TEXT)"
         )
-        values.put("EMPLOYEE_NUMBER", hrEmp.employeeId)
+        values.put("EMPLOYEE_NUMBER",hrEmp.employeeNumber)
         values.put("START_DATE", hrEmp.startDate)
         values.put("END_DATE", hrEmp.endDate)
         values.put("IS_ACTIVE", hrEmp.isActive)
@@ -142,7 +142,7 @@ class SQLiteHelperForHrEmployees(context: Context) :
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put("EMPLOYEE_ID", id)
-        val success = db.delete("HR_EMPLOYEES", "EMPLOYEE_ID$id", null)
+        val success = db.delete("HR_EMPLOYEES", "EMPLOYEE_ID=$id", null)
         db.close()
         return success
     }

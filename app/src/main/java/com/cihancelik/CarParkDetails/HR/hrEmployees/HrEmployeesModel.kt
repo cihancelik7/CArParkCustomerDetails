@@ -16,5 +16,4 @@ data class HrEmployeesModel(
     var gender: String = "",
     var addressId: Int = 0,
     var emailAddress: String = ""
-
 ):Serializable
