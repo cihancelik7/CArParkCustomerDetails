@@ -42,12 +42,7 @@ class HrEmployeesAdapter:RecyclerView.Adapter<HrEmployeesAdapter.HrEmployeesView
     override fun onBindViewHolder(holder: HrEmployeesViewHolder, position: Int) {
         val hrEmp = hrEmpList[position]
        holder.bindView(hrEmp)
-        holder.itemView.setOnClickListener {
-            onClickItem?.invoke(hrEmp)
-            val intent = Intent(it.context,HrEmployeesMainActivity::class.java)
-            intent.putExtra("selectedHrEmployeeInfo",hrEmp)
-            it.context.startActivity(intent)
-        }
+        holder.itemView.setOnClickListener { onClickItem?.invoke(hrEmp) }
         holder.btnDelete.setOnClickListener { onClickDeleteItem?.invoke(hrEmp) }
     }
     override fun getItemCount(): Int {

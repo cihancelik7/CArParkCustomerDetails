@@ -48,12 +48,15 @@ class HrEmployeesViewActivity : AppCompatActivity() {
             intent.putExtra("selectedHrEmployeeUpdated",HrEmp)
             startActivity(intent)
         }
-        adapter.setOnClickDeleteItem { deleteHrEmp(it.employeeId) }
+        adapter.setOnClickDeleteItem {
+            deleteHrEmp(it.employeeId)
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        val updateHrEmp = intent.getSerializableExtra("selectedHrEmployeeUpdated")as? HrEmployeesModel
+        val updateHrEmp =
+            intent.getSerializableExtra("selectedHrEmployeeInfo")as? HrEmployeesModel
         if (updateHrEmp!=null){
             hrEmp1 = updateHrEmp
             etEmployeeNumber.setText(updateHrEmp.employeeNumber.toString())

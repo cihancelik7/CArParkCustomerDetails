@@ -42,7 +42,8 @@ class HrEmployeesMainActivity : AppCompatActivity() {
         sqlHelperForHrEmployees = SQLiteHelperForHrEmployees(this)
         sqlHelperForAddresses = SQLHelperForAddresses(this)
 
-        val selectedHrEmployeeInfo = intent.getSerializableExtra("selectedHrEmployeeInfo") as? HrEmployeesModel
+        val selectedHrEmployeeInfo =
+            intent.getSerializableExtra("selectedHrEmployeeInfo") as? HrEmployeesModel
 
         if (selectedHrEmployeeInfo != null) {
             etEmployeeNumber.setText(selectedHrEmployeeInfo.employeeNumber.toString())
@@ -81,6 +82,7 @@ class HrEmployeesMainActivity : AppCompatActivity() {
             etGender.setText(selectedHrEmployeesUpdate.gender)
             etAddressId.setText(selectedHrEmployeesUpdate.addressId.toString())
             etEmailAddress.setText(selectedHrEmployeesUpdate.emailAddress)
+            hrEmpInfo1 = selectedHrEmployeesUpdate
 
         }
         btnUpdate.setOnClickListener { updateHrEmp() }
@@ -100,7 +102,7 @@ class HrEmployeesMainActivity : AppCompatActivity() {
         val addressId = etAddressId.text.toString()
         val emailAddress = etEmailAddress.text.toString()
 
-        if (hrEmpInfo1 != null){
+        if (hrEmpInfo1 != null) {
             val updateHrEmployees = HrEmployeesModel(
                 employeeId = hrEmpInfo1!!.employeeId,
                 employeeNumber = employeeNumber.toInt(),
@@ -116,17 +118,23 @@ class HrEmployeesMainActivity : AppCompatActivity() {
                 addressId = hrEmpInfo1!!.addressId,
                 emailAddress = emailAddress
             )
-            val status = sqlHelperForHrEmployees.updateHrEmp(updateHrEmployees)
-            if (status > -1){
-                Toast.makeText(this, "Update Successful", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this,HrEmployeesViewActivity::class.java)
-                startActivity(intent)
-            }else{
-                Toast.makeText(this, "Update Failed...", Toast.LENGTH_SHORT).show()
+            val isUpdate = isUpdate(updateHrEmployees)
+            if (isUpdate) {
+                val status = sqlHelperForHrEmployees.updateHrEmp(updateHrEmployees)
+                if (status > -1) {
+                    Toast.makeText(this, "Update Successful", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, HrEmployeesViewActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "Update Failed...", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "No Changes Were Made", Toast.LENGTH_SHORT).show()
             }
         }
     }
-    private fun isUpdate(updateHrEmployees:HrEmployeesModel):Boolean{
+
+    private fun isUpdate(updateHrEmployees: HrEmployeesModel): Boolean {
         val currentHrEmployee = sqlHelperForHrEmployees.getHrEmpById(updateHrEmployees.employeeId)
         return currentHrEmployee != updateHrEmployees
     }
@@ -146,7 +154,7 @@ class HrEmployeesMainActivity : AppCompatActivity() {
         val emailAddress = etEmailAddress.text.toString()
 
         if (employeeNumber.isEmpty() || startDate.isEmpty() ||
-             isActive.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || birthDate.isEmpty() || nationalId.isEmpty()
+            isActive.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || birthDate.isEmpty() || nationalId.isEmpty()
             || martialStatus.isEmpty() || addressIdText.isEmpty() || emailAddress.isEmpty()
         ) {
             Toast.makeText(this, "Please Enter Requirement Field", Toast.LENGTH_SHORT).show()
@@ -200,6 +208,8 @@ class HrEmployeesMainActivity : AppCompatActivity() {
         etGender.setText("")
         etAddressId.setText("")
         etEmailAddress.setText("")
+
+        etEmployeeNumber.requestFocus()
     }
 
     private fun initView() {

@@ -8,13 +8,12 @@ import com.cihancelik.CarParkDetails.SQL.SQLiteHelperForCarParkDataBase
 import com.cihancelik.CarParkDetails.general.addressesUpdateScreen.AddressessModel
 
 
-
 class SQLHelperForAddresses(context: Context) :
     SQLiteHelperForCarParkDataBase(context) {
 
     // Adreslerle ilgili SQL işlemlerini burada tanımlayın
 
-    fun insertAddress(address: AddressessModel) : Long {
+    fun insertAddress(address: AddressessModel): Long {
         val db = this.writableDatabase
         val values = ContentValues()
 
@@ -87,7 +86,7 @@ class SQLHelperForAddresses(context: Context) :
                     creationDate = creationDate
                 )
                 addressesList.add(addressInfo)
-            }while (cursor.moveToNext())
+            } while (cursor.moveToNext())
         }
         return addressesList
 
@@ -124,6 +123,7 @@ class SQLHelperForAddresses(context: Context) :
         db.close()
         return success
     }
+
     fun getAddressesById(addressId: Int): AddressessModel? {
         val db = this.writableDatabase
         val selectQuery = "SELECT * FROM ADDRESSES WHERE ADDRESS_ID = $addressId"
@@ -178,4 +178,25 @@ class SQLHelperForAddresses(context: Context) :
         db!!.execSQL("DROP TABLE IF EXISTS ADDRESSES")
         onCreate(db)
     }
+
+    fun getAddressNameById(addressId: Int): String? {
+        val db = this.writableDatabase
+        val selectQuery = "SELECT ADDRESS_NAME FROM ADDRESSES WHERE ADDRESS_ID = $addressId"
+
+        val cursor: Cursor?
+        try {
+            cursor = db.rawQuery(selectQuery, null)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            db.execSQL(selectQuery)
+            return null
+        }
+        var addressName: String? = null
+        if (cursor.moveToFirst()) {
+            addressName = cursor.getString(cursor.getColumnIndex("ADDRESS_NAME"))
+        }
+        cursor?.close()
+        db.close()
+        return addressName
     }
+}

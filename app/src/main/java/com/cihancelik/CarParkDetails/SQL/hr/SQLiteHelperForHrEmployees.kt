@@ -18,9 +18,9 @@ class SQLiteHelperForHrEmployees(context: Context) :
         val addressIdFk = addressesHelper.getAddressesById(hrEmp.addressId)
 
         if (addressIdFk != null) {
-            val status = addressesHelper.getAddressesById(hrEmp.employeeId)
-            if (status != null) {
-                val updatedStatus = "Address Id karsiliginda gelen Status: $status"
+            val AddressName = addressesHelper.getAddressNameById(hrEmp.addressId)
+            if (AddressName != null) {
+                val updatedStatus = "Address Id karsiliginda gelen AddressName: $AddressName"
                 var idString = hrEmp.addressId.toString()
                 idString = updatedStatus
             }
@@ -149,33 +149,33 @@ class SQLiteHelperForHrEmployees(context: Context) :
 
     fun getHrEmpById(hrEmpId: Int): HrEmployeesModel? {
         val db = this.writableDatabase
-        val selectQuerry = "SELECT * FROM HR_EMPLOYEES WHERE EMPLOYEE_ID = $hrEmpId"
+        val selectQuery = "SELECT * FROM HR_EMPLOYEES WHERE EMPLOYEE_ID = $hrEmpId"
 
         val cursor: Cursor?
         try {
-            cursor = db.rawQuery(selectQuerry, null)
+            cursor = db.rawQuery(selectQuery, null)
         } catch (e: Exception) {
             e.printStackTrace()
-            db.execSQL(selectQuerry)
+            db.execSQL(selectQuery)
             return null
         }
-        var hrEmpInfo1: HrEmployeesModel? = null
+        var hrEmpInfo: HrEmployeesModel? = null
         if (cursor.moveToFirst()) {
             var employeeId = cursor.getInt(cursor.getColumnIndex("EMPLOYEE_ID"))
             var employeeNumber = cursor.getInt(cursor.getColumnIndex("EMPLOYEE_NUMBER"))
-            var startDate = cursor.getString(cursor.getColumnIndex("STARTDATE"))
+            var startDate = cursor.getString(cursor.getColumnIndex("START_DATE"))
             var endDate = cursor.getString(cursor.getColumnIndex("END_DATE"))
             var isActive = cursor.getString(cursor.getColumnIndex("IS_ACTIVE"))
             var firstName = cursor.getString(cursor.getColumnIndex("FIRST_NAME"))
             var lastName = cursor.getString(cursor.getColumnIndex("LAST_NAME"))
             var birthDate = cursor.getString(cursor.getColumnIndex("BIRTH_DATE"))
             var nationalId = cursor.getLong(cursor.getColumnIndex("NATIONAL_ID"))
-            var martialStatus = cursor.getString(cursor.getColumnIndex("MARTIAL_STATUS"))
+            var martialStatus = cursor.getString(cursor.getColumnIndex("MARITAL_STATUS"))
             var gender = cursor.getString(cursor.getColumnIndex("GENDER"))
             var addressId = cursor.getInt(cursor.getColumnIndex("ADDRESS_ID"))
             var emailAddress = cursor.getString(cursor.getColumnIndex("EMAIL_ADDRESS"))
 
-            val hrEmpInfo = HrEmployeesModel(
+            hrEmpInfo = HrEmployeesModel(
                 employeeId = employeeId,
                 employeeNumber = employeeNumber,
                 startDate = startDate,
@@ -190,16 +190,18 @@ class SQLiteHelperForHrEmployees(context: Context) :
                 addressId = addressId,
                 emailAddress = emailAddress
             )
-            hrEmpInfo1 = hrEmpInfo
         }
         cursor?.close()
         db.close()
-        return hrEmpInfo1
+        return hrEmpInfo
     }
+
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         super.onUpgrade(db, oldVersion, newVersion)
         db!!.execSQL("DROP TABLE IF EXISTS HR_EMPLOYEES")
         onCreate(db)
     }
-}
+
+    }
+
