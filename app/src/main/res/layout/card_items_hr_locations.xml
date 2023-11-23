@@ -15,58 +15,64 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/hrLocationIdTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Location Id: "
             android:textStyle="italic"/>
         <TextView
+            android:id="@+id/hrLocationNameTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Location Name: "/>
         <TextView
+            android:id="@+id/hrLocationStartDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Start Date:"/>
         <TextView
+            android:id="@+id/hrLocationEndDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="End Date: "/>
         <TextView
+            android:id="@+id/hrLocationAddressIdTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Address Id: "/>
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:text="Address Id:"/>
-        <TextView
+            android:id="@+id/hrLocationNaceCodeTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Nace Code: "/>
         <TextView
+            android:id="@+id/hrLocationDangerClassTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Danger Class: "/>
         <TextView
+            android:id="@+id/hrLocationUpdateDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Update Date: "/>
         <TextView
+            android:id="@+id/hrLocationCreationDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Creation Date:"/>
     </LinearLayout>
     <Button
+        android:id="@+id/hrLocationDeleteBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
