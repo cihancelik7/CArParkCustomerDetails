@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase
 import com.cihancelik.CarParkDetails.HR.hrLocations.HrLocationsModel
 import com.cihancelik.CarParkDetails.SQL.SQLiteHelperForCarParkDataBase
 import com.cihancelik.CarParkDetails.SQL.general.SQLHelperForAddresses
-import java.security.spec.ECField
 
 class SQLiteHelperForHrLocations(context: Context) :
     SQLiteHelperForCarParkDataBase(context) {
