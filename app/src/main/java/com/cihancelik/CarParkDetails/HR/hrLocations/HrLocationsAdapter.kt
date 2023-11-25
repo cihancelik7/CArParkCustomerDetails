@@ -1,5 +1,6 @@
 package com.cihancelik.CarParkDetails.HR.hrLocations
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,45 +9,52 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cihancelik.carparkcustomerdetails.R
 
-class HrLocationsAdapter:RecyclerView.Adapter<HrLocationsAdapter.HrLocationViewHolder>(){
-    private var hrLocationList : ArrayList<HrLocationsModel> = ArrayList()
-    private var onClickItem : ((HrLocationsModel) -> Unit)? = null
-    private var onClickDeleteItem : ((HrLocationsModel) -> Unit)? = null
+class HrLocationsAdapter : RecyclerView.Adapter<HrLocationsAdapter.HrLocationViewHolder>() {
+    private var hrLocationList: ArrayList<HrLocationsModel> = ArrayList()
+    private var onClickItem: ((HrLocationsModel) -> Unit)? = null
+    private var onClickDeleteItem: ((HrLocationsModel) -> Unit)? = null
 
-    fun addItems(item:ArrayList<HrLocationsModel>){
-        this.hrLocationList = item
+    fun addItems(items: ArrayList<HrLocationsModel>) {
+        this.hrLocationList = items
         notifyDataSetChanged()
     }
-    fun setOnClickItem(callback:(HrLocationsModel)-> Unit){
+
+    fun setOnClickItem(callback: (HrLocationsModel) -> Unit) {
         this.onClickItem = callback
     }
-    fun setOnClickDeleteItem(callback: (HrLocationsModel) -> Unit){
+
+    fun setOnClickDeleteItem(callback: (HrLocationsModel) -> Unit) {
         this.onClickDeleteItem = callback
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HrLocationViewHolder {
         return HrLocationViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.card_items_hr_locations,parent,false)
+                .inflate(R.layout.card_items_hr_locations, parent, false)
         )
     }
 
     override fun onBindViewHolder(holder: HrLocationViewHolder, position: Int) {
-      val hrLocation = hrLocationList[position]
+        val hrLocation = hrLocationList[position]
         holder.bindView(hrLocation)
-        holder.itemView.setOnClickListener { onClickItem?.invoke(hrLocation) }
-        holder.btnDelete.setOnClickListener{onClickDeleteItem?.invoke(hrLocation)}
-
+        holder.itemView.setOnClickListener { onClickItem?.invoke(hrLocation)
+        val intent = Intent(it.context,HrLocationsMainActivity::class.java)
+        intent.putExtra("selectedHrLocationInfo",hrLocation)
+            it.context.startActivity(intent)
+        }
+        holder.btnDelete.setOnClickListener { onClickDeleteItem?.invoke(hrLocation) }
     }
 
     override fun getItemCount(): Int {
         return hrLocationList.size
     }
-    fun updateLocationList(hrLocationListUpdate : List<HrLocationsModel>){
+
+    fun updateLocationList(hrLocationListUpdate: List<HrLocationsModel>) {
         hrLocationList.clear()
         hrLocationList.addAll(hrLocationListUpdate)
     }
-    class HrLocationViewHolder (var view: View):RecyclerView.ViewHolder(view){
+
+    class HrLocationViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
         private var locationId = view.findViewById<TextView>(R.id.hrLocationIdTv)
         private var locationName = view.findViewById<TextView>(R.id.hrLocationNameTv)
         private var startDate = view.findViewById<TextView>(R.id.hrLocationStartDateTv)
@@ -59,17 +67,16 @@ class HrLocationsAdapter:RecyclerView.Adapter<HrLocationsAdapter.HrLocationViewH
 
         var btnDelete = view.findViewById<Button>(R.id.hrLocationDeleteBtn)
 
-        fun bindView(hrLocation:HrLocationsModel){
-            locationId.text = "Location Name: "+hrLocation.locationId.toString()
+        fun bindView(hrLocation: HrLocationsModel) {
+            locationId.text = "Location Id: "+ hrLocation.locationId.toString()
             locationName.text = "Location Name: "+ hrLocation.locationName
-            startDate.text = "Location Start Date: "+hrLocation.startDate
-            endDate.text = "Location End Date: "+hrLocation.endDate
-            addressId.text = "Location Address Id: "+hrLocation.addressId.toString()
-            naceCode.text = "Location Nace Code: "+hrLocation.naceCode.toString()
-            dangerClass.text = "Location Danger Class: "+hrLocation.dangerClass
-            updateDate.text = "Location Update Date: "+hrLocation.updateDate
-            creationDate.text = "Location Creation Date: "+hrLocation.creationDate
-
+            startDate.text = "Start Date: "+ hrLocation.startDate
+            endDate.text = "End Date: "+ hrLocation.endDate
+            addressId.text = "Address Id: " + hrLocation.addressId.toString()
+            naceCode.text = "Nace Code: " + hrLocation.naceCode.toString()
+            dangerClass.text = "Danger Class: " + hrLocation.dangerClass
+            updateDate.text = "Update Date: " + hrLocation.updateDate
+            creationDate.text = "Creation Date: " + hrLocation.creationDate
 
 
         }

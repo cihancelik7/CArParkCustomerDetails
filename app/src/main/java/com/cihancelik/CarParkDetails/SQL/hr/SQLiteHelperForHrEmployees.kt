@@ -18,9 +18,9 @@ class SQLiteHelperForHrEmployees(context: Context) :
         val addressIdFk = addressesHelper.getAddressesById(hrEmp.addressId)
 
         if (addressIdFk != null) {
-            val AddressName = addressesHelper.getAddressNameById(hrEmp.addressId)
-            if (AddressName != null) {
-                val updatedStatus = "Address Id karsiliginda gelen AddressName: $AddressName"
+            val addressName = addressesHelper.getAddressNameById(hrEmp.addressId)
+            if (addressName != null) {
+                val updatedStatus = "Address Id karsiliginda gelen AddressName: $addressName"
                 var idString = hrEmp.addressId.toString()
                 idString = updatedStatus
             }

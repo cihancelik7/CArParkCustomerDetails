@@ -118,8 +118,8 @@ class HrEmployeesMainActivity : AppCompatActivity() {
                 addressId = hrEmpInfo1!!.addressId,
                 emailAddress = emailAddress
             )
-            val isUpdate = isUpdate(updateHrEmployees)
-            if (isUpdate) {
+            val isUpdated = isUpdate(updateHrEmployees)
+            if (isUpdated) {
                 val status = sqlHelperForHrEmployees.updateHrEmp(updateHrEmployees)
                 if (status > -1) {
                     Toast.makeText(this, "Update Successful", Toast.LENGTH_SHORT).show()
@@ -164,7 +164,7 @@ class HrEmployeesMainActivity : AppCompatActivity() {
 
             if (addressId != null) {
                 val hrEmpInfo = HrEmployeesModel(
-                    employeeId = hrEmpInfo1!!.employeeId,
+                    employeeId = 0,
                     employeeNumber = employeeNumber.toInt(),
                     startDate = startDate,
                     endDate = endDate,

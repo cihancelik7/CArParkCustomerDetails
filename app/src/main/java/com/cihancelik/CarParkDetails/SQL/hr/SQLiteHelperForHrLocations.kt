@@ -41,7 +41,7 @@ class SQLiteHelperForHrLocations(context: Context) :
         values.put("UPDATE_DATE", hrLocation.updateDate)
         values.put("CREATION_DATE", hrLocation.creationDate)
 
-        val insertId = db.insert("HR+LOCATIONS", null, values)
+        val insertId = db.insert("HR_LOCATIONS", null, values)
         db.close()
         return insertId
     }

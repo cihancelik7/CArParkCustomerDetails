@@ -43,7 +43,6 @@ class GLJournalsAdapter : RecyclerView.Adapter<GLJournalsAdapter.GLJournalViewHo
             intent.putExtra("selectedGLJournalInfo", glJournal)
             it.context.startActivity(intent)
         }
-
         holder.btnDelete.setOnClickListener { onClickDeleteItem?.invoke(glJournal) }
     }
 
