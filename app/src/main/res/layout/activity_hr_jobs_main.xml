@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="com.cihancelik.CarParkDetails.HR.hrJobs.HrJobsMainActivity">
 
@@ -16,30 +17,35 @@
         android:textSize="22sp"
         android:textStyle="bold"/>
     <EditText
+        android:id="@+id/hrJobsNameTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:hint="Job Name: "/>
     <EditText
+        android:id="@+id/hrJobsStartDateTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:hint="Start Date:"/>
     <EditText
+        android:id="@+id/hrJobsEndDateTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:hint="End Date:"/>
     <EditText
+        android:id="@+id/hrJobsUpdateDateTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:hint="Update Date:"/>
     <EditText
+        android:id="@+id/hrJobsCreationDateTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -50,14 +56,17 @@
         android:layout_height="wrap_content"
         android:gravity="center">
         <Button
+            android:id="@+id/hrJobAddBtnTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add"/>
         <Button
+            android:id="@+id/hrJobViewBtnTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="View"/>
         <Button
+            android:id="@+id/hrJobUpdateBtnTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Update"/>

@@ -30,7 +30,7 @@ class GLPeriodsMainScreen : AppCompatActivity() {
         sqlHelper = SQLHelperForGLPeriods(this)
         btnAdd.setOnClickListener { addGLperiod() }
 
-        var selectedGLperiodInfo =
+        val selectedGLperiodInfo =
             intent.getSerializableExtra("selectedGLPeriodInfo") as? GLPeriodsModel
 
         if (selectedGLperiodInfo!=null){
@@ -41,10 +41,10 @@ class GLPeriodsMainScreen : AppCompatActivity() {
 
             glPeriodInfo = selectedGLperiodInfo
         }
-        var goToGLPeriodViewScreen = Intent(this,GLPeriodsViewScreen::class.java)
+        val goToGLPeriodViewScreen = Intent(this,GLPeriodsViewScreen::class.java)
         btnView.setOnClickListener { startActivity(goToGLPeriodViewScreen) }
 
-        var selectedGLPeriodUpdate = intent.getSerializableExtra("selectedGLPeriodUpdate") as? GLPeriodsModel
+        val selectedGLPeriodUpdate = intent.getSerializableExtra("selectedGLPeriodUpdate") as? GLPeriodsModel
         if (selectedGLPeriodUpdate!=null){
             etPeriodName.text = selectedGLPeriodUpdate.periodName
             etPeriodYear.text = selectedGLPeriodUpdate.periodYear
