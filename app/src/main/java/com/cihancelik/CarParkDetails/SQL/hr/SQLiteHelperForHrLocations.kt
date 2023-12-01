@@ -176,4 +176,25 @@ class SQLiteHelperForHrLocations(context: Context) :
         onCreate(db)
     }
 
+    fun getLocationNameById(locationId: Int): String? {
+        val db = this.writableDatabase
+        val selectQuery= "SELECT LOCATION_NAME FROM HR_LOCATIONS WHERE LOCATION_ID = $locationId"
+
+        val cursor : Cursor?
+        try {
+            cursor = db.rawQuery(selectQuery,null)
+        }catch (e:Exception){
+            e.printStackTrace()
+            db.execSQL(selectQuery)
+            return null
+        }
+        var locationName: String? = null
+        if (cursor.moveToFirst()){
+            locationName = cursor.getString(cursor.getColumnIndex("LOCATION_NAME"))
+        }
+        cursor?.close()
+        db.close()
+        return locationName
+    }
+
 }
