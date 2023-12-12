@@ -15,47 +15,50 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/hrOgranizationIdTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Organization Id"
             android:textStyle="italic"/>
         <TextView
+            android:id="@+id/hrOrganizationNameTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Organization Name: "/>
         <TextView
+            android:id="@+id/hrOrganizationStartDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Start Date: "/>
         <TextView
+            android:id="@+id/hrOrganizationEndDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="End Date: "/>
         <TextView
+            android:id="@+id/hrOrganizationParentOrganizationIdTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Parent Organization Id: "/>
         <TextView
+            android:id="@+id/hrOrganizationLocationIdTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Location Id: "/>
         <TextView
+            android:id="@+id/hrOrganizationUpdateDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Update Date: "/>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:text="Update Date: "/>
-        <TextView
+            android:id="@+id/hrOrganizationCreationDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
@@ -64,6 +67,7 @@
 
     </LinearLayout>
     <Button
+        android:id="@+id/hrOrganizationDeleteBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
