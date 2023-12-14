@@ -7,28 +7,31 @@ import android.database.sqlite.SQLiteDatabase
 import com.cihancelik.CarParkDetails.HR.hrOrganizations.HrOrganizationsModel
 import com.cihancelik.CarParkDetails.SQL.SQLiteHelperForCarParkDataBase
 
-class SQLiteHelperForHrOrganizations(context: Context) : SQLiteHelperForCarParkDataBase(context) {
+class SQLiteHelperForHrOrganizations(context: Context) :
+    SQLiteHelperForCarParkDataBase(context) {
     private val locationHelper = SQLiteHelperForHrLocations(context)
-    private val parentOrgIdHelper = SQLiteHelperForHrOrganizations(context)
+    //private val parentOrgIdHelper = SQLiteHelperForHrOrganizations(context)
 
-    fun insertHrOrganizations(hrOrganiazation: HrOrganizationsModel): Long {
+    fun insertHrOrganizations(hrOrganization: HrOrganizationsModel): Long {
         val db = this.writableDatabase
         val values = ContentValues()
-        val locationIdFk = locationHelper.getHrLocationById(hrOrganiazation.locationId)
+        val locationIdFk = locationHelper.getHrLocationById(hrOrganization.locationId)
         // burada getId fonk gelince yazilacak !!
-        val parentIdFk = parentOrgIdHelper.getHrOrganizationById(hrOrganiazation.parentOrgId)
+     //   val parentIdFk = parentOrgIdHelper.getHrOrganizationById(hrOrganization.parentOrgId)
 
-        if (locationIdFk != null || parentIdFk != null) {
-            val locationName = locationHelper.getLocationNameById(hrOrganiazation.locationId)
-            val parentName =
-                parentOrgIdHelper.getOrganizationParentIdByOrgId(hrOrganiazation.organizationId)
-            if (locationName != null || parentName != null) {
+        if (locationIdFk != null) {
+            val locationName = locationHelper.getLocationNameById(hrOrganization.locationId)
+
+         //       parentOrgIdHelper.getOrganizationParentIdByOrgId(hrOrganization.organizationId)
+            if (locationName != null ) {
                 val updateLocationName =
                     "Location Id karsiliginda gelen Location Name: $locationName"
-                val updateParentName = "Organization id karsiliginda gelen ParentId : $parentName "
+               // val updateParentName = "Organization id karsiliginda gelen ParentId : $parentName "
 
-                var locationIdString = hrOrganiazation.locationId.toString()
+                var locationIdString = hrOrganization.locationId.toString()
                 locationIdString = updateLocationName
+                var parentIdStr = hrOrganization.parentOrgId.toString()
+             //   parentIdStr = updateParentName
             }
         }
         db.execSQL(
@@ -36,13 +39,13 @@ class SQLiteHelperForHrOrganizations(context: Context) : SQLiteHelperForCarParkD
                     "END_DATE DATE, PARENT_ORG_ID INTEGER, LOCATION_ID INTEGER, UPDATE_DATE DATE," +
                     "CREATION_DATE DATE)"
         )
-        values.put("ORGANIZATION_NAME", hrOrganiazation.organizationName)
-        values.put("START_DATE", hrOrganiazation.startDate)
-        values.put("END_DATE", hrOrganiazation.endDate)
-        values.put("PARENT_ORG_ID", hrOrganiazation.parentOrgId)
-        values.put("LOCATION_ID", hrOrganiazation.locationId)
-        values.put("UPDATE_DATE", hrOrganiazation.updateDate)
-        values.put("CREATION_DATE", hrOrganiazation.creationDate)
+        values.put("ORGANIZATION_NAME", hrOrganization.organizationName)
+        values.put("START_DATE", hrOrganization.startDate)
+        values.put("END_DATE", hrOrganization.endDate)
+        values.put("PARENT_ORG_ID", hrOrganization.parentOrgId)
+        values.put("LOCATION_ID", hrOrganization.locationId)
+        values.put("UPDATE_DATE", hrOrganization.updateDate)
+        values.put("CREATION_DATE", hrOrganization.creationDate)
 
         val insertId = db.insert("HR_ORGANIZATIONS", null, values)
         db.close()
@@ -74,7 +77,7 @@ class SQLiteHelperForHrOrganizations(context: Context) : SQLiteHelperForCarParkD
 
         if (cursor.moveToFirst()) {
             do {
-                organizationId = cursor.getInt(cursor.getColumnIndex("ORGANIZAITON_ID"))
+                organizationId = cursor.getInt(cursor.getColumnIndex("ORGANIZATION_ID"))
                 organizationName = cursor.getString(cursor.getColumnIndex("ORGANIZATION_NAME"))
                 startDate = cursor.getString(cursor.getColumnIndex("START_DATE"))
                 endDate = cursor.getString(cursor.getColumnIndex("END_DATE"))
@@ -119,14 +122,16 @@ class SQLiteHelperForHrOrganizations(context: Context) : SQLiteHelperForCarParkD
         db.close()
         return success
     }
-    fun deleteHrOrganizationById(id:Int):Int{
+
+    fun deleteHrOrganizationById(id: Int): Int {
         val db = this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put("ORGANIZATION_ID",id)
-        val success = db.delete("HR_ORGANIZATIONS","ORGANIZATION_ID$id",null)
+        contentValues.put("ORGANIZATION_ID", id)
+        val success = db.delete("HR_ORGANIZATIONS", "ORGANIZATION_ID=$id", null)
         db.close()
         return success
     }
+
     fun getHrOrganizationById(hrOrgId: Int): HrOrganizationsModel? {
         val db = this.writableDatabase
         val selectQuery = "SELECT * FROM HR_ORGANIZATIONS WHERE ORGANIZATION_ID = $hrOrgId"
@@ -166,6 +171,12 @@ class SQLiteHelperForHrOrganizations(context: Context) : SQLiteHelperForCarParkD
         return hrOrgIfo
     }
 
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        super.onUpgrade(db, oldVersion, newVersion)
+        db!!.execSQL("DROP TABLE IF EXISTS HR_ORGANIZATIONS")
+        onCreate(db)
+    }
+
     fun getOrganizationParentIdByOrgId(organizationId: Int): Int? {
         val db = this.writableDatabase
         val selectQuery =
@@ -188,10 +199,4 @@ class SQLiteHelperForHrOrganizations(context: Context) : SQLiteHelperForCarParkD
         return parentOrgId
     }
 
-
-    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        super.onUpgrade(db, oldVersion, newVersion)
-        db!!.execSQL("DROP TABLE IF EXISTS HR_ORGANIZATIONS")
-        onCreate(db)
-    }
 }

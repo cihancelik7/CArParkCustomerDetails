@@ -19,30 +19,25 @@ class HrOrganizationsAdapter :
         this.hrOrganizationList = items
         notifyDataSetChanged()
     }
-    fun setOnClickItem(callback:(HrOrganizationsModel)->Unit){
+    fun setOnClickItem(callback:(HrOrganizationsModel) -> Unit){
         this.onClickItem = callback
     }
     fun setOnClickDeleteItem(callback: (HrOrganizationsModel) -> Unit){
         this.onClickDeleteItem = callback
     }
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): HrOrganizationsAdapter.HrOrganizationViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):HrOrganizationViewHolder {
         return HrOrganizationViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.card_items_hr_organizations,parent,false)
         )
     }
 
-    override fun onBindViewHolder(
-        holder: HrOrganizationsAdapter.HrOrganizationViewHolder,
-        position: Int
-    ) {
+    override fun onBindViewHolder(holder: HrOrganizationViewHolder, position: Int) {
      val hrOrg = hrOrganizationList[position]
         holder.bindView(hrOrg)
         holder.itemView.setOnClickListener { onClickItem?.invoke(hrOrg)
         val intent = Intent(it.context,HrOrganizationsMainActivity::class.java)
+            intent.putExtra("selectedHrOrganizationInfo",hrOrg)
             it.context.startActivity(intent)
         }
         holder.btnDelete.setOnClickListener { onClickDeleteItem?.invoke(hrOrg) }
@@ -59,12 +54,11 @@ class HrOrganizationsAdapter :
 
 
     class HrOrganizationViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
-        private var organizationId = view.findViewById<TextView>(R.id.hrOrganizationLocationIdTv)
+        private var organizationId = view.findViewById<TextView>(R.id.hrOrganizationIdTv)
         private var organizationName = view.findViewById<TextView>(R.id.hrOrganizationNameTv)
         private var startDate = view.findViewById<TextView>(R.id.hrOrganizationStartDateTv)
         private var endDate = view.findViewById<TextView>(R.id.hrOrganizationEndDateTv)
-        private var parentOrgId =
-            view.findViewById<TextView>(R.id.hrOrganizationParentOrganizationIdTv)
+        private var parentOrgId = view.findViewById<TextView>(R.id.hrOrganizationParentOrganizationIdTv)
         private var locationId = view.findViewById<TextView>(R.id.hrOrganizationLocationIdTv)
         private var updateDate = view.findViewById<TextView>(R.id.hrOrganizationUpdateDateTv)
         private var creationDate = view.findViewById<TextView>(R.id.hrOrganizationCreationDateTv)

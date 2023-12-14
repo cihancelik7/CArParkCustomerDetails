@@ -1,5 +1,7 @@
 package com.cihancelik.CarParkDetails.HR.hrOrganizations
 
+import java.io.Serializable
+
 data class HrOrganizationsModel(
     var organizationId: Int = 0,
     var organizationName: String = "",
@@ -9,4 +11,4 @@ data class HrOrganizationsModel(
     var locationId : Int = 0,
     var updateDate : String = "",
     var creationDate :String = ""
-)
+):Serializable

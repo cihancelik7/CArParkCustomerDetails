@@ -1,7 +1,6 @@
 package com.cihancelik.CarParkDetails.HR.hrLocations
 
 import android.content.Intent
-import android.net.wifi.WifiManager.LocalOnlyHotspotCallback
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
