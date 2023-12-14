@@ -139,7 +139,7 @@ class SQLiteHelperForHrJobs(context: Context) :
         onCreate(db)
     }
 
-    fun gethrJobNameById(jobId: Int): String? {
+    fun getHrJobNameById(jobId: Int): String? {
         val db = this.writableDatabase
         val selectQuery = "SELECT JOB_NAME FROM HR_JOBS WHERE JOB_ID = $jobId"
 

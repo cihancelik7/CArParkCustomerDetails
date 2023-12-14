@@ -71,16 +71,19 @@
         android:gravity="center">
 
         <Button
+            android:id="@+id/hrPositionAddBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add" />
 
         <Button
+            android:id="@+id/hrPositionViewBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="View" />
 
         <Button
+            android:id="@+id/hrPositionUpdateBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Update" />
