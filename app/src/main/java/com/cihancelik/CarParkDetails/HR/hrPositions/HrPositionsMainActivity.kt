@@ -41,7 +41,7 @@ class HrPositionsMainActivity : AppCompatActivity() {
             etPositionName.setText(selectHrPositionInfo.positionName)
             etStartDate.setText(selectHrPositionInfo.startDate)
             etEndDate.setText(selectHrPositionInfo.endDate)
-            etJobId.setText(selectHrPositionInfo.jobId)
+            etJobId.setText(selectHrPositionInfo.jobId.toString())
             etUpdateDate.setText(selectHrPositionInfo.updateDate)
             etCreationDate.setText(selectHrPositionInfo.creationDate)
 

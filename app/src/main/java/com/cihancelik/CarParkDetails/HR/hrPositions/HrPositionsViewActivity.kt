@@ -36,7 +36,7 @@ class HrPositionsViewActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         getHrPosition()
-        adapter.setOnClickDeleteItem { HrPosition ->
+        adapter.setOnClickItem { HrPosition ->
             val intent = Intent(this,HrPositionsMainActivity::class.java)
             intent.putExtra("selectedPositionUpdated",HrPosition)
             startActivity(intent)

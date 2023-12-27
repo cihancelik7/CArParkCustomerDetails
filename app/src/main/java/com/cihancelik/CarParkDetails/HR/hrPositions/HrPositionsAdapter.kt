@@ -32,7 +32,7 @@ class HrPositionsAdapter : RecyclerView.Adapter<HrPositionsAdapter.HrPositionVie
     }
 
     override fun onBindViewHolder(holder: HrPositionViewHolder, position: Int) {
-        var hrPosition = hrPositionList[position]
+        val hrPosition = hrPositionList[position]
         holder.bindView(hrPosition)
         holder.itemView.setOnClickListener { onClickItem?.invoke(hrPosition)
         val intent = Intent(it.context,HrPositionsMainActivity::class.java)
@@ -66,12 +66,10 @@ class HrPositionsAdapter : RecyclerView.Adapter<HrPositionsAdapter.HrPositionVie
             positionName.text = "Position Name: "+hrPosition.positionName
             startDate.text = "Start Date: "+hrPosition.startDate
             endDate.text = "End Date: "+hrPosition.endDate
-            jobId.text = "Job Id: "+hrPosition.jobId
+            jobId.text = "Job Id: "+hrPosition.jobId.toString()
             updateDate.text = "Update Date: "+hrPosition.updateDate
             creationDate.text = "Creation Date: "+hrPosition.creationDate
 
         }
-
     }
-
 }

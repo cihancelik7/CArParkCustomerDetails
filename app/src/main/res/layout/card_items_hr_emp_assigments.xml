@@ -16,6 +16,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/hrEmpAssigmentsIdTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
@@ -23,36 +24,42 @@
             android:textStyle="italic" />
 
         <TextView
+            android:id="@+id/hrEmpAssigmentsEmpIdTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Employee Id: " />
 
         <TextView
+            android:id="@+id/hrEmpAssigmentsPositionIdTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Position Id:" />
 
         <TextView
+            android:id="@+id/hrEmpAssigmentsStartDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="start Date: " />
 
         <TextView
+            android:id="@+id/hrEmpAssigmentsEndDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="End Date:" />
 
         <TextView
+            android:id="@+id/hrEmpAssigmentsUpdateDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Update Date :" />
 
         <TextView
+            android:id="@+id/hrEmpAssigmentsCreationDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
@@ -60,6 +67,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/hrEmpAssigmentsDeleteBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

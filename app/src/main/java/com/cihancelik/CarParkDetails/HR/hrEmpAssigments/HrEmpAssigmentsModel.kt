@@ -1,5 +1,7 @@
 package com.cihancelik.CarParkDetails.HR.hrEmpAssigments
 
+import java.io.Serializable
+
 data class HrEmpAssigmentsModel(
     var assigmentId: Int = 0,
     var employeeId: Int = 0,
@@ -8,4 +10,4 @@ data class HrEmpAssigmentsModel(
     var endDate: String = "",
     var updateDate: String = "",
     var creationDate: String = ""
-)
+):Serializable

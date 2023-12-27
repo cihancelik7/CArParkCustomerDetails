@@ -72,7 +72,7 @@ class SQLiteHelperForHrPositions(context: Context) :
                 endDate = cursor.getString(cursor.getColumnIndex("END_DATE"))
                 jobId = cursor.getInt(cursor.getColumnIndex("JOB_ID"))
                 updateDate = cursor.getString(cursor.getColumnIndex("UPDATE_DATE"))
-                creationDate = cursor.getString(cursor.getColumnIndex("CREATION_DATE "))
+                creationDate = cursor.getString(cursor.getColumnIndex("CREATION_DATE"))
 
                 val hrpositionInfo = HrPositionsModel(
                     positionId = positionId,
@@ -100,7 +100,7 @@ class SQLiteHelperForHrPositions(context: Context) :
         contentValues.put("CREATION_DATE", hrPosition.creationDate)
 
         val success = db.update(
-            "HRPOSITIONS",
+            "HR_POSITIONS",
             contentValues,
             "POSITION_ID=" + hrPosition.positionId,
             null
