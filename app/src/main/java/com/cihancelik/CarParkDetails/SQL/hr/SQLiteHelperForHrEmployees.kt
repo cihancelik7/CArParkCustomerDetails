@@ -202,6 +202,25 @@ class SQLiteHelperForHrEmployees(context: Context) :
         db!!.execSQL("DROP TABLE IF EXISTS HR_EMPLOYEES")
         onCreate(db)
     }
+    fun getEmployeeNameById(empId:Int):String?{
+        val db = this.writableDatabase
+        val selectQuery = "SELECT EMPLOYEE_NAME FROM HR_EMPLOYEES WHERE EMPLOYEE_ID = $empId"
+        val cursor : Cursor?
+        try {
+            cursor = db.rawQuery(selectQuery,null)
+        }catch (e:Exception){
+            e.printStackTrace()
+            db.execSQL(selectQuery)
+            return null
+        }
+        var employeeName : String? = null
+        if (cursor.moveToFirst()){
+            employeeName = cursor.getString(cursor.getColumnIndex("EMPLOYEE_NAME"))
+        }
+        cursor?.close()
+        db.close()
+        return employeeName
+    }
 
 }
 
