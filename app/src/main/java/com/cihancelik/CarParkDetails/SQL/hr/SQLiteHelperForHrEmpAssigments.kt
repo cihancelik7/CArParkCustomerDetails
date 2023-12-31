@@ -19,11 +19,11 @@ class SQLiteHelperForHrEmpAssigments(context: Context) :
         val positionIdFk = positionHelper.getPositionById(hrEmpAssigment.positionId)
 
         if (empIdFk != null) {
-            val empName = employeeHelper.getEmployeeNameById(hrEmpAssigment.employeeId)
-            if (empName != null) {
-                val updateEmpName = "Employee Id karsiliginda gelen Employee Name : $empName"
+            val empNumber = employeeHelper.getEmployeeNumberById(hrEmpAssigment.employeeId)
+            if (empNumber != null) {
+                val updateEmpNumber = "Employee Id karsiliginda gelen Employee Number : $empNumber"
                 var idString = hrEmpAssigment.employeeId.toString()
-                idString = updateEmpName
+                idString = updateEmpNumber
             }
         }
         if (positionIdFk != null) {

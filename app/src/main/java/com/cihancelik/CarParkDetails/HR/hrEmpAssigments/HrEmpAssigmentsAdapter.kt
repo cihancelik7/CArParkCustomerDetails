@@ -40,7 +40,7 @@ class HrEmpAssigmentsAdapter : RecyclerView.Adapter<HrEmpAssigmentsAdapter.HrEmp
         holder.bindView(hrEmpAssigment)
         holder.itemView.setOnClickListener { onClickItem?.invoke(hrEmpAssigment)
         val intent = Intent(it.context,HrEmpAssigmentsMainActivity::class.java)
-        intent.putExtra("selectedHrEmpAssigmentInfo",hrEmpAssigment)
+        intent.putExtra("selectedHrEmpAssignmentInfo",hrEmpAssigment)
             it.context.startActivity(intent)
         }
         holder.btnDelete.setOnClickListener{onClickDeleteItem?.invoke(hrEmpAssigment)}
