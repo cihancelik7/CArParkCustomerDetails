@@ -9,5 +9,6 @@ data class HrEmpAssigmentsModel(
     var startDate: String = "",
     var endDate: String = "",
     var updateDate: String = "",
-    var creationDate: String = ""
+    var creationDate: String = "",
+    var empName : String = ""
 ):Serializable

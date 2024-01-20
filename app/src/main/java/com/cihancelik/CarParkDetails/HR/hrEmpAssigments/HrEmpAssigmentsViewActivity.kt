@@ -14,7 +14,7 @@ import com.cihancelik.carparkcustomerdetails.R
 
 class HrEmpAssigmentsViewActivity : AppCompatActivity() {
     private lateinit var recylerView: RecyclerView
-    private val adapter = HrEmpAssigmentsAdapter()
+
     private lateinit var sqLiteHelperForHrEmployees: SQLiteHelperForHrEmployees
     private lateinit var sqLiteHelperForHrPositions: SQLiteHelperForHrPositions
     private lateinit var sqLiteHelperForHrEmpAssigments: SQLiteHelperForHrEmpAssigments
@@ -24,6 +24,8 @@ class HrEmpAssigmentsViewActivity : AppCompatActivity() {
     private lateinit var etEndDate: EditText
     private lateinit var etUpdateDate: EditText
     private lateinit var etCreationDate: EditText
+    private lateinit var empName: String
+    private lateinit var adapter : HrEmpAssigmentsAdapter
 
     private var hrEmpAssignment1: HrEmpAssigmentsModel? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +37,7 @@ class HrEmpAssigmentsViewActivity : AppCompatActivity() {
         sqLiteHelperForHrPositions = SQLiteHelperForHrPositions(this)
         recylerView = findViewById(R.id.hrEmpAssigmentsRecyclerView)
         recylerView.layoutManager = LinearLayoutManager(this)
+        adapter = HrEmpAssigmentsAdapter(sqLiteHelperForHrEmployees)
         recylerView.adapter = adapter
 
         getHrEmpAssignment()
@@ -49,9 +52,10 @@ class HrEmpAssigmentsViewActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val updateHrEmpAssignment = intent.getSerializableExtra("selectedHrEmpAssignmentInfo") as? HrEmpAssigmentsModel
+
         if (updateHrEmpAssignment != null){
             hrEmpAssignment1 = updateHrEmpAssignment
-            etEmpId.setText(updateHrEmpAssignment.employeeId.toString())
+            etEmpId.setText(updateHrEmpAssignment.empName)
             etPositionId.setText(updateHrEmpAssignment.positionId.toString())
             etStartDate.setText(updateHrEmpAssignment.startDate)
             etEndDate.setText(updateHrEmpAssignment.endDate)
@@ -59,6 +63,7 @@ class HrEmpAssigmentsViewActivity : AppCompatActivity() {
             etCreationDate.setText(updateHrEmpAssignment.creationDate)
 
         }
+
     }
     private fun getHrEmpAssignment() {
         val hrEmpAssignmentList = sqLiteHelperForHrEmpAssigments.getAllHrEmpAssignments()

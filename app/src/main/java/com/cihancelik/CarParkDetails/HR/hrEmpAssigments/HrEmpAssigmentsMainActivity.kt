@@ -77,6 +77,7 @@ class HrEmpAssigmentsMainActivity : AppCompatActivity() {
         val endDate = etEndDate.text.toString()
         val updateDate = etUpdateDate.text.toString()
         val creationDate = etCreationDate.text.toString()
+        val empName = sqliteHelperForEmp.getEmployeeNameById(empId.toInt())
 
         if (hrEmpAssigmentInfo1!=null){
             val updatedHrEmpAssigment = HrEmpAssigmentsModel(
@@ -86,7 +87,8 @@ class HrEmpAssigmentsMainActivity : AppCompatActivity() {
                 startDate = startDate,
                 endDate = endDate,
                 updateDate = updateDate,
-                creationDate = creationDate
+                creationDate = creationDate,
+                empName = empName.toString()
             )
             val isUpdate = isUpdate(updatedHrEmpAssigment)
             if (isUpdate){

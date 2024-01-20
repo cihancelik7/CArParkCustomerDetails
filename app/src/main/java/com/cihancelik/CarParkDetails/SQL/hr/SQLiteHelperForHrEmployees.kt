@@ -221,6 +221,23 @@ class SQLiteHelperForHrEmployees(context: Context) :
         db.close()
         return employeeNumber
     }
+    fun getEmployeeNameById(empId: Int): String? {
+        val db = this.readableDatabase
+        val selectQuery = "SELECT FIRST_NAME, LAST_NAME FROM HR_EMPLOYEES WHERE EMPLOYEE_ID = ?"
+        var empName: String? = null
+        val cursor: Cursor? = db.rawQuery(selectQuery, arrayOf(empId.toString()))
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                val firstName = cursor.getString(cursor.getColumnIndex("FIRST_NAME"))
+                val lastName = cursor.getString(cursor.getColumnIndex("LAST_NAME"))
+                empName = "$firstName $lastName"
+            }
+            cursor.close()
+        }
+        db.close()
+        return empName
+    }
 
 }
 
