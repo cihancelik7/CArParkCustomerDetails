@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.cihancelik.CarParkDetails.SQL.hr.SQLiteHelperForHrJobs
 import com.cihancelik.carparkcustomerdetails.R
 
-class HrPositionsAdapter : RecyclerView.Adapter<HrPositionsAdapter.HrPositionViewHolder>() {
+class HrPositionsAdapter(private var sqLiteHelperForHrJobs: SQLiteHelperForHrJobs) : RecyclerView.Adapter<HrPositionsAdapter.HrPositionViewHolder>() {
     private var hrPositionList: ArrayList<HrPositionsModel> = ArrayList()
     private var onClickItem: ((HrPositionsModel) -> Unit)? = null
     private var onClickDeleteItem: ((HrPositionsModel) -> Unit)? = null
@@ -33,7 +34,7 @@ class HrPositionsAdapter : RecyclerView.Adapter<HrPositionsAdapter.HrPositionVie
 
     override fun onBindViewHolder(holder: HrPositionViewHolder, position: Int) {
         val hrPosition = hrPositionList[position]
-        holder.bindView(hrPosition)
+        holder.bindView(hrPosition,sqLiteHelperForHrJobs)
         holder.itemView.setOnClickListener { onClickItem?.invoke(hrPosition)
         val intent = Intent(it.context,HrPositionsMainActivity::class.java)
             intent.putExtra("selectedHrPositionInfo",hrPosition)
@@ -61,12 +62,13 @@ class HrPositionsAdapter : RecyclerView.Adapter<HrPositionsAdapter.HrPositionVie
 
         var btnDelete = view.findViewById<Button>(R.id.hrPositionDeleteBtn)
 
-        fun bindView(hrPosition:HrPositionsModel){
+        fun bindView(hrPosition:HrPositionsModel,sqLiteHelperForHrJobs:SQLiteHelperForHrJobs){
+            var jobName = sqLiteHelperForHrJobs.getHrJobNameById(hrPosition.jobId)?:"Unknown"
             positionId.text = "Position Id: "+hrPosition.positionId.toString()
             positionName.text = "Position Name: "+hrPosition.positionName
             startDate.text = "Start Date: "+hrPosition.startDate
             endDate.text = "End Date: "+hrPosition.endDate
-            jobId.text = "Job Id: "+hrPosition.jobId.toString()
+            jobId.text = "Job Id: "+hrPosition.jobId.toString()+" $jobName"
             updateDate.text = "Update Date: "+hrPosition.updateDate
             creationDate.text = "Creation Date: "+hrPosition.creationDate
 

@@ -177,26 +177,19 @@ class SQLiteHelperForHrOrganizations(context: Context) :
         onCreate(db)
     }
 
-    fun getOrganizationParentIdByOrgId(organizationId: Int): Int? {
-        val db = this.writableDatabase
-        val selectQuery =
-            "SELECT ORGANIZATION_ID FROM HR_ORGANIZATIONS WHERE ORGANIZATION_ID = $organizationId"
-
-        val cursor: Cursor?
-        try {
-            cursor = db.rawQuery(selectQuery, null)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            db.execSQL(selectQuery)
-            return null
-        }
-        var parentOrgId: Int? = null
+fun getOrgNameByParentOrgId(parentOrgId:Int):String? {
+    val db = this.readableDatabase
+    val selectQuery = "SELECT ORGANIZATION_NAME FROM HR_ORGANIZATIONS WHERE ORGANIZATION_ID = ?"
+    var prntOrgName: String? = null
+    val cursor: Cursor? = db.rawQuery(selectQuery, arrayOf(parentOrgId.toString()))
+    if (cursor != null) {
         if (cursor.moveToFirst()) {
-            parentOrgId = cursor.getInt(cursor.getColumnIndex("PARENT_ORG_ID"))
+            val parentOrgName = cursor.getString(cursor.getColumnIndex("ORGANIZATION_NAME"))
+            prntOrgName = parentOrgName
         }
-        cursor?.close()
-        db.close()
-        return parentOrgId
+        cursor.close()
     }
-
+    db.close()
+    return prntOrgName
+}
 }

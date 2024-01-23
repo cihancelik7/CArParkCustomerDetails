@@ -37,13 +37,13 @@ class HrEmpAssigmentsViewActivity : AppCompatActivity() {
         sqLiteHelperForHrPositions = SQLiteHelperForHrPositions(this)
         recylerView = findViewById(R.id.hrEmpAssigmentsRecyclerView)
         recylerView.layoutManager = LinearLayoutManager(this)
-        adapter = HrEmpAssigmentsAdapter(sqLiteHelperForHrEmployees)
+        adapter = HrEmpAssigmentsAdapter(sqLiteHelperForHrEmployees,sqLiteHelperForHrPositions)
         recylerView.adapter = adapter
 
         getHrEmpAssignment()
         adapter.setOnClickItem { hrEmpAssigment ->
             val intent = Intent(this,HrEmpAssigmentsMainActivity::class.java)
-            intent.putExtra("selectedHrEmpAssignmentUpdated",hrEmpAssigment)
+            intent.putExtra("selectedHrEmpAssignmentUpdate",hrEmpAssigment)
             startActivity(intent)
         }
         adapter.setOnClickDeleteItem { deleteHrEmpAssignment(it.assigmentId) }
@@ -51,7 +51,8 @@ class HrEmpAssigmentsViewActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val updateHrEmpAssignment = intent.getSerializableExtra("selectedHrEmpAssignmentInfo") as? HrEmpAssigmentsModel
+        val updateHrEmpAssignment =
+            intent.getSerializableExtra("selectedHrEmpAssignmentInfo") as? HrEmpAssigmentsModel
 
         if (updateHrEmpAssignment != null){
             hrEmpAssignment1 = updateHrEmpAssignment

@@ -180,22 +180,17 @@ class SQLHelperForAddresses(context: Context) :
     }
 
     fun getAddressNameById(addressId: Int): String? {
-        val db = this.writableDatabase
-        val selectQuery = "SELECT ADDRESS_NAME FROM ADDRESSES WHERE ADDRESS_ID = $addressId"
-
-        val cursor: Cursor?
-        try {
-            cursor = db.rawQuery(selectQuery, null)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            db.execSQL(selectQuery)
-            return null
-        }
+        val db = this.readableDatabase
+        val selectQuery = "SELECT ADDRESS_NAME FROM ADDRESSES WHERE ADDRESS_ID = ?"
         var addressName: String? = null
-        if (cursor.moveToFirst()) {
-            addressName = cursor.getString(cursor.getColumnIndex("ADDRESS_NAME"))
+        val cursor: Cursor? = db.rawQuery(selectQuery, arrayOf(addressId.toString()))
+
+        if (cursor!=null) {
+            if (cursor.moveToFirst()) {
+                addressName = cursor.getString(cursor.getColumnIndex("ADDRESS_NAME"))
+            }
+            cursor.close()
         }
-        cursor?.close()
         db.close()
         return addressName
     }

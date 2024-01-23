@@ -14,43 +14,51 @@
         android:background="@drawable/corner_radius"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/hrSalaryIdTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Salary Id:"
             android:textStyle="italic"/>
         <TextView
+            android:id="@+id/hrSalaryEmployeeIdTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Employee Id"/>
         <TextView
+            android:id="@+id/hrSalaryAmountTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Amount: "/>
         <TextView
+            android:id="@+id/hrSalaryStartDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Start Date: "/>
         <TextView
+            android:id="@+id/hrSalaryEndDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="End Date:" />
         <TextView
+            android:id="@+id/hrSalaryUpdateDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Update Date: "/>
         <TextView
+            android:id="@+id/hrSalaryCreationDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:text="Creation Date: "/>
     </LinearLayout>
     <Button
+        android:id="@+id/hrSalaryDeleteBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

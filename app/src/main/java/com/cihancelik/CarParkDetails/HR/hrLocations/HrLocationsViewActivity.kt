@@ -13,7 +13,7 @@ import com.cihancelik.carparkcustomerdetails.R
 
 class HrLocationsViewActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
-    private val adapter = HrLocationsAdapter()
+    private lateinit var adapter : HrLocationsAdapter
     private lateinit var sqlHelperForAddresses: SQLHelperForAddresses
     private lateinit var sqLiteHelperForHrLocations: SQLiteHelperForHrLocations
     private lateinit var etLocationName: EditText
@@ -34,6 +34,7 @@ class HrLocationsViewActivity : AppCompatActivity() {
         sqlHelperForAddresses = SQLHelperForAddresses(this)
         recyclerView = findViewById(R.id.hrLocationRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = HrLocationsAdapter(sqlHelperForAddresses)
         recyclerView.adapter = adapter
 
         getHrLocation()

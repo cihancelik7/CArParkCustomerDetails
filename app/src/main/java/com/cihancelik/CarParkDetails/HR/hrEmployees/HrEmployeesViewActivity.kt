@@ -14,7 +14,7 @@ import com.cihancelik.carparkcustomerdetails.R
 
 class HrEmployeesViewActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
-    private val adapter = HrEmployeesAdapter()
+    private lateinit var  adapter : HrEmployeesAdapter
     private lateinit var sqlHelperForAddresses: SQLHelperForAddresses
     private lateinit var sqlHelperForHrEmployees: SQLiteHelperForHrEmployees
     private lateinit var etEmployeeNumber: EditText
@@ -40,6 +40,7 @@ class HrEmployeesViewActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.hrEmployeesRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = HrEmployeesAdapter(sqlHelperForAddresses)
         recyclerView.adapter = adapter
 
         getHrEmp()

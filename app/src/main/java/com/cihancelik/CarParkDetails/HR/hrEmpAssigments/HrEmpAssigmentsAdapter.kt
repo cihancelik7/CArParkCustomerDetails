@@ -8,10 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cihancelik.CarParkDetails.HR.hrEmployees.HrEmployeesModel
 import com.cihancelik.CarParkDetails.SQL.hr.SQLiteHelperForHrEmployees
+import com.cihancelik.CarParkDetails.SQL.hr.SQLiteHelperForHrPositions
 import com.cihancelik.carparkcustomerdetails.R
 import org.w3c.dom.Text
 
-class HrEmpAssigmentsAdapter(private val sqLiteHelperForHrEmployees: SQLiteHelperForHrEmployees) : RecyclerView.Adapter<HrEmpAssigmentsAdapter.HrEmpAssigmentsViewHolder>() {
+class HrEmpAssigmentsAdapter(private val sqLiteHelperForHrEmployees: SQLiteHelperForHrEmployees,private val sqLiteHelperForHrPositions: SQLiteHelperForHrPositions) : RecyclerView.Adapter<HrEmpAssigmentsAdapter.HrEmpAssigmentsViewHolder>() {
     private var hrEmpAssigmentList : ArrayList<HrEmpAssigmentsModel> = ArrayList()
     private var onClickItem: ((HrEmpAssigmentsModel)->Unit)? = null
     private var onClickDeleteItem : ((HrEmpAssigmentsModel)->Unit)? = null
@@ -40,7 +41,7 @@ class HrEmpAssigmentsAdapter(private val sqLiteHelperForHrEmployees: SQLiteHelpe
 
     override fun onBindViewHolder(holder: HrEmpAssigmentsViewHolder, position: Int) {
         val hrEmpAssigment = hrEmpAssigmentList[position]
-        holder.bindView(hrEmpAssigment,sqLiteHelperForHrEmployees)
+        holder.bindView(hrEmpAssigment,sqLiteHelperForHrEmployees,sqLiteHelperForHrPositions)
         holder.itemView.setOnClickListener { onClickItem?.invoke(hrEmpAssigment)
         val intent = Intent(it.context,HrEmpAssigmentsMainActivity::class.java)
         intent.putExtra("selectedHrEmpAssignmentInfo",hrEmpAssigment)
@@ -65,12 +66,13 @@ class HrEmpAssigmentsAdapter(private val sqLiteHelperForHrEmployees: SQLiteHelpe
 
         var btnDelete = view.findViewById<TextView>(R.id.hrEmpAssigmentsDeleteBtn)
 
-        fun bindView (hrEmpAssigment: HrEmpAssigmentsModel,sqLiteHelper: SQLiteHelperForHrEmployees){
+        fun bindView (hrEmpAssigment: HrEmpAssigmentsModel,sqLiteHelper: SQLiteHelperForHrEmployees,sqLiteHelperForHrPositions: SQLiteHelperForHrPositions){
 
             val employeeName = sqLiteHelper.getEmployeeNameById(hrEmpAssigment.employeeId) ?: "Unknown"
+            val positionName = sqLiteHelperForHrPositions.getPositionNameById(hrEmpAssigment.positionId) ?: "Unknown"
             assigmentId.text = "Assignment Id: "+hrEmpAssigment.assigmentId.toString()
             empId.text = "Employee Id: ${hrEmpAssigment.employeeId} Name: $employeeName"
-            positionId.text = "Position Id: "+ hrEmpAssigment.positionId.toString()
+            positionId.text = "Position Id: "+ hrEmpAssigment.positionId.toString() + " Position Name: $positionName"
             startDate.text = "Start Date: "+hrEmpAssigment.startDate
             endDate.text = "End Date: "+hrEmpAssigment.endDate
             updateDate.text = "Update Date: "+hrEmpAssigment.updateDate

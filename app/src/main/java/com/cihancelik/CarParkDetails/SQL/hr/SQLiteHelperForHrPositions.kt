@@ -160,22 +160,17 @@ class SQLiteHelperForHrPositions(context: Context) :
         onCreate(db)
     }
     fun getPositionNameById(positionId : Int):String?{
-        val db = this.writableDatabase
-        val selectQuery = "SELECT POSITION_NAME FROM HR_POSITIONS WHERE POSITION_ID = $positionId"
-
-        val cursor : Cursor?
-        try {
-            cursor = db.rawQuery(selectQuery,null)
-        }catch (e:Exception){
-            e.printStackTrace()
-            db.execSQL(selectQuery)
-            return null
-        }
+        val db = this.readableDatabase
+        val selectQuery = "SELECT POSITION_NAME FROM HR_POSITIONS WHERE POSITION_ID = ?"
         var positionName : String? = null
-        if (cursor.moveToFirst()){
+        val cursor : Cursor? = db.rawQuery(selectQuery, arrayOf(positionId.toString()))
+
+    if (cursor!=null) {
+        if (cursor.moveToFirst()) {
             positionName = cursor.getString(cursor.getColumnIndex("POSITION_NAME"))
         }
-        cursor?.close()
+        cursor.close()
+    }
         db.close()
         return positionName
     }

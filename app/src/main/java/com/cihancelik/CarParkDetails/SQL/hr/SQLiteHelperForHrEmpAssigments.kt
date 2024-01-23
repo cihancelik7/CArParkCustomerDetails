@@ -15,17 +15,9 @@ class SQLiteHelperForHrEmpAssigments(context: Context) :
     fun insertHrEmpAssigment(hrEmpAssigment: HrEmpAssigmentsModel): Long {
         val db = this.writableDatabase
         val values = ContentValues()
-        val empIdFk = employeeHelper.getHrEmpById(hrEmpAssigment.employeeId)
         val positionIdFk = positionHelper.getPositionById(hrEmpAssigment.positionId)
 
-        if (empIdFk != null) {
-            val empNumber = employeeHelper.getEmployeeNumberById(hrEmpAssigment.employeeId)
-            if (empNumber != null) {
-                val updateEmpNumber = "Employee Id karsiliginda gelen Employee Number : $empNumber"
-                var idString = hrEmpAssigment.employeeId.toString()
-                idString = updateEmpNumber
-            }
-        }
+
         if (positionIdFk != null) {
             val positionName = positionHelper.getPositionNameById(hrEmpAssigment.positionId)
             if (positionName != null) {

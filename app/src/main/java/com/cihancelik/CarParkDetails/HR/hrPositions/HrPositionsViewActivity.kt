@@ -14,7 +14,7 @@ import com.cihancelik.carparkcustomerdetails.R
 
 class HrPositionsViewActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
-    private val adapter = HrPositionsAdapter()
+    private lateinit var adapter : HrPositionsAdapter
     private lateinit var sqlHelperForPositions: SQLiteHelperForHrPositions
     private lateinit var sqlHelperForJobs: SQLiteHelperForHrJobs
     private lateinit var etPositionName: EditText
@@ -33,6 +33,7 @@ class HrPositionsViewActivity : AppCompatActivity() {
         sqlHelperForJobs = SQLiteHelperForHrJobs(this)
         recyclerView = findViewById(R.id.hrPositionRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter=HrPositionsAdapter(sqlHelperForJobs)
         recyclerView.adapter = adapter
 
         getHrPosition()

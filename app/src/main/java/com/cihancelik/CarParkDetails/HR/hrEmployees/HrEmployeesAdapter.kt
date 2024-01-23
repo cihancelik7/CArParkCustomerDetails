@@ -16,7 +16,7 @@ import com.cihancelik.CarParkDetails.SQL.general.SQLHelperForAddresses
 import com.cihancelik.CarParkDetails.general.addressesUpdateScreen.AddressessModel
 import com.cihancelik.carparkcustomerdetails.R
 
-class HrEmployeesAdapter:RecyclerView.Adapter<HrEmployeesAdapter.HrEmployeesViewHolder>() {
+class HrEmployeesAdapter(private var sqlHelperForAddresses: SQLHelperForAddresses):RecyclerView.Adapter<HrEmployeesAdapter.HrEmployeesViewHolder>() {
 
     private var hrEmpList: ArrayList<HrEmployeesModel> = ArrayList()
     private var onClickItem: ((HrEmployeesModel) -> Unit)? = null
@@ -41,7 +41,7 @@ class HrEmployeesAdapter:RecyclerView.Adapter<HrEmployeesAdapter.HrEmployeesView
     }
     override fun onBindViewHolder(holder: HrEmployeesViewHolder, position: Int) {
         val hrEmp = hrEmpList[position]
-       holder.bindView(hrEmp)
+       holder.bindView(hrEmp,sqlHelperForAddresses)
         holder.itemView.setOnClickListener { onClickItem?.invoke(hrEmp)
         val intent = Intent(it.context,HrEmployeesMainActivity::class.java)
         intent.putExtra("selectedHrEmployeeInfo",hrEmp)
@@ -73,7 +73,8 @@ class HrEmployeesAdapter:RecyclerView.Adapter<HrEmployeesAdapter.HrEmployeesView
 
         var btnDelete = view.findViewById<Button>(R.id.hrEmployeesDeleteBtn)
 
-        fun bindView(hrEmp: HrEmployeesModel) {
+        fun bindView(hrEmp: HrEmployeesModel,sqlHelperForAddresses: SQLHelperForAddresses) {
+            var address = sqlHelperForAddresses.getAddressNameById(hrEmp.addressId) ?: "Unknown"
             employeeId.text = "EmployeeId: "+hrEmp.employeeId.toString()
             employeeNumber.text = "Employee Number: "+hrEmp.employeeNumber.toString()
             startDate.text = "Start Date: "+hrEmp.startDate
@@ -85,7 +86,7 @@ class HrEmployeesAdapter:RecyclerView.Adapter<HrEmployeesAdapter.HrEmployeesView
             nationalId.text = "National Id: "+hrEmp.nationalId.toString()
             martialStatus.text = "Martial Status: "+hrEmp.martialStatus
             gender.text = "Gender: "+hrEmp.gender
-            addressId.text = "AddressId"+hrEmp.addressId.toString()
+            addressId.text = "AddressId: "+hrEmp.addressId.toString()+": $address"
             emailAddress.text = "Email Address: "+hrEmp.emailAddress
 
            /* val employeeIdText = "EmployeeId: " + hrEmp.employeeId.toString()

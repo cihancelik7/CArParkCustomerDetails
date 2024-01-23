@@ -82,7 +82,7 @@ class SQLiteHelperForHrJobs(context: Context) :
         contextValues.put("UPDATE_DATE", hrJob.updateDate)
         contextValues.put("CREATION_DATE", hrJob.creationDate)
 
-        val success = db.update("HR_JOBS", contextValues, "JOBS_ID=" + hrJob.jobId, null)
+        val success = db.update("HR_JOBS", contextValues, "JOB_ID=" + hrJob.jobId, null)
         db.close()
         return success
     }

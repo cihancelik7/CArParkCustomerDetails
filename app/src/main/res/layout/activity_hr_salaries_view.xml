@@ -5,5 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.cihancelik.CarParkDetails.HR.hrSalaries.HrSalariesViewActivity">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/hrSalaryRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

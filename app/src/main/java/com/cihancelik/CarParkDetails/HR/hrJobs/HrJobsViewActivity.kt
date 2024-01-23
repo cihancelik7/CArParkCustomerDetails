@@ -12,7 +12,7 @@ import com.cihancelik.carparkcustomerdetails.R
 
 class HrJobsViewActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
-    private var adapter = HrJobsAdapter()
+    private lateinit var adapter : HrJobsAdapter
     private lateinit var sqLiteHelperForHrJobs: SQLiteHelperForHrJobs
     private lateinit var etJobName: EditText
     private lateinit var etStartDate: EditText
@@ -28,6 +28,7 @@ class HrJobsViewActivity : AppCompatActivity() {
         sqLiteHelperForHrJobs = SQLiteHelperForHrJobs(this)
         recyclerView = findViewById(R.id.hrJobsRecycllerview)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter=HrJobsAdapter()
         recyclerView.adapter = adapter
 
         getHrJobs()

@@ -55,7 +55,7 @@ class HrEmployeesMainActivity : AppCompatActivity() {
             etBirthDate.setText(selectedHrEmployeeInfo.birthDate)
             etNationalId.setText(selectedHrEmployeeInfo.nationalId.toString())
             etMartialStatus.setText(selectedHrEmployeeInfo.martialStatus)
-            etGender.setText(selectedHrEmployeeInfo.martialStatus)
+            etGender.setText(selectedHrEmployeeInfo.gender)
             etAddressId.setText(selectedHrEmployeeInfo.addressId.toString())
             etEmailAddress.setText(selectedHrEmployeeInfo.emailAddress)
 
@@ -101,6 +101,7 @@ class HrEmployeesMainActivity : AppCompatActivity() {
         val gender = etGender.text.toString()
         val addressId = etAddressId.text.toString()
         val emailAddress = etEmailAddress.text.toString()
+        val address = sqlHelperForAddresses.getAddressNameById(addressId.toInt())
 
         if (hrEmpInfo1 != null) {
             val updateHrEmployees = HrEmployeesModel(
@@ -118,8 +119,8 @@ class HrEmployeesMainActivity : AppCompatActivity() {
                 addressId = hrEmpInfo1!!.addressId,
                 emailAddress = emailAddress
             )
-            val isUpdated = isUpdate(updateHrEmployees)
-            if (isUpdated) {
+            val isUpdate = isUpdate(updateHrEmployees)
+            if (isUpdate) {
                 val status = sqlHelperForHrEmployees.updateHrEmp(updateHrEmployees)
                 if (status > -1) {
                     Toast.makeText(this, "Update Successful", Toast.LENGTH_SHORT).show()

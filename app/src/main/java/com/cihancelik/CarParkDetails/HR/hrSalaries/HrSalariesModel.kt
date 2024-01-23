@@ -1,5 +1,7 @@
 package com.cihancelik.CarParkDetails.HR.hrSalaries
 
+import java.io.Serializable
+
 data class HrSalariesModel(
     var salaryId: Int = 0,
     var employeeId: Int = 0,
@@ -8,4 +10,4 @@ data class HrSalariesModel(
     var endDate: String = "",
     var updateDate: String = "",
     var creationDate: String = ""
-)
+):Serializable

@@ -115,7 +115,7 @@ class SQLiteHelperForHrEmployees(context: Context) :
     fun updateHrEmp(hrEmp: HrEmployeesModel): Int {
         val db = this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put("EMPLOYEE_NUMBER", hrEmp.employeeId)
+        contentValues.put("EMPLOYEE_NUMBER", hrEmp.employeeNumber)
         contentValues.put("START_DATE", hrEmp.startDate)
         contentValues.put("END_DATE", hrEmp.endDate)
         contentValues.put("IS_ACTIVE", hrEmp.isActive)

@@ -56,7 +56,7 @@ class HrEmpAssigmentsMainActivity : AppCompatActivity() {
         var goToHrEmpASsigmentViewActivity = Intent(this,HrEmpAssigmentsViewActivity::class.java)
         btnView.setOnClickListener { startActivity(goToHrEmpASsigmentViewActivity) }
 
-        var selectedHrEmpAssigmentUpdate = intent.getSerializableExtra("selectedHrEmpAssignmentUpdated") as? HrEmpAssigmentsModel
+        var selectedHrEmpAssigmentUpdate = intent.getSerializableExtra("selectedHrEmpAssignmentUpdate") as? HrEmpAssigmentsModel
 
         if (selectedHrEmpAssigmentUpdate != null){
             etEmpId.setText(selectedHrEmpAssigmentUpdate.employeeId.toString())
@@ -66,6 +66,8 @@ class HrEmpAssigmentsMainActivity : AppCompatActivity() {
             etUpdateDate.setText(selectedHrEmpAssigmentUpdate.updateDate)
             etCreationDate.setText(selectedHrEmpAssigmentUpdate.creationDate)
             hrEmpAssigmentInfo1 = selectedHrEmpAssigmentUpdate
+
+            hrEmpAssigmentInfo1 = selectedHrEmpAssigmentsInfo
         }
         btnUpdate.setOnClickListener { updateHrEmpAssigment() }
     }

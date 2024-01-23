@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.cihancelik.CarParkDetails.SQL.hr.SQLiteHelperForHrLocations
+import com.cihancelik.CarParkDetails.SQL.hr.SQLiteHelperForHrOrganizations
 import com.cihancelik.carparkcustomerdetails.R
 
-class HrOrganizationsAdapter :
+class HrOrganizationsAdapter(private var sqLiteHelperForHrOrganizations: SQLiteHelperForHrOrganizations,private val sqLiteHelperForHrLocations: SQLiteHelperForHrLocations) :
     RecyclerView.Adapter<HrOrganizationsAdapter.HrOrganizationViewHolder>() {
     private var hrOrganizationList: ArrayList<HrOrganizationsModel> = ArrayList()
     private var onClickItem: ((HrOrganizationsModel) -> Unit)? = null
@@ -34,7 +36,7 @@ class HrOrganizationsAdapter :
 
     override fun onBindViewHolder(holder: HrOrganizationViewHolder, position: Int) {
      val hrOrg = hrOrganizationList[position]
-        holder.bindView(hrOrg)
+        holder.bindView(hrOrg,sqLiteHelperForHrOrganizations,sqLiteHelperForHrLocations)
         holder.itemView.setOnClickListener { onClickItem?.invoke(hrOrg)
         val intent = Intent(it.context,HrOrganizationsMainActivity::class.java)
             intent.putExtra("selectedHrOrganizationInfo",hrOrg)
@@ -65,13 +67,15 @@ class HrOrganizationsAdapter :
 
         var btnDelete = view.findViewById<TextView>(R.id.hrOrganizationDeleteBtn)
 
-        fun bindView(hrOrganzation: HrOrganizationsModel) {
+        fun bindView(hrOrganzation: HrOrganizationsModel,sqLiteHelperForHrOrganizations:SQLiteHelperForHrOrganizations,sqLiteHelperForHrLocations: SQLiteHelperForHrLocations) {
+            var parentOrgName= sqLiteHelperForHrOrganizations.getOrgNameByParentOrgId(hrOrganzation.parentOrgId)
+            var locationName = sqLiteHelperForHrLocations.getLocationNameById(hrOrganzation.locationId)
             organizationId.text = "Organization Id: " + hrOrganzation.organizationId.toString()
             organizationName.text = "Organization Name: " + hrOrganzation.organizationName
             startDate.text = "Start Date: " + hrOrganzation.startDate
             endDate.text = "End Date: " + hrOrganzation.endDate
-            parentOrgId.text = "Parent Org Id: " + hrOrganzation.parentOrgId.toString()
-            locationId.text = "Location Id: " + hrOrganzation.locationId.toString()
+            parentOrgId.text = "Parent Org Id: " + hrOrganzation.parentOrgId.toString()+" $parentOrgName"
+            locationId.text = "Location Id: " + hrOrganzation.locationId.toString()+" $locationName"
             updateDate.text = "Update Date: " + hrOrganzation.updateDate
             creationDate.text = "Creation Date: " + hrOrganzation.creationDate
         }

@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.cihancelik.CarParkDetails.SQL.general.SQLHelperForAddresses
 import com.cihancelik.carparkcustomerdetails.R
 
-class HrLocationsAdapter : RecyclerView.Adapter<HrLocationsAdapter.HrLocationViewHolder>() {
+class HrLocationsAdapter(private val sqlHelperForAddresses: SQLHelperForAddresses) : RecyclerView.Adapter<HrLocationsAdapter.HrLocationViewHolder>() {
     private var hrLocationList: ArrayList<HrLocationsModel> = ArrayList()
     private var onClickItem: ((HrLocationsModel) -> Unit)? = null
     private var onClickDeleteItem: ((HrLocationsModel) -> Unit)? = null
@@ -36,7 +37,7 @@ class HrLocationsAdapter : RecyclerView.Adapter<HrLocationsAdapter.HrLocationVie
 
     override fun onBindViewHolder(holder: HrLocationViewHolder, position: Int) {
         val hrLocation = hrLocationList[position]
-        holder.bindView(hrLocation)
+        holder.bindView(hrLocation, sqlHelperForAddresses)
         holder.itemView.setOnClickListener { onClickItem?.invoke(hrLocation)
         val intent = Intent(it.context,HrLocationsMainActivity::class.java)
         intent.putExtra("selectedHrLocationInfo",hrLocation)
@@ -67,12 +68,13 @@ class HrLocationsAdapter : RecyclerView.Adapter<HrLocationsAdapter.HrLocationVie
 
         var btnDelete = view.findViewById<Button>(R.id.hrLocationDeleteBtn)
 
-        fun bindView(hrLocation: HrLocationsModel) {
+        fun bindView(hrLocation: HrLocationsModel,sqlHelperForAddresses: SQLHelperForAddresses) {
+            val address = sqlHelperForAddresses.getAddressNameById(hrLocation.addressId)?:"Unknown"
             locationId.text = "Location Id: "+ hrLocation.locationId.toString()
             locationName.text = "Location Name: "+ hrLocation.locationName
             startDate.text = "Start Date: "+ hrLocation.startDate
             endDate.text = "End Date: "+ hrLocation.endDate
-            addressId.text = "Address Id: " + hrLocation.addressId.toString()
+            addressId.text = "Address Id: " + hrLocation.addressId.toString() + " Address : $address"
             naceCode.text = "Nace Code: " + hrLocation.naceCode.toString()
             dangerClass.text = "Danger Class: " + hrLocation.dangerClass
             updateDate.text = "Update Date: " + hrLocation.updateDate
