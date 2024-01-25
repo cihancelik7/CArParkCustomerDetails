@@ -67,16 +67,16 @@ class AddressesAdapter : RecyclerView.Adapter<AddressesAdapter.AddressesViewHold
         var btnDelete = view.findViewById<Button>(R.id.btnDeleteAddresses)
 
         fun bindView(addresses: AddressessModel) {
-            id.text = addresses.addressId.toString()
-            address.text = addresses.address
-            startDateAddresses.text = addresses.startDate
-            endDateAddresses.text = addresses.endDAte
-            countryAddresses.text = addresses.country
-            regionAddresses.text = addresses.region
-            postalCodeAddresses.text = addresses.postalCode
-            addressLine.text = addresses.addressLine
-            updateDate.text = addresses.updateDate
-            creationDate.text = addresses.creationDate
+            id.text = "id: "+addresses.addressId.toString()
+            address.text ="adresses: "+ addresses.address
+            startDateAddresses.text ="Start Date: "+ addresses.startDate
+            endDateAddresses.text = "End Date: "+addresses.endDAte
+            countryAddresses.text = "Country: "+addresses.country
+            regionAddresses.text = "Region: "+addresses.region
+            postalCodeAddresses.text = "Postal code: "+addresses.postalCode
+            addressLine.text = "Adress Line: "+addresses.addressLine
+            updateDate.text = "Update Date: "+addresses.updateDate
+            creationDate.text = "Creation Date: "+addresses.creationDate
 
         }
     }

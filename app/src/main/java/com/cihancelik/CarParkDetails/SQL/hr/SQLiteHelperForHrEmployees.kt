@@ -238,6 +238,18 @@ class SQLiteHelperForHrEmployees(context: Context) :
         db.close()
         return empName
     }
+    // FOR EMPLOYEE NUMBER
+    fun getEmployeeCount(): Int {
+        val db = this.readableDatabase
+        val countQuery = "SELECT COUNT(*) FROM HR_EMPLOYEES"
+        val cursor = db.rawQuery(countQuery, null)
+        if (!cursor.moveToFirst()) {
+            return 0
+        }
+        val count = cursor.getInt(0)
+        cursor.close()
+        return count
+    }
 
 }
 

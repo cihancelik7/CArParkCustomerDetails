@@ -98,7 +98,7 @@ class SQLHelperForAddresses(context: Context) :
         val contextValues = ContentValues()
         contextValues.put("ADDRESS_ID", address.addressId)
         contextValues.put("ADDRESS_NAME", address.address)
-        contextValues.put("START_DATE", address.updateDate)
+        contextValues.put("START_DATE", address.startDate)
         contextValues.put("END_DATE", address.endDAte)
         contextValues.put("COUNTRY", address.country)
         contextValues.put("CITY", address.city)

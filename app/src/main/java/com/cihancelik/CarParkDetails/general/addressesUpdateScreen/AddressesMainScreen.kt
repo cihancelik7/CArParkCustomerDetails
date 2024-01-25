@@ -4,9 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.cihancelik.CarParkDetails.SQL.general.SQLHelperForAddresses
+import com.cihancelik.CarParkDetails.firstscreen.Enterance
 import com.cihancelik.carparkcustomerdetails.R
 
 class AddressesMainScreen : AppCompatActivity() {
@@ -20,7 +22,6 @@ class AddressesMainScreen : AppCompatActivity() {
     private lateinit var etAddressLine: TextView
     private lateinit var etUpdateDate: TextView
     private lateinit var etCreationDate: TextView
-
     private lateinit var btnAdd: Button
     private lateinit var btnView: Button
     private lateinit var btnUpdate: Button
@@ -33,6 +34,8 @@ class AddressesMainScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_addresses_main_page)
+
+
 
         initView()
 
@@ -207,7 +210,7 @@ class AddressesMainScreen : AppCompatActivity() {
         etCreationDate = findViewById(R.id.tvAddressesCreationDate)
 
         btnAdd = findViewById(R.id.addBtnAddresses)
-        btnView = findViewById(R.id.viewBtnAddresses) // XML dosyanızda bu düğmeyi tanımlamışsanız
+        btnView = findViewById(R.id.viewBtnAddresses)
         btnUpdate = findViewById(R.id.btnUpdateAddresses)
     }
 }

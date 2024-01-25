@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import com.cihancelik.CarParkDetails.SQL.general.SQLHelperForAddresses
 import com.cihancelik.CarParkDetails.SQL.hr.SQLiteHelperForHrEmployees
+import com.cihancelik.CarParkDetails.firstscreen.Enterance
 import com.cihancelik.CarParkDetails.general.addressesUpdateScreen.AddressessModel
 import com.cihancelik.carparkcustomerdetails.R
+import com.cihancelik.carparkcustomerdetails.databinding.ActivityEmployeeMainBinding
 
 class HrEmployeesMainActivity : AppCompatActivity() {
     private lateinit var etEmployeeNumber: EditText
@@ -24,7 +27,7 @@ class HrEmployeesMainActivity : AppCompatActivity() {
     private lateinit var etGender: EditText
     private lateinit var etAddressId: EditText
     private lateinit var etEmailAddress: EditText
-
+    private lateinit var home:ImageView
     private lateinit var btnAdd: Button
     private lateinit var btnView: Button
     private lateinit var btnUpdate: Button
@@ -36,8 +39,12 @@ class HrEmployeesMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hr_employees_main)
+       // var goToEnterance = Intent(this,Enterance::class.java)
+
+
 
         initView()
+
 
         sqlHelperForHrEmployees = SQLiteHelperForHrEmployees(this)
         sqlHelperForAddresses = SQLHelperForAddresses(this)
@@ -183,6 +190,7 @@ class HrEmployeesMainActivity : AppCompatActivity() {
                 if (status > -1) {
                     Toast.makeText(this, "Hr Employee Added", Toast.LENGTH_SHORT).show()
                     clearEditText()
+
                 } else {
                     Toast.makeText(this, "Record Not Saved!!!", Toast.LENGTH_SHORT).show()
                 }
@@ -230,5 +238,9 @@ class HrEmployeesMainActivity : AppCompatActivity() {
         btnAdd = findViewById(R.id.hrEmployeesAddBtn)
         btnView = findViewById(R.id.hrEmployeesViewBtn)
         btnUpdate = findViewById(R.id.hrEmployeesUpdateBtn)
+
+
+
     }
+
 }

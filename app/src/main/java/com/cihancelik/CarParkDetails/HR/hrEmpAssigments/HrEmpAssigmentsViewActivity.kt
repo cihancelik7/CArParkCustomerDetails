@@ -24,7 +24,7 @@ class HrEmpAssigmentsViewActivity : AppCompatActivity() {
     private lateinit var etEndDate: EditText
     private lateinit var etUpdateDate: EditText
     private lateinit var etCreationDate: EditText
-    private lateinit var empName: String
+
     private lateinit var adapter : HrEmpAssigmentsAdapter
 
     private var hrEmpAssignment1: HrEmpAssigmentsModel? = null
@@ -56,7 +56,7 @@ class HrEmpAssigmentsViewActivity : AppCompatActivity() {
 
         if (updateHrEmpAssignment != null){
             hrEmpAssignment1 = updateHrEmpAssignment
-            etEmpId.setText(updateHrEmpAssignment.empName)
+            etEmpId.setText(updateHrEmpAssignment.employeeId.toString())
             etPositionId.setText(updateHrEmpAssignment.positionId.toString())
             etStartDate.setText(updateHrEmpAssignment.startDate)
             etEndDate.setText(updateHrEmpAssignment.endDate)

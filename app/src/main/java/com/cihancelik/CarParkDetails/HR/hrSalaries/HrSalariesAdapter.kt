@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.cihancelik.CarParkDetails.SQL.hr.SQLiteHelperForHrEmployees
 import com.cihancelik.carparkcustomerdetails.R
 
-class HrSalariesAdapter : RecyclerView.Adapter<HrSalariesAdapter.HrSalaryViewHolder>() {
+class HrSalariesAdapter(private var sqLiteHelperForHrEmployees: SQLiteHelperForHrEmployees) : RecyclerView.Adapter<HrSalariesAdapter.HrSalaryViewHolder>() {
     private var hrSalariesList :ArrayList<HrSalariesModel> = ArrayList()
     private var onClickItem : ((HrSalariesModel)-> Unit)? = null
     private var onClickDeleteItem : ((HrSalariesModel)->Unit)? = null
@@ -32,7 +33,7 @@ class HrSalariesAdapter : RecyclerView.Adapter<HrSalariesAdapter.HrSalaryViewHol
 
     override fun onBindViewHolder(holder: HrSalaryViewHolder, position: Int) {
         val hrSalaries = hrSalariesList[position]
-        holder.bindView(hrSalaries)
+        holder.bindView(hrSalaries,sqLiteHelperForHrEmployees)
         holder.itemView.setOnClickListener {  onClickItem?.invoke(hrSalaries)
             val intent = Intent(it.context,HrSalariesMainActivity::class.java)
             intent.putExtra("selectedHrSalaryInfo",hrSalaries)
@@ -60,10 +61,11 @@ class HrSalariesAdapter : RecyclerView.Adapter<HrSalariesAdapter.HrSalaryViewHol
 
         var btnDelete = view.findViewById<TextView>(R.id.hrSalaryDeleteBtn)
 
-        fun bindView(hrSalary: HrSalariesModel) {
+        fun bindView(hrSalary: HrSalariesModel,sqLiteHelperForHrEmployees: SQLiteHelperForHrEmployees) {
+            var empName = sqLiteHelperForHrEmployees.getEmployeeNameById(hrSalary.employeeId)
             salaryId.text = "Salary Id : ${hrSalary.salaryId.toString()}"
-            employeeId.text = "Employee Id: ${hrSalary.employeeId.toString()}"
-            amount.text = "Amount: ${hrSalary.amount.toString()}"
+            employeeId.text = "Employee Id: ${hrSalary.employeeId.toString()} Name: $empName"
+            amount.text = "Amount: ${hrSalary.amount.toString()} $"
             startDate.text ="Start Date: ${hrSalary.startDate}"
             endDate.text = "End Date: ${hrSalary.endDate}"
             updateDate.text = "Update Date: ${hrSalary.updateDate}"
